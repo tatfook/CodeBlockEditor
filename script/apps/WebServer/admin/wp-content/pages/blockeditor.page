@@ -15,6 +15,7 @@
 	wp_enqueue_script("BlocklyConfig",			"/wp-includes/js/BlocklyConfig.js");
 	wp_enqueue_script("BlocklyExecution",		"/wp-includes/js/BlocklyExecution.js");
 
+	local state = request:get("state");
 	local code = request:get("code");
 	if(is_ajax()) then
 		add_action('wp_ajax_runblockly', function()
@@ -22,7 +23,11 @@
 			NPL.load("(gl)script/apps/Aries/Creator/Game/Code/CodeBlockWindow.lua");
 			local CodeBlockWindow = commonlib.gettable("MyCompany.Aries.Game.Code.CodeBlockWindow");
 			CodeBlockWindow.Show(true);
-			CodeBlockWindow.InsertCodeAtCurrentLine(code);
+			if(state == "insert")then
+				CodeBlockWindow.InsertCodeAtCurrentLine(code);
+			else
+				CodeBlockWindow.ReplaceCode(code);
+			end
 			wp_send_json({code},true);
 		end)
 		return;
@@ -34,12 +39,13 @@
       function onLoad() {
         gWorkSpace = Blockly.inject('blocklyDiv',{ toolbox: document.getElementById('toolbox') });
       }
-      function onRun() {
+      function onRun(state) {
         var code = Blockly.Lua.workspaceToCode(gWorkSpace);
 		var content = code.valueOf();
         document.getElementById('LuaCode_Orgin').value = content;
 
-		var url = "/ajax/blockeditor?action=runblockly";
+		state = state || "insert"
+		var url = "/ajax/blockeditor?action=runblockly&state=" + state;
 		$.post( url, { code: content }, function( data ) {
 		  console.log( data); 
 		}, "json");
@@ -48,12 +54,13 @@
 </head>
 
 <body onload="onLoad()">
-  <div>
-    <button onclick="onRun()">运行</button>
-  </div>  
-  <div id="blocklyDiv" style="height: 480px; width: 1024px;">
+<div>
+	<button onclick="onRun('insert')" style="float:left;">插入</button>
+	<button onclick="onRun('replace')"style="margin-left:5px;">替换</button>
+</div>  
+  <div id="blocklyDiv" style="margin-top:5px;height: 480px; width: 1024px;">
 <xml id="toolbox" style="display: none">
-<category name='Motion' colour='#0078d7'>
+<category name='运动' colour='#0078d7'>
 <block type='moveForward'></block>
 <block type='turn'></block>
 <block type='turnTo'></block>
@@ -70,7 +77,7 @@
 <block type='getZ'></block>
 <block type='getFacing'></block>
 </category>
-<category name='Looks' colour='#7abb55'>
+<category name='外观' colour='#7abb55'>
 <block type='sayAndWait'></block>
 <block type='say'></block>
 <block type='tip'></block>
@@ -86,7 +93,7 @@
 <block type='getScale'></block>
 <block type='getPlayTime'></block>
 </category>
-<category name='Events' colour='#764bcc'>
+<category name='事件' colour='#764bcc'>
 <block type='registerClickEvent'></block>
 <block type='registerKeyPressedEvent'></block>
 <block type='registerAnimationEvent'></block>
@@ -94,7 +101,7 @@
 <block type='broadcast'></block>
 <block type='broadcastAndWait'></block>
 </category>
-<category name='control' colour='#d83b01'>
+<category name='控制' colour='#d83b01'>
 <block type='wait'></block>
 <block type='repeat'></block>
 <block type='forever'></block>
@@ -106,12 +113,12 @@
 <block type='delete'></block>
 <block type='run'></block>
 </category>
-<category name='Sound' colour='#8f6d40'>
+<category name='声音' colour='#8f6d40'>
 <block type='playNote'></block>
 <block type='playMusic'></block>
 <block type='playSound'></block>
 </category>
-<category name='Sensing' colour='#69b090'>
+<category name='感知' colour='#69b090'>
 <block type='isTouching'></block>
 <block type='distanceTo'></block>
 <block type='isKeyPressed'></block>
@@ -122,20 +129,20 @@
 <block type='modeGame'></block>
 <block type='modeEdit'></block>
 </category>
-<category name='Operators' colour='#569138'>
-<block type='addition'></block>
+<category name='运算' colour='#569138'>
+	<!--<block type='addition'></block>-->
 <block type='random'></block>
-<block type='equal'></block>
-<block type='and'></block>
-<block type='or'></block>
-<block type='not'></block>
+	<!--<block type='equal'></block>-->
+	<!--<block type='and'></block>-->
+	<!--<block type='or'></block>-->
+	<!--<block type='not'></block>-->
 <block type='join'></block>
 <block type='lengthOf'></block>
 <block type='mod'></block>
 <block type='round'></block>
 <block type='math.sqrt'></block>
 </category>
-<category name='Data' colour='#459197'>
+<category name='数据' colour='#459197'>
 <block type='set'></block>
 <block type='showVariable'></block>
 <block type='hideVariable'></block>
