@@ -1,0 +1,16 @@
+.vs
+*.DS_Store
+npl_packages
+*.db
+*.opendb
+*.user
+*.sdf
+*.suo
+*.log
+*.txt
+*.dll
+*.exe
+*.zip
+*.pkg
+Debug
+script/apps/WebServer/admin/wp-includes/js/blockly
