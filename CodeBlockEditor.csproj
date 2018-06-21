@@ -42,6 +42,7 @@
     <None Include="Run.bat" />
     <None Include="script\apps\WebServer\admin\wp-content\pages\blockeditor.page" />
     <None Include="script\apps\WebServer\admin\wp-includes\js\blockly.mini\msg\json\en.json" />
+    <None Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\Blockly\BlocklyConfigSource.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="script\apps\WebServer\admin\wp-includes\js\blockly.mini\blockly_compressed.js" />
@@ -49,9 +50,18 @@
     <Content Include="script\apps\WebServer\admin\wp-includes\js\blockly.mini\lua_compressed.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\blockly.mini\msg\js\en.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\blockly.mini\msg\messages.js" />
-    <Content Include="script\apps\WebServer\admin\wp-includes\js\BlocklyConfig.js" />
-    <Content Include="script\apps\WebServer\admin\wp-includes\js\BlocklyConfigSource.js" />
-    <Content Include="script\apps\WebServer\admin\wp-includes\js\BlocklyExecution.js" />
+    <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\BlocklyLoader.js" />
+    <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\Blockly\BlocklyExecution.js" />
+    <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\angular.config.js" />
+    <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\Blockly\BlocklyMenu.xml" />
+    <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\CodeBlockEditorController.js" />
+    <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\main.js" />
+    <Content Include="script\apps\WebServer\admin\wp-includes\js\requirejs\domReady.js" />
+    <Content Include="script\apps\WebServer\admin\wp-includes\js\requirejs\require.js" />
+    <Content Include="script\apps\WebServer\admin\wp-includes\js\requirejs\text.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
