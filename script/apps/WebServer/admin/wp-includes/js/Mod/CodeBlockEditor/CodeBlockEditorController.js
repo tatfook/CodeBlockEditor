@@ -16,7 +16,10 @@ define([
                 BlocklyLoader.loadMenu(menu_parent_id, menu_xml);
                 BlocklyLoader.loadExecution(execution_str);
 
-                gWorkSpace = Blockly.inject(menu_parent_id, { toolbox: document.getElementById('toolbox') });
+                gWorkSpace = Blockly.inject(menu_parent_id, {
+                    toolbox: document.getElementById('toolbox'),
+                    media: "wp-includes/js/blockly.mini/media/",
+                });
             }
             $scope.onRun = function(state) {
                 var code = Blockly.Lua.workspaceToCode(gWorkSpace);
