@@ -10,11 +10,12 @@ define([
     app.registerController('CodeBlockEditorController', ['$scope',
         function ($scope) {
             var menu_parent_id = "blocklyDiv";
-            BlocklyLoader.load();
-            BlocklyLoader.loadMenu(menu_parent_id);
-
             var gWorkSpace;
-            function onLoad() {
+            $scope.onLoad = function(menu_xml, config_json, execution_str) {
+                BlocklyLoader.loadConfig(config_json);
+                BlocklyLoader.loadMenu(menu_parent_id, menu_xml);
+                BlocklyLoader.loadExecution(execution_str);
+
                 gWorkSpace = Blockly.inject(menu_parent_id, { toolbox: document.getElementById('toolbox') });
             }
             $scope.onRun = function(state) {
@@ -28,7 +29,16 @@ define([
                     console.log(data);
                 }, "json");
             }
-            onLoad();
+            $scope.onMakeEditor = function () {
+                var url = "/ajax/blockeditor?action=makeblocklyeditor";
+                $.get(url, function (data) {
+                    var menu_xml = data.menu_xml;
+                    var config_json = data.config_json;
+                    var execution_str = data.execution_str;
+                    $scope.onLoad(menu_xml, config_json, execution_str);
+                });
+            }
+            $scope.onMakeEditor();
         }]);
 
 

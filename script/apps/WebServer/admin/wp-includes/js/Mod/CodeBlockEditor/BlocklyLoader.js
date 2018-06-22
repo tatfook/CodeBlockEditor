@@ -3,10 +3,7 @@
  * @date 2018/6/21
  */
 define([
-    "text!js/Mod/CodeBlockEditor/blockly/BlocklyConfigSource.json",
-    "text!js/Mod/CodeBlockEditor/blockly/BlocklyMenu.xml",
-    "js/Mod/CodeBlockEditor/blockly/BlocklyExecution",
-], function (BlocklyConfigSourceJson, BlocklyMenuXml) {
+], function () {
 
     String.prototype.format = function () {
         var a = this;
@@ -49,14 +46,14 @@ define([
         return item;
     }
 
-    BlocklyLoader.load = function () {
-        var config_source = JSON.parse(BlocklyConfigSourceJson);
-        if (!config_source) {
+    BlocklyLoader.loadConfig = function (config_json) {
+        if (!config_json) {
             return
         }
-        var len = config_source.length;
+        config_json = JSON.parse(config_json);
+        var len = config_json.length;
         for (var i = 0; i < len; i++) {
-            var item = config_source[i];
+            var item = config_json[i];
             var type = item.type;
             var block = Blockly.Blocks[type];
             if (!block) {
@@ -71,13 +68,18 @@ define([
             }
         }
     }
-    BlocklyLoader.loadMenu = function (parentDomID) {
-        if (!parentDomID) {
+    BlocklyLoader.loadExecution = function (execution_str) {
+        if (execution_str) {
+            eval(execution_str);
+        }
+    }
+    BlocklyLoader.loadMenu = function (menu_parent_id, menu_xml) {
+        if (!menu_parent_id) {
             return;
         }
-        var dom = document.getElementById(parentDomID);
+        var dom = document.getElementById(menu_parent_id);
         if (dom) {
-            dom.innerHTML = BlocklyMenuXml;
+            dom.innerHTML = menu_xml;
         }
     }
     return BlocklyLoader;
