@@ -1,53 +1,89 @@
 ﻿[
   {
-    "func_description": "set(\"%s\", \"%s\")",
-    "message0": "设置全局变量%1为%2",
-    "category": "Data",
-    "colour": "#459197",
+    "func_description": "local %s = \"%s\"",
+    "message0": "设置局部变量%1为%2",
+    "canRun": true,
     "examples": [
       {
-        "desc": "也可以用_G.a",
+        "desc": "",
+        "code": "local item = \"\"\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#459197",
+    "category": "Data",
+    "type": "setLocalVariable",
+    "arg0": [
+      {
+        "type": "field_variable",
+        "variableTypes": [ "" ],
+        "name": "var",
+        "variable": "item"
+      },
+      {
+        "name": "value",
+        "type": "input_value"
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "%s",
+    "message0": "获取局部变量%1",
+    "category": "Data",
+    "output": { "type": "null" },
+    "examples": [
+      {
+        "desc": "",
+        "code": "local _ = item\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#459197",
+    "canRun": true,
+    "type": "getLocalVariable",
+    "helpUrl": "",
+    "arg0": [
+      {
+        "type": "field_variable",
+        "variableTypes": [ "" ],
+        "name": "var",
+        "variable": "item"
+      }
+    ]
+  },
+  {
+    "func_description": "set(\"%s\", \"%s\")",
+    "message0": "Set variable %1 to %2",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "Can also use _G.a",
         "code": "_G.a = _G.a or 1\nwhile(true) do\n    _G.a = a + 1\n    set(\"a\", get(\"a\") + 1)\n    say(a)\nend\n",
         "canRun": true
       }
     ],
+    "colour": "#459197",
+    "category": "Data",
+    "type": "set",
     "arg0": [
       {
         "type": "field_input",
-        "text": "test",
         "name": "key",
-        "argIndex": 1
+        "text": "score"
       },
       {
         "type": "field_input",
-        "text": "hello",
         "name": "value",
-        "argIndex": 2
+        "text": "1"
       }
     ],
-    "canRun": true,
-    "type": "set",
-    "all_fields": {
-      "key": {
-        "type": "field_input",
-        "text": "test",
-        "name": "key",
-        "argIndex": 1
-      },
-      "value": {
-        "type": "field_input",
-        "text": "hello",
-        "name": "value",
-        "argIndex": 2
-      }
-    },
     "helpUrl": ""
   },
   {
     "func_description": "showVariable(\"%s\")",
-    "message0": "显示全局变量%1",
-    "category": "Data",
-    "colour": "#459197",
+    "message0": "show global variable %1",
+    "canRun": true,
     "examples": [
       {
         "desc": "",
@@ -55,31 +91,22 @@
         "canRun": true
       }
     ],
+    "colour": "#459197",
+    "category": "Data",
+    "type": "showVariable",
     "arg0": [
       {
         "type": "field_input",
-        "text": "score",
         "name": "name",
-        "argIndex": 1
+        "text": "score"
       }
     ],
-    "canRun": true,
-    "type": "showVariable",
-    "all_fields": {
-      "name": {
-        "type": "field_input",
-        "text": "score",
-        "name": "name",
-        "argIndex": 1
-      }
-    },
     "helpUrl": ""
   },
   {
     "func_description": "hideVariable(\"%s\")",
-    "message0": "隐藏全局变量%1",
-    "category": "Data",
-    "colour": "#459197",
+    "message0": "hide global variable %1",
+    "canRun": true,
     "examples": [
       {
         "desc": "",
@@ -87,1804 +114,69 @@
         "canRun": true
       }
     ],
+    "colour": "#459197",
+    "category": "Data",
+    "type": "hideVariable",
     "arg0": [
       {
         "type": "field_input",
-        "text": "score",
         "name": "name",
-        "argIndex": 1
+        "text": "score"
       }
     ],
-    "canRun": true,
-    "type": "hideVariable",
-    "all_fields": {
-      "name": {
-        "type": "field_input",
-        "text": "score",
-        "name": "name",
-        "argIndex": 1
-      }
-    },
     "helpUrl": ""
   },
   {
     "func_description": "log(\"%s\")",
-    "message0": "输出日志%1",
-    "category": "Data",
-    "colour": "#459197",
+    "message0": "Output log %1",
+    "canRun": true,
     "examples": [
       {
-        "desc": "查看log.txt或F11看日志",
+        "desc": "Check log.txt or F11 to see the log",
         "code": "log(123)\nlog(\"hello\")\nsomething = {any=\"object\"}\nlog(something)\n",
         "canRun": true
       }
     ],
-    "arg0": [
-      {
-        "type": "field_input",
-        "text": "hello",
-        "name": "obj",
-        "argIndex": 1
-      }
-    ],
-    "canRun": true,
-    "type": "log",
-    "all_fields": {
-      "obj": {
-        "type": "field_input",
-        "text": "hello",
-        "name": "obj",
-        "argIndex": 1
-      }
-    },
-    "helpUrl": ""
-  },
-  {
-    "func_description": "setActorValue(\"%s\", \"%s\")",
-    "color": "#cc0000",
-    "canRun": false,
     "colour": "#459197",
     "category": "Data",
-    "examples": [
-      {
-        "desc": "",
-        "code": "registerCloneEvent(function(name)\n    setActorValue(\"name\", name)\n    moveForward(1);\nend)\nregisterClickEvent(function()\n    local myname = getActorValue(\"name\")\n    say(\"my name is \"..myname)\nend)\nsetActorValue(\"name\", \"Default\")\nclone(\"myself\", \"Cloned\")\nsay(\"click us!\")\n",
-        "canRun": true
-      }
-    ],
-    "helpUrl": "",
-    "message0": "设置角色属性%1为%2",
-    "type": "setActorValue",
-    "all_fields": {
-      "key": {
-        "type": "field_input",
-        "text": "test",
-        "name": "key",
-        "argIndex": 1
-      },
-      "value": {
-        "type": "field_input",
-        "text": "hello",
-        "name": "value",
-        "argIndex": 2
-      }
-    },
+    "type": "log",
     "arg0": [
       {
         "type": "field_input",
-        "text": "test",
-        "name": "key",
-        "argIndex": 1
-      },
-      {
-        "type": "field_input",
-        "text": "hello",
-        "name": "value",
-        "argIndex": 2
+        "name": "obj",
+        "text": "hello"
       }
-    ]
+    ],
+    "helpUrl": ""
   },
   {
-    "func_description": "getActorValue(\"%s\")",
-    "message0": "获取角色属性%1",
-    "canRun": false,
-    "output": { "type": "field_number" },
+    "func_description": "echo(\"%s\")",
+    "message0": "输出到聊天框%1",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "echo(123)\necho(\"hello\")\nsomething = {any=\"object\"}\necho(something)\n",
+        "canRun": true
+      }
+    ],
     "colour": "#459197",
-    "examples": [
-      {
-        "desc": "",
-        "code": "registerCloneEvent(function(msg)\n    setActorValue(\"name\", msg.name)\n    moveForward(msg.dist);\nend)\nregisterClickEvent(function()\n    local myname = getActorValue(\"name\")\n    say(\"my name is \"..myname)\nend)\nsetActorValue(\"name\", \"Default\")\nclone(\"myself\", {name = \"clone1\", dist=1})\nclone(nil, {name = \"clone2\", dist=2})\nsay(\"click us!\")\n",
-        "canRun": true
-      }
-    ],
+    "category": "Data",
+    "type": "echo",
     "arg0": [
       {
         "type": "field_input",
-        "text": "test",
-        "name": "key",
-        "argIndex": 1
+        "name": "obj",
+        "text": "hello"
       }
     ],
-    "helpUrl": "",
-    "type": "getActorValue",
-    "all_fields": {
-      "key": {
-        "type": "field_input",
-        "text": "test",
-        "name": "key",
-        "argIndex": 1
-      }
-    },
-    "category": "Data"
-  },
-  {
-    "func_description": "say(\"%s\", %s)",
-    "message0": "说 %1 持续 %2 秒",
-    "category": "Looks",
-    "colour": "#7abb55",
-    "examples": [
-      {
-        "desc": "",
-        "code": "say(\"Jump!\", 2)\nmove(0,1,0)\n",
-        "canRun": true
-      },
-      {
-        "desc": "点击我打招呼",
-        "references": [ "say", "sayAndWait", "turn", "play" ],
-        "code": "say(\"Click Me!\", 2)\nregisterClickEvent(function()\n    turn(15)\n    play(0,1000)\n    say(\"hi!\")\nend)\n",
-        "canRun": false
-      }
-    ],
-    "arg0": [
-      {
-        "type": "field_input",
-        "text": "hello!",
-        "name": "text",
-        "argIndex": 1
-      },
-      {
-        "type": "field_number",
-        "text": 2,
-        "name": "duration",
-        "argIndex": 2
-      }
-    ],
-    "canRun": true,
-    "type": "sayAndWait",
-    "all_fields": {
-      "duration": {
-        "type": "field_number",
-        "text": 2,
-        "name": "duration",
-        "argIndex": 2
-      },
-      "text": {
-        "type": "field_input",
-        "text": "hello!",
-        "name": "text",
-        "argIndex": 1
-      }
-    },
-    "helpUrl": ""
-  },
-  {
-    "func_description": "say(\"%s\")",
-    "message0": "说 %1",
-    "category": "Looks",
-    "colour": "#7abb55",
-    "examples": [
-      {
-        "desc": "在人物头顶说些话",
-        "code": "say(\"Hello!\")\nwait(1)\nsay(\"\")\n",
-        "canRun": true
-      },
-      {
-        "desc": "点击我打招呼",
-        "references": [ "say", "sayAndWait", "turn", "play" ],
-        "code": "say(\"Click Me!\", 2)\nregisterClickEvent(function()\n    turn(15)\n    play(0,1000)\n    say(\"hi!\")\nend)\n",
-        "canRun": false
-      }
-    ],
-    "arg0": [
-      {
-        "type": "field_input",
-        "text": "hello!",
-        "name": "text",
-        "argIndex": 1
-      }
-    ],
-    "canRun": true,
-    "type": "say",
-    "all_fields": {
-      "text": {
-        "type": "field_input",
-        "text": "hello!",
-        "name": "text",
-        "argIndex": 1
-      }
-    },
-    "helpUrl": ""
-  },
-  {
-    "func_description": "tip(\"%s\")",
-    "message0": "提示文字%1",
-    "category": "Looks",
-    "colour": "#7abb55",
-    "examples": [
-      {
-        "desc": "",
-        "code": "tip(\"Start Game in 3!\")\nwait(1)\ntip(\"Start Game in 2!\")\nwait(1)\ntip(\"Start Game in 1!\")\nwait(1)\ntip(\"\")\n",
-        "canRun": true
-      }
-    ],
-    "arg0": [
-      {
-        "type": "field_input",
-        "text": "Start Game!",
-        "name": "text",
-        "argIndex": 1
-      }
-    ],
-    "canRun": true,
-    "type": "tip",
-    "all_fields": {
-      "text": {
-        "type": "field_input",
-        "text": "Start Game!",
-        "name": "text",
-        "argIndex": 1
-      }
-    },
-    "helpUrl": ""
-  },
-  {
-    "func_description": "show()",
-    "message0": "显示",
-    "category": "Looks",
-    "colour": "#7abb55",
-    "examples": [
-      {
-        "desc": "显示/隐藏角色",
-        "references": [ "show", "hide" ],
-        "code": "hide()\nwait(1)\nshow()\n",
-        "canRun": true
-      }
-    ],
-    "arg0": [ ],
-    "canRun": true,
-    "type": "show",
-    "all_fields": [ ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "hide()",
-    "message0": "隐藏",
-    "category": "Looks",
-    "colour": "#7abb55",
-    "examples": [
-      {
-        "desc": "显示/隐藏角色",
-        "references": [ "show", "hide" ],
-        "code": "hide()\nwait(1)\nshow()\n",
-        "canRun": true
-      }
-    ],
-    "arg0": [ ],
-    "canRun": true,
-    "type": "hide",
-    "all_fields": [ ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "anim(%d, %d)",
-    "message0": "播放动作 %1 等待 %2 秒",
-    "category": "Looks",
-    "colour": "#7abb55",
-    "examples": [
-      {
-        "desc": "",
-        "code": "anim(4)\nmove(3, 0, 0, 2)\nanim(0)\n",
-        "canRun": true
-      }
-    ],
-    "arg0": [
-      {
-        "type": "field_number",
-        "text": 4,
-        "name": "animId",
-        "argIndex": 1
-      },
-      {
-        "type": "field_number",
-        "text": 2,
-        "name": "duration",
-        "argIndex": 2
-      }
-    ],
-    "canRun": true,
-    "type": "anim",
-    "all_fields": {
-      "duration": {
-        "type": "field_number",
-        "text": 2,
-        "name": "duration",
-        "argIndex": 2
-      },
-      "animId": {
-        "type": "field_number",
-        "text": 4,
-        "name": "animId",
-        "argIndex": 1
-      }
-    },
-    "helpUrl": ""
-  },
-  {
-    "func_description": "play(%d, %d)",
-    "message0": "播放从%1到%2毫秒",
-    "category": "Looks",
-    "colour": "#7abb55",
-    "examples": [
-      {
-        "desc": "播放电影方块中的角色动画",
-        "code": "play(10, 1000)\nsay(\"No looping\", 1)\n",
-        "canRun": true
-      },
-      {
-        "desc": "点击我打招呼",
-        "references": [ "say", "sayAndWait", "turn", "play" ],
-        "code": "say(\"Click Me!\", 2)\nregisterClickEvent(function()\n    turn(15)\n    play(0,1000)\n    say(\"hi!\")\nend)\n",
-        "canRun": false
-      }
-    ],
-    "arg0": [
-      {
-        "type": "field_number",
-        "text": 10,
-        "name": "timeFrom",
-        "argIndex": 1
-      },
-      {
-        "type": "field_number",
-        "text": 1000,
-        "name": "timeTo",
-        "argIndex": 2
-      }
-    ],
-    "canRun": true,
-    "type": "play",
-    "all_fields": {
-      "timeTo": {
-        "type": "field_number",
-        "text": 1000,
-        "name": "timeTo",
-        "argIndex": 2
-      },
-      "timeFrom": {
-        "type": "field_number",
-        "text": 10,
-        "name": "timeFrom",
-        "argIndex": 1
-      }
-    },
-    "helpUrl": ""
-  },
-  {
-    "func_description": "playLoop(%d, %d)",
-    "message0": "循环播放从%1到%2毫秒",
-    "category": "Looks",
-    "colour": "#7abb55",
-    "examples": [
-      {
-        "desc": "播放电影方块中的角色动画",
-        "code": "playLoop(10, 1000)\nsay(\"Looping\", 3)\nstop()\n",
-        "canRun": true
-      }
-    ],
-    "arg0": [
-      {
-        "type": "field_number",
-        "text": 10,
-        "name": "timeFrom",
-        "argIndex": 1
-      },
-      {
-        "type": "field_number",
-        "text": 1000,
-        "name": "timeTo",
-        "argIndex": 2
-      }
-    ],
-    "canRun": true,
-    "type": "playLoop",
-    "all_fields": {
-      "timeTo": {
-        "type": "field_number",
-        "text": 1000,
-        "name": "timeTo",
-        "argIndex": 2
-      },
-      "timeFrom": {
-        "type": "field_number",
-        "text": 10,
-        "name": "timeFrom",
-        "argIndex": 1
-      }
-    },
-    "helpUrl": ""
-  },
-  {
-    "func_description": "stop()",
-    "message0": "停止播放",
-    "category": "Looks",
-    "colour": "#7abb55",
-    "examples": [
-      {
-        "desc": "播放/暂停角色动画",
-        "code": "playLoop(10, 1000)\nwait(2)\nstop()\nturn(15)\nplayLoop(10, 1000)\nwait(2)\nstop()\n",
-        "canRun": true
-      }
-    ],
-    "arg0": [ ],
-    "canRun": true,
-    "type": "stop",
-    "all_fields": [ ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "scale(%d)",
-    "message0": "放缩百分之%1",
-    "category": "Looks",
-    "colour": "#7abb55",
-    "examples": [
-      {
-        "desc": "",
-        "code": "scale(50)\nwait(1)\nscale(-50)\n",
-        "canRun": true
-      }
-    ],
-    "arg0": [
-      {
-        "type": "field_number",
-        "text": 10,
-        "name": "scaleDelta",
-        "argIndex": 1
-      }
-    ],
-    "canRun": true,
-    "type": "scale",
-    "all_fields": {
-      "scaleDelta": {
-        "type": "field_number",
-        "text": 10,
-        "name": "scaleDelta",
-        "argIndex": 1
-      }
-    },
-    "helpUrl": ""
-  },
-  {
-    "func_description": "scaleTo(%d)",
-    "message0": "放缩到百分之%1",
-    "category": "Looks",
-    "colour": "#7abb55",
-    "examples": [
-      {
-        "desc": "",
-        "code": "for i=1, 20 do\n    scale(10)\nend\nscaleTo(50)\nwait(0.5)\nscaleTo(200)\nwait(0.5)\nscaleTo(100)\n",
-        "canRun": true
-      }
-    ],
-    "arg0": [
-      {
-        "type": "field_number",
-        "text": 100,
-        "name": "scale",
-        "argIndex": 1
-      }
-    ],
-    "canRun": true,
-    "type": "scaleTo",
-    "all_fields": {
-      "scale": {
-        "type": "field_number",
-        "text": 100,
-        "name": "scale",
-        "argIndex": 1
-      }
-    },
-    "helpUrl": ""
-  },
-  {
-    "func_description": "focus(\"%s\")",
-    "color": "#cc0000",
-    "canRun": true,
-    "colour": "#7abb55",
-    "category": "Looks",
-    "examples": [
-      {
-        "desc": "",
-        "code": "focus()\nmoveForward(2,2)\nfocus(\"player\")\n",
-        "canRun": true
-      }
-    ],
-    "helpUrl": "",
-    "message0": "观看此角色%1",
-    "type": "focus",
-    "all_fields": {
-      "name": {
-        "type": "field_input",
-        "text": "myself",
-        "name": "name",
-        "argIndex": 1
-      }
-    },
-    "arg0": [
-      {
-        "type": "field_input",
-        "text": "myself",
-        "name": "name",
-        "argIndex": 1
-      }
-    ]
-  },
-  {
-    "func_description": "getScale()",
-    "message0": "放缩尺寸",
-    "canRun": false,
-    "output": { "type": "field_number" },
-    "colour": "#7abb55",
-    "examples": [
-      {
-        "desc": "",
-        "code": "while(true) do\n    if(getScale() >= 200) then\n        scaleTo(100)\n    else\n        scale(10)\n    end\nend\n",
-        "canRun": true
-      }
-    ],
-    "arg0": [ ],
-    "helpUrl": "",
-    "type": "getScale",
-    "all_fields": [ ],
-    "category": "Looks"
-  },
-  {
-    "func_description": "getPlayTime()",
-    "message0": "动画时间",
-    "canRun": false,
-    "output": { "type": "field_number" },
-    "colour": "#7abb55",
-    "examples": [
-      {
-        "desc": "",
-        "code": "playLoop(10, 2000)\nwhile(true) do\n    if(getPlayTime() > 1000) then\n        say(\"hi\")\n    else\n        say(\"\")\n    end\n    wait(0.01);\nend\n",
-        "canRun": true
-      }
-    ],
-    "arg0": [ ],
-    "helpUrl": "",
-    "type": "getPlayTime",
-    "all_fields": [ ],
-    "category": "Looks"
-  },
-  {
-    "html": "前进<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">1</div>格 在<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">0.5</div>秒内",
-    "func_description": "moveForward(%d, %d)",
-    "message0": "前进%1格 在%2秒内",
-    "helpUrl": "",
-    "npl_code": "moveForward(1, 0.5)\n",
-    "colour": "#0078d7",
-    "category": "Motion",
-    "examples": [
-      {
-        "desc": "",
-        "code": "turn(30);\nfor i=1, 20 do\n    moveForward(0.05)\nend\n",
-        "canRun": true
-      }
-    ],
-    "canRun": true,
-    "arg0": [
-      {
-        "type": "field_number",
-        "text": 1,
-        "name": "dist",
-        "argIndex": 1
-      },
-      {
-        "type": "field_number",
-        "text": 0.5,
-        "name": "duration",
-        "argIndex": 2
-      }
-    ],
-    "type": "moveForward",
-    "all_fields": {
-      "dist": {
-        "type": "field_number",
-        "text": 1,
-        "name": "dist",
-        "argIndex": 1
-      },
-      "duration": {
-        "type": "field_number",
-        "text": 0.5,
-        "name": "duration",
-        "argIndex": 2
-      }
-    },
-    "dsItem": {
-      "nplcode": "moveForward(1, 0.5)\n",
-      "html": "前进<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">1</div>格 在<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">0.5</div>秒内",
-      "color": "#4a6cd4",
-      "name": "moveForward",
-      "tooltip": "page://script/apps/Aries/Creator/Game/Code/CodeHelpItemTooltip.html?name=moveForward"
-    }
-  },
-  {
-    "html": "旋转<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">15</div>度",
-    "func_description": "turn(%d)",
-    "message0": "旋转%1度",
-    "helpUrl": "",
-    "npl_code": "turn(15)\n",
-    "colour": "#0078d7",
-    "category": "Motion",
-    "examples": [
-      {
-        "desc": "",
-        "code": "turnTo(-60)\nfor i=1, 100 do\n    turn(-3)\nend\n",
-        "canRun": true
-      },
-      {
-        "desc": "点击我打招呼",
-        "references": [ "say", "sayAndWait", "turn", "play" ],
-        "code": "say(\"Click Me!\", 2)\nregisterClickEvent(function()\n    turn(15)\n    play(0,1000)\n    say(\"hi!\")\nend)\n",
-        "canRun": false
-      }
-    ],
-    "canRun": true,
-    "arg0": [
-      {
-        "type": "field_number",
-        "text": 15,
-        "name": "degree",
-        "argIndex": 1
-      }
-    ],
-    "type": "turn",
-    "all_fields": {
-      "degree": {
-        "type": "field_number",
-        "text": 15,
-        "name": "degree",
-        "argIndex": 1
-      }
-    },
-    "dsItem": {
-      "nplcode": "turn(15)\n",
-      "html": "旋转<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">15</div>度",
-      "color": "#4a6cd4",
-      "name": "turn",
-      "tooltip": "page://script/apps/Aries/Creator/Game/Code/CodeHelpItemTooltip.html?name=turn"
-    }
-  },
-  {
-    "html": "旋转到<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">90</div>方向",
-    "func_description": "turnTo(%d)",
-    "message0": "旋转到%1方向",
-    "helpUrl": "",
-    "npl_code": "turnTo(90)\n",
-    "colour": "#0078d7",
-    "category": "Motion",
-    "examples": [
-      {
-        "desc": "",
-        "code": "turnTo(-60)\nwait(1)\nturnTo(0)\n",
-        "canRun": true
-      }
-    ],
-    "canRun": true,
-    "arg0": [
-      {
-        "type": "field_number",
-        "text": 90,
-        "name": "degree",
-        "argIndex": 1
-      }
-    ],
-    "type": "turnTo",
-    "all_fields": {
-      "degree": {
-        "type": "field_number",
-        "text": 90,
-        "name": "degree",
-        "argIndex": 1
-      }
-    },
-    "dsItem": {
-      "nplcode": "turnTo(90)\n",
-      "html": "旋转到<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">90</div>方向",
-      "color": "#4a6cd4",
-      "name": "turnTo",
-      "tooltip": "page://script/apps/Aries/Creator/Game/Code/CodeHelpItemTooltip.html?name=turnTo"
-    }
-  },
-  {
-    "html": "转向<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#ffffff;color:#000000;\">mouse-pointer</div>",
-    "func_description": "turnTo(\"%s\")",
-    "message0": "转向%1",
-    "helpUrl": "",
-    "npl_code": "turnTo(\"mouse-pointer\")\n",
-    "colour": "#0078d7",
-    "category": "Motion",
-    "examples": [
-      {
-        "desc": "转向鼠标,主角,指定角色",
-        "code": "turnTo(\"mouse-pointer\")\nmoveForward(1, 1)\nturnTo(\"@p\")\nmoveForward(1, 1)\nturnTo(\"frog\")\nmoveForward(1, 1)\n",
-        "canRun": true
-      }
-    ],
-    "canRun": true,
-    "arg0": [
-      {
-        "type": "field_input",
-        "text": "mouse-pointer",
-        "name": "targetName",
-        "argIndex": 1
-      }
-    ],
-    "type": "turnToTarget",
-    "all_fields": {
-      "targetName": {
-        "type": "field_input",
-        "text": "mouse-pointer",
-        "name": "targetName",
-        "argIndex": 1
-      }
-    },
-    "dsItem": {
-      "nplcode": "turnTo(\"mouse-pointer\")\n",
-      "html": "转向<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#ffffff;color:#000000;\">mouse-pointer</div>",
-      "color": "#4a6cd4",
-      "name": "turnToTarget",
-      "tooltip": "page://script/apps/Aries/Creator/Game/Code/CodeHelpItemTooltip.html?name=turnToTarget"
-    }
-  },
-  {
-    "html": "位移<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">1</div> <div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">0</div> <div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">0</div> 在<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">0.5</div>秒内",
-    "func_description": "move(%s, %s, %s, %s)",
-    "message0": "位移%1 %2 %3 在%4秒内",
-    "helpUrl": "",
-    "npl_code": "move(1, 0, 0, 0.5)\n",
-    "colour": "#0078d7",
-    "category": "Motion",
-    "examples": [
-      {
-        "desc": "",
-        "code": "turnTo(0)\nmove(0.5,1,0, 0.5)\nmove(1,-1,0, 0.5)\nsay(\"jump!\", 1)\n",
-        "canRun": true
-      }
-    ],
-    "canRun": true,
-    "arg0": [
-      {
-        "type": "field_number",
-        "text": 1,
-        "name": "x",
-        "argIndex": 1
-      },
-      {
-        "type": "field_number",
-        "text": 0,
-        "name": "y",
-        "argIndex": 2
-      },
-      {
-        "type": "field_number",
-        "text": 0,
-        "name": "z",
-        "argIndex": 3
-      },
-      {
-        "type": "field_number",
-        "text": 0.5,
-        "name": "duration",
-        "argIndex": 4
-      }
-    ],
-    "type": "move",
-    "all_fields": {
-      "y": {
-        "type": "field_number",
-        "text": 0,
-        "name": "y",
-        "argIndex": 2
-      },
-      "x": {
-        "type": "field_number",
-        "text": 1,
-        "name": "x",
-        "argIndex": 1
-      },
-      "z": {
-        "type": "field_number",
-        "text": 0,
-        "name": "z",
-        "argIndex": 3
-      },
-      "duration": {
-        "type": "field_number",
-        "text": 0.5,
-        "name": "duration",
-        "argIndex": 4
-      }
-    },
-    "dsItem": {
-      "nplcode": "move(1, 0, 0, 0.5)\n",
-      "html": "位移<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">1</div> <div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">0</div> <div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">0</div> 在<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">0.5</div>秒内",
-      "color": "#4a6cd4",
-      "name": "move",
-      "tooltip": "page://script/apps/Aries/Creator/Game/Code/CodeHelpItemTooltip.html?name=move"
-    }
-  },
-  {
-    "html": "瞬移到<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">19200</div> <div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">5</div> <div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">19200</div> <div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">0.5</div>",
-    "func_description": "moveTo(%s, %s, %s)",
-    "isDynamicNPLCode": true,
-    "canRun": true,
-    "colour": "#0078d7",
-    "npl_code": "moveTo(19200, 5, 19200)\n",
-    "helpUrl": "",
-    "message0": "瞬移到%1 %2 %3 %4",
-    "examples": [
-      {
-        "desc": "",
-        "code": "moveTo(19257,5,19174)\nmoveTo(\"mouse-pointer\")\nmoveTo(\"@p\")\nmoveTo(\"frog\")\n",
-        "canRun": false
-      }
-    ],
-    "arg0": [
-      {
-        "type": "field_number",
-        "name": "x",
-        "argIndex": 1
-      },
-      {
-        "type": "field_number",
-        "name": "y",
-        "argIndex": 2
-      },
-      {
-        "type": "field_number",
-        "name": "z",
-        "argIndex": 3
-      },
-      {
-        "type": "field_number",
-        "text": 0.5,
-        "name": "duration",
-        "argIndex": 4
-      }
-    ],
-    "category": "Motion",
-    "type": "moveTo",
-    "all_fields": {
-      "y": {
-        "type": "field_number",
-        "name": "y",
-        "argIndex": 2
-      },
-      "x": {
-        "type": "field_number",
-        "name": "x",
-        "argIndex": 1
-      },
-      "z": {
-        "type": "field_number",
-        "name": "z",
-        "argIndex": 3
-      },
-      "duration": {
-        "type": "field_number",
-        "text": 0.5,
-        "name": "duration",
-        "argIndex": 4
-      }
-    },
-    "dsItem": {
-      "nplcode": "moveTo(19200, 5, 19200)\n",
-      "html": "瞬移到<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">19200</div> <div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">5</div> <div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">19200</div> <div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">0.5</div>",
-      "color": "#4a6cd4",
-      "name": "moveTo",
-      "tooltip": "page://script/apps/Aries/Creator/Game/Code/CodeHelpItemTooltip.html?name=moveTo"
-    }
-  },
-  {
-    "html": "瞬移到<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#ffffff;color:#000000;\">mouse-pointer</div>",
-    "func_description": "moveTo(\"%s\")",
-    "message0": "瞬移到%1",
-    "helpUrl": "",
-    "npl_code": "moveTo(\"mouse-pointer\")\n",
-    "colour": "#0078d7",
-    "category": "Motion",
-    "examples": [
-      {
-        "desc": "瞬移到主角，鼠标，指定角色",
-        "code": "say(\"current player\", 1)\nmoveTo(\"@p\")\nsay(\"mouse-pointer\", 1)\nmoveTo(\"mouse-pointer\")\nsay(\"the frog actor if any\", 1)\nmoveTo(\"frog\")\n",
-        "canRun": true
-      }
-    ],
-    "canRun": true,
-    "arg0": [
-      {
-        "type": "field_input",
-        "text": "mouse-pointer",
-        "name": "targetName",
-        "argIndex": 1
-      }
-    ],
-    "type": "moveToTarget",
-    "all_fields": {
-      "targetName": {
-        "type": "field_input",
-        "text": "mouse-pointer",
-        "name": "targetName",
-        "argIndex": 1
-      }
-    },
-    "dsItem": {
-      "nplcode": "moveTo(\"mouse-pointer\")\n",
-      "html": "瞬移到<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#ffffff;color:#000000;\">mouse-pointer</div>",
-      "color": "#4a6cd4",
-      "name": "moveToTarget",
-      "tooltip": "page://script/apps/Aries/Creator/Game/Code/CodeHelpItemTooltip.html?name=moveToTarget"
-    }
-  },
-  {
-    "html": "行走<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">1</div> <div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">0</div> <div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">0</div>持续<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">0.5</div>秒",
-    "func_description": "walk(%s, %s, %s, %s)",
-    "message0": "行走%1 %2 %3持续%4秒",
-    "helpUrl": "",
-    "npl_code": "walk(1, 0, 0, 0.5)\n",
-    "colour": "#0078d7",
-    "category": "Motion",
-    "examples": [
-      {
-        "desc": "",
-        "code": "walk(1,0) -- x,z\nwalk(0,1) -- x,z\nwalk(-1,0,-1) -- x,y,z\n",
-        "canRun": true
-      }
-    ],
-    "canRun": true,
-    "arg0": [
-      {
-        "type": "field_number",
-        "text": 1,
-        "name": "x",
-        "argIndex": 1
-      },
-      {
-        "type": "field_number",
-        "text": 0,
-        "name": "y",
-        "argIndex": 2
-      },
-      {
-        "type": "field_number",
-        "text": 0,
-        "name": "z",
-        "argIndex": 3
-      },
-      {
-        "type": "field_number",
-        "text": 0.5,
-        "name": "duration",
-        "argIndex": 4
-      }
-    ],
-    "type": "walk",
-    "all_fields": {
-      "y": {
-        "type": "field_number",
-        "text": 0,
-        "name": "y",
-        "argIndex": 2
-      },
-      "x": {
-        "type": "field_number",
-        "text": 1,
-        "name": "x",
-        "argIndex": 1
-      },
-      "z": {
-        "type": "field_number",
-        "text": 0,
-        "name": "z",
-        "argIndex": 3
-      },
-      "duration": {
-        "type": "field_number",
-        "text": 0.5,
-        "name": "duration",
-        "argIndex": 4
-      }
-    },
-    "dsItem": {
-      "nplcode": "walk(1, 0, 0, 0.5)\n",
-      "html": "行走<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">1</div> <div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">0</div> <div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">0</div>持续<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">0.5</div>秒",
-      "color": "#4a6cd4",
-      "name": "walk",
-      "tooltip": "page://script/apps/Aries/Creator/Game/Code/CodeHelpItemTooltip.html?name=walk"
-    }
-  },
-  {
-    "html": "向前走<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">1</div>持续<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">0.5</div>秒",
-    "func_description": "walkForward(%s, %s)",
-    "message0": "向前走%1持续%2秒",
-    "helpUrl": "",
-    "npl_code": "walkForward(1, 0.5)\n",
-    "colour": "#0078d7",
-    "category": "Motion",
-    "examples": [
-      {
-        "desc": "",
-        "code": "turnTo(0)\nwalkForward(1)\nturn(180)\nwalkForward(1, 0.5)\n",
-        "canRun": true
-      }
-    ],
-    "canRun": true,
-    "arg0": [
-      {
-        "type": "field_number",
-        "text": 1,
-        "name": "dist",
-        "argIndex": 1
-      },
-      {
-        "type": "field_number",
-        "text": 0.5,
-        "name": "duration",
-        "argIndex": 2
-      }
-    ],
-    "type": "walkForward",
-    "all_fields": {
-      "dist": {
-        "type": "field_number",
-        "text": 1,
-        "name": "dist",
-        "argIndex": 1
-      },
-      "duration": {
-        "type": "field_number",
-        "text": 0.5,
-        "name": "duration",
-        "argIndex": 2
-      }
-    },
-    "dsItem": {
-      "nplcode": "walkForward(1, 0.5)\n",
-      "html": "向前走<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">1</div>持续<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#80ff80;color:#000000;\">0.5</div>秒",
-      "color": "#4a6cd4",
-      "name": "walkForward",
-      "tooltip": "page://script/apps/Aries/Creator/Game/Code/CodeHelpItemTooltip.html?name=walkForward"
-    }
-  },
-  {
-    "html": "速度<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#ffffff;color:#000000;\">~ 5 ~</div>",
-    "func_description": "velocity(\"%s\")",
-    "message0": "速度%1",
-    "helpUrl": "",
-    "npl_code": "velocity(\"~ 5 ~\")\n",
-    "colour": "#0078d7",
-    "category": "Motion",
-    "examples": [
-      {
-        "desc": "",
-        "code": "velocity(\"~ 10 ~\")\nwait(0.3)\nvelocity(\"add 2 ~ 2\")\nwait(2)\nvelocity(\"0 0 0\")\n",
-        "canRun": true
-      }
-    ],
-    "canRun": true,
-    "arg0": [
-      {
-        "type": "field_input",
-        "text": "~ 5 ~",
-        "name": "cmd_text",
-        "argIndex": 1
-      }
-    ],
-    "type": "velocity",
-    "all_fields": {
-      "cmd_text": {
-        "type": "field_input",
-        "text": "~ 5 ~",
-        "name": "cmd_text",
-        "argIndex": 1
-      }
-    },
-    "dsItem": {
-      "nplcode": "velocity(\"~ 5 ~\")\n",
-      "html": "速度<div style=\"float:left;margin:3px;line-height:12px;font-size:bold;background-color:#ffffff;color:#000000;\">~ 5 ~</div>",
-      "color": "#4a6cd4",
-      "name": "velocity",
-      "tooltip": "page://script/apps/Aries/Creator/Game/Code/CodeHelpItemTooltip.html?name=velocity"
-    }
-  },
-  {
-    "html": "反弹",
-    "func_description": "bounce()",
-    "message0": "反弹",
-    "helpUrl": "",
-    "npl_code": "bounce()",
-    "colour": "#0078d7",
-    "category": "Motion",
-    "examples": [
-      {
-        "desc": "遇到方块反弹",
-        "code": "turnTo(45)\nwhile(true) do\n    moveForward(0.02)\n    if(isTouching(\"block\")) then\n        bounce()\n    end\nend\n",
-        "canRun": true
-      }
-    ],
-    "canRun": true,
-    "arg0": [ ],
-    "type": "bounce",
-    "all_fields": [ ],
-    "dsItem": {
-      "nplcode": "bounce()",
-      "html": "反弹",
-      "color": "#4a6cd4",
-      "name": "bounce",
-      "tooltip": "page://script/apps/Aries/Creator/Game/Code/CodeHelpItemTooltip.html?name=bounce"
-    }
-  },
-  {
-    "html": "X坐标",
-    "func_description": "getX()",
-    "message0": "X坐标",
-    "canRun": false,
-    "colour": "#0078d7",
-    "npl_code": "getX()",
-    "output": { "type": "field_number" },
-    "helpUrl": "",
-    "examples": [
-      {
-        "desc": "",
-        "code": "while(true) do\n    say(getX())\nend\n",
-        "canRun": true
-      }
-    ],
-    "category": "Motion",
-    "arg0": [ ],
-    "type": "getX",
-    "all_fields": [ ],
-    "dsItem": {
-      "nplcode": "getX()",
-      "html": "X坐标",
-      "color": "#ff6a00",
-      "name": "getX",
-      "tooltip": "page://script/apps/Aries/Creator/Game/Code/CodeHelpItemTooltip.html?name=getX"
-    }
-  },
-  {
-    "html": "Y坐标",
-    "func_description": "getY()",
-    "message0": "Y坐标",
-    "canRun": false,
-    "colour": "#0078d7",
-    "npl_code": "getY()",
-    "output": { "type": "field_number" },
-    "helpUrl": "",
-    "examples": [
-      {
-        "desc": "",
-        "code": "while(true) do\n    say(getY())\n    if(getY()<3) then\n        tip(\"Game Over!\")\n    end\nend\n",
-        "canRun": true
-      }
-    ],
-    "category": "Motion",
-    "arg0": [ ],
-    "type": "getY",
-    "all_fields": [ ],
-    "dsItem": {
-      "nplcode": "getY()",
-      "html": "Y坐标",
-      "color": "#ff6a00",
-      "name": "getY",
-      "tooltip": "page://script/apps/Aries/Creator/Game/Code/CodeHelpItemTooltip.html?name=getY"
-    }
-  },
-  {
-    "html": "Z坐标",
-    "func_description": "getZ()",
-    "message0": "Z坐标",
-    "canRun": false,
-    "colour": "#0078d7",
-    "npl_code": "getZ()",
-    "output": { "type": "field_number" },
-    "helpUrl": "",
-    "examples": [
-      {
-        "desc": "",
-        "code": "while(true) do\n    say(getZ())\nend\n",
-        "canRun": true
-      }
-    ],
-    "category": "Motion",
-    "arg0": [ ],
-    "type": "getZ",
-    "all_fields": [ ],
-    "dsItem": {
-      "nplcode": "getZ()",
-      "html": "Z坐标",
-      "color": "#ff6a00",
-      "name": "getZ",
-      "tooltip": "page://script/apps/Aries/Creator/Game/Code/CodeHelpItemTooltip.html?name=getZ"
-    }
-  },
-  {
-    "html": "方向",
-    "func_description": "getFacing()",
-    "message0": "方向",
-    "canRun": false,
-    "colour": "#0078d7",
-    "npl_code": "getFacing()",
-    "output": { "type": "field_number" },
-    "helpUrl": "",
-    "examples": [
-      {
-        "desc": "",
-        "code": "while(true) do\n    say(getFacing())\nend\n",
-        "canRun": true
-      }
-    ],
-    "category": "Motion",
-    "arg0": [ ],
-    "type": "getFacing",
-    "all_fields": [ ],
-    "dsItem": {
-      "nplcode": "getFacing()",
-      "html": "方向",
-      "color": "#ff6a00",
-      "name": "getFacing",
-      "tooltip": "page://script/apps/Aries/Creator/Game/Code/CodeHelpItemTooltip.html?name=getFacing"
-    }
-  },
-  {
-    "func_description": "registerClickEvent(function()\\n%send)",
-    "message0": "当演员被点击时%1",
-    "category": "Events",
-    "colour": "#764bcc",
-    "examples": [
-      {
-        "desc": "",
-        "code": "registerClickEvent(function()\n    for i=1, 20 do\n        scale(10)\n    end\n    for i=1, 20 do\n        scale(-10)\n    end\nend)\n",
-        "canRun": true
-      }
-    ],
-    "arg0": [
-      {
-        "type": "input_statement",
-        "text": "",
-        "name": "input",
-        "argIndex": 1
-      }
-    ],
-    "canRun": false,
-    "type": "registerClickEvent",
-    "all_fields": {
-      "input": {
-        "type": "input_statement",
-        "text": "",
-        "name": "input",
-        "argIndex": 1
-      }
-    },
-    "helpUrl": ""
-  },
-  {
-    "func_description": "registerKeyPressedEvent(\"%s\", function()\\n%send)",
-    "message0": "当%1键按下时%2",
-    "category": "Events",
-    "colour": "#764bcc",
-    "examples": [
-      {
-        "desc": "空格跳跃",
-        "code": "registerKeyPressedEvent(\"space\",function()\n    say(\"Jump!\", 1)\n    move(0,1,0, 0.5)\n    move(0,-1,0, 0.5)\n    walkForward(0)\nend)\n",
-        "canRun": true
-      }
-    ],
-    "arg0": [
-      {
-        "type": "field_input",
-        "text": "space",
-        "name": "keyname",
-        "argIndex": 1
-      },
-      {
-        "type": "input_statement",
-        "text": "",
-        "name": "input",
-        "argIndex": 2
-      }
-    ],
-    "canRun": false,
-    "type": "registerKeyPressedEvent",
-    "all_fields": {
-      "input": {
-        "type": "input_statement",
-        "text": "",
-        "name": "input",
-        "argIndex": 2
-      },
-      "keyname": {
-        "type": "field_input",
-        "text": "space",
-        "name": "keyname",
-        "argIndex": 1
-      }
-    },
-    "helpUrl": ""
-  },
-  {
-    "func_description": "registerAnimationEvent(%d, function()\\n%send)",
-    "message0": "当动画在%1帧时%2",
-    "category": "Events",
-    "colour": "#764bcc",
-    "examples": [
-      {
-        "desc": "",
-        "code": "registerAnimationEvent(10, function()\n    say(\"anim started\", 3)\nend)\nregisterAnimationEvent(1000, function()\n    say(\"anim stopped\", 1)\nend)\nregisterClickEvent(function()\n    play(10, 1000)\nend);\nsay(\"click me!\")\n",
-        "canRun": true
-      }
-    ],
-    "arg0": [
-      {
-        "type": "field_number",
-        "text": 1000,
-        "name": "time",
-        "argIndex": 1
-      },
-      {
-        "type": "input_statement",
-        "text": "",
-        "name": "input",
-        "argIndex": 2
-      }
-    ],
-    "canRun": false,
-    "type": "registerAnimationEvent",
-    "all_fields": {
-      "input": {
-        "type": "input_statement",
-        "text": "",
-        "name": "input",
-        "argIndex": 2
-      },
-      "time": {
-        "type": "field_number",
-        "text": 1000,
-        "name": "time",
-        "argIndex": 1
-      }
-    },
-    "helpUrl": ""
-  },
-  {
-    "func_description": "registerBroadcastEvent(\"%s\", function()\\n%send)",
-    "color": "#00cc00",
-    "canRun": false,
-    "colour": "#764bcc",
-    "category": "Events",
-    "examples": [
-      {
-        "desc": "",
-        "code": "registerBroadcastEvent(\"jump\", function()\n    move(0,1,0)\n    wait(1)\n    move(0,-1,0)\nend)\nregisterClickEvent(function()\n    broadcastAndWait(\"jump\")\n    say(\"That was fun!\", 2)\nend)\nsay(\"click to jump!\")\n",
-        "canRun": true
-      }
-    ],
-    "helpUrl": "",
-    "message0": "当收到%1消息时%2",
-    "type": "registerBroadcastEvent",
-    "all_fields": {
-      "input": {
-        "type": "input_statement",
-        "text": "",
-        "name": "input",
-        "argIndex": 2
-      },
-      "msg": {
-        "type": "field_input",
-        "text": "message0",
-        "name": "msg",
-        "argIndex": 1
-      }
-    },
-    "arg0": [
-      {
-        "type": "field_input",
-        "text": "message0",
-        "name": "msg",
-        "argIndex": 1
-      },
-      {
-        "type": "input_statement",
-        "text": "",
-        "name": "input",
-        "argIndex": 2
-      }
-    ]
-  },
-  {
-    "func_description": "broadcast(\"%s\")",
-    "color": "#00cc00",
-    "canRun": false,
-    "colour": "#764bcc",
-    "category": "Events",
-    "examples": [
-      {
-        "desc": "",
-        "code": "registerBroadcastEvent(\"hello\", function(msg)\n    say(\"hello\"..msg)\n    move(0,1,0, 0.5)\n    move(0,-1,0, 0.5)\n    say(\"bye\")\nend)\nfor i=1, 2 do\n    broadcast(\"hello\", i)\n    wait(0.5)\nend\n",
-        "canRun": true
-      }
-    ],
-    "helpUrl": "",
-    "message0": "广播%1消息",
-    "type": "broadcast",
-    "all_fields": {
-      "msg": {
-        "type": "field_input",
-        "text": "message0",
-        "name": "msg",
-        "argIndex": 1
-      }
-    },
-    "arg0": [
-      {
-        "type": "field_input",
-        "text": "message0",
-        "name": "msg",
-        "argIndex": 1
-      }
-    ]
-  },
-  {
-    "func_description": "broadcastAndWait(\"%s\")",
-    "color": "#00cc00",
-    "canRun": false,
-    "colour": "#764bcc",
-    "category": "Events",
-    "examples": [
-      {
-        "desc": "",
-        "code": "registerBroadcastEvent(\"hi\", function()\n    say(\"hi\")\n    wait(1)\n    say(\"bye\")\n    wait(1)\nend)\nfor i=1, 2 do\n    broadcastAndWait(\"hi\")\nend\n",
-        "canRun": true
-      }
-    ],
-    "helpUrl": "",
-    "message0": "广播%1消息并等待返回",
-    "type": "broadcastAndWait",
-    "all_fields": {
-      "msg": {
-        "type": "field_input",
-        "text": "message0",
-        "name": "msg",
-        "argIndex": 1
-      }
-    },
-    "arg0": [
-      {
-        "type": "field_input",
-        "text": "message0",
-        "name": "msg",
-        "argIndex": 1
-      }
-    ]
-  },
-  {
-    "func_description": "wait(%s)",
-    "message0": "等待%1秒",
-    "category": "Control",
-    "colour": "#d83b01",
-    "examples": [
-      {
-        "desc": "",
-        "code": "say(\"hi\")\nwait(1)\nsay(\"bye\", 1)\n",
-        "canRun": true
-      }
-    ],
-    "arg0": [
-      {
-        "type": "field_number",
-        "text": 1,
-        "name": "time",
-        "argIndex": 1
-      }
-    ],
-    "canRun": false,
-    "type": "wait",
-    "all_fields": {
-      "time": {
-        "type": "field_number",
-        "text": 1,
-        "name": "time",
-        "argIndex": 1
-      }
-    },
-    "helpUrl": ""
-  },
-  {
-    "func_description": "for i=1, %d do\\n%send",
-    "message0": "重复%1次%2",
-    "category": "Control",
-    "colour": "#d83b01",
-    "examples": [
-      {
-        "desc": "",
-        "code": "for i=1, 10 do\n    moveForward(0.1)\nend\n",
-        "canRun": true
-      }
-    ],
-    "arg0": [
-      {
-        "type": "field_number",
-        "text": 10,
-        "name": "times",
-        "argIndex": 1
-      },
-      {
-        "type": "input_statement",
-        "text": "",
-        "name": "input",
-        "argIndex": 2
-      }
-    ],
-    "canRun": false,
-    "type": "repeat",
-    "all_fields": {
-      "times": {
-        "type": "field_number",
-        "text": 10,
-        "name": "times",
-        "argIndex": 1
-      },
-      "input": {
-        "type": "input_statement",
-        "text": "",
-        "name": "input",
-        "argIndex": 2
-      }
-    },
-    "helpUrl": ""
-  },
-  {
-    "func_description": "while(true) do\\n%send",
-    "message0": "永远重复%1",
-    "category": "Control",
-    "colour": "#d83b01",
-    "examples": [
-      {
-        "desc": "",
-        "code": "while(true) do\n    moveForward(0.01)\nend\n",
-        "canRun": true
-      }
-    ],
-    "arg0": [
-      {
-        "type": "input_statement",
-        "text": "",
-        "name": "input",
-        "argIndex": 1
-      }
-    ],
-    "canRun": false,
-    "type": "forever",
-    "all_fields": {
-      "input": {
-        "type": "input_statement",
-        "text": "",
-        "name": "input",
-        "argIndex": 1
-      }
-    },
-    "helpUrl": ""
-  },
-  {
-    "func_description": "if(%s) then\\n%selse\\n%send",
-    "message0": "如果%1那么%2否则%3",
-    "category": "Control",
-    "colour": "#d83b01",
-    "examples": [
-      {
-        "desc": "",
-        "code": "while(true) do\n    if(distanceTo(\"mouse-pointer\")<3) then\n        say(\"mouse-pointer\")\n    else\n        say(\"\")\n    end\n    wait(0.01)\nend\n",
-        "canRun": true
-      }
-    ],
-    "arg0": [
-      {
-        "type": "input_expression",
-        "text": "",
-        "name": "expression",
-        "argIndex": 1
-      },
-      {
-        "type": "input_statement",
-        "text": "",
-        "name": "input_true",
-        "argIndex": 2
-      },
-      {
-        "type": "input_statement",
-        "text": "",
-        "name": "input_else",
-        "argIndex": 3
-      }
-    ],
-    "canRun": false,
-    "type": "if_else",
-    "all_fields": {
-      "input_true": {
-        "type": "input_statement",
-        "text": "",
-        "name": "input_true",
-        "argIndex": 2
-      },
-      "input_else": {
-        "type": "input_statement",
-        "text": "",
-        "name": "input_else",
-        "argIndex": 3
-      },
-      "expression": {
-        "type": "input_expression",
-        "text": "",
-        "name": "expression",
-        "argIndex": 1
-      }
-    },
-    "helpUrl": ""
-  },
-  {
-    "func_description": "for %s, %s in pairs(%s) do\\n%send",
-    "message0": "每个%1,%2在%3%4",
-    "category": "Control",
-    "colour": "#d83b01",
-    "examples": [
-      {
-        "desc": "",
-        "code": "myData = {\n    key1=\"value1\", \n    key2=\"value2\",\n    key2=\"value2\",\n}\nfor k, v in pairs(myData) do\n    say(v, 1);\nend\n",
-        "canRun": true
-      }
-    ],
-    "arg0": [
-      {
-        "type": "field_input",
-        "text": "key",
-        "name": "key",
-        "argIndex": 1
-      },
-      {
-        "type": "field_input",
-        "text": "value",
-        "name": "value",
-        "argIndex": 2
-      },
-      {
-        "type": "field_input",
-        "text": "data",
-        "name": "data",
-        "argIndex": 3
-      },
-      {
-        "type": "input_statement",
-        "text": "",
-        "name": "input",
-        "argIndex": 4
-      }
-    ],
-    "canRun": false,
-    "type": "forKeyValue",
-    "all_fields": {
-      "input": {
-        "type": "input_statement",
-        "text": "",
-        "name": "input",
-        "argIndex": 4
-      },
-      "key": {
-        "type": "field_input",
-        "text": "key",
-        "name": "key",
-        "argIndex": 1
-      },
-      "data": {
-        "type": "field_input",
-        "text": "data",
-        "name": "data",
-        "argIndex": 3
-      },
-      "value": {
-        "type": "field_input",
-        "text": "value",
-        "name": "value",
-        "argIndex": 2
-      }
-    },
-    "helpUrl": ""
-  },
-  {
-    "func_description": "for %s, %s in ipairs(%s) do\\n%send",
-    "message0": "每个%1,%2在数组%3%4",
-    "category": "Control",
-    "colour": "#d83b01",
-    "examples": [
-      {
-        "desc": "",
-        "code": "myData = {\n    {x=1, y=0, z=0, duration=0.5},\n    {x=0, y=0, z=1, duration=0.5},\n    {x=-1, y=0, z=-1, duration=1},\n}\nfor i, item in ipairs(myData) do\n    move(item.x, item.y, item.z, item.duration)\nend\n",
-        "canRun": true
-      }
-    ],
-    "arg0": [
-      {
-        "type": "field_input",
-        "text": "index",
-        "name": "i",
-        "argIndex": 1
-      },
-      {
-        "type": "field_input",
-        "text": "item",
-        "name": "item",
-        "argIndex": 2
-      },
-      {
-        "type": "field_input",
-        "text": "data",
-        "name": "data",
-        "argIndex": 3
-      },
-      {
-        "type": "input_statement",
-        "text": "",
-        "name": "input",
-        "argIndex": 4
-      }
-    ],
-    "canRun": false,
-    "type": "forIndexValue",
-    "all_fields": {
-      "i": {
-        "type": "field_input",
-        "text": "index",
-        "name": "i",
-        "argIndex": 1
-      },
-      "item": {
-        "type": "field_input",
-        "text": "item",
-        "name": "item",
-        "argIndex": 2
-      },
-      "data": {
-        "type": "field_input",
-        "text": "data",
-        "name": "data",
-        "argIndex": 3
-      },
-      "input": {
-        "type": "input_statement",
-        "text": "",
-        "name": "input",
-        "argIndex": 4
-      }
-    },
     "helpUrl": ""
   },
   {
     "func_description": "registerCloneEvent(function()\\n%send)",
     "color": "#cc0000",
     "canRun": false,
-    "colour": "#d83b01",
-    "category": "Control",
+    "colour": "#459197",
     "examples": [
       {
         "desc": "",
@@ -1892,32 +184,23 @@
         "canRun": true
       }
     ],
+    "message0": "when this actor is cloned %1",
     "helpUrl": "",
-    "message0": "当演员被复制时%1",
     "type": "registerCloneEvent",
-    "all_fields": {
-      "input": {
-        "type": "input_statement",
-        "text": "",
-        "name": "input",
-        "argIndex": 1
-      }
-    },
     "arg0": [
       {
         "type": "input_statement",
-        "text": "",
         "name": "input",
-        "argIndex": 1
+        "text": ""
       }
-    ]
+    ],
+    "category": "Data"
   },
   {
     "func_description": "clone(\"%s\")",
     "color": "#cc0000",
     "canRun": false,
-    "colour": "#d83b01",
-    "category": "Control",
+    "colour": "#459197",
     "examples": [
       {
         "desc": "",
@@ -1925,32 +208,23 @@
         "canRun": true
       }
     ],
+    "message0": "create clone of %1",
     "helpUrl": "",
-    "message0": "复制角色%1",
     "type": "clone",
-    "all_fields": {
-      "input": {
-        "type": "field_input",
-        "text": "myself",
-        "name": "input",
-        "argIndex": 1
-      }
-    },
     "arg0": [
       {
         "type": "field_input",
-        "text": "myself",
         "name": "input",
-        "argIndex": 1
+        "text": "myself"
       }
-    ]
+    ],
+    "category": "Data"
   },
   {
     "func_description": "delete()",
     "color": "#cc0000",
-    "canRun": false,
-    "colour": "#d83b01",
-    "message0": "删除角色",
+    "category": "Data",
+    "colour": "#459197",
     "examples": [
       {
         "desc": "",
@@ -1958,18 +232,1211 @@
         "canRun": true
       }
     ],
+    "canRun": false,
     "helpUrl": "",
-    "category": "Control",
     "type": "delete",
-    "all_fields": [ ],
+    "arg0": [ ],
+    "message0": "delete this clone"
+  },
+  {
+    "func_description": "setActorValue(\"%s\", \"%s\")",
+    "color": "#cc0000",
+    "canRun": false,
+    "colour": "#459197",
+    "examples": [
+      {
+        "desc": "",
+        "code": "registerCloneEvent(function(name)\n    setActorValue(\"name\", name)\n    moveForward(1);\nend)\nregisterClickEvent(function()\n    local myname = getActorValue(\"name\")\n    say(\"my name is \"..myname)\nend)\nsetActorValue(\"name\", \"Default\")\nclone(\"myself\", \"Cloned\")\nsay(\"click us!\")\n",
+        "canRun": true
+      }
+    ],
+    "message0": "set actor data %1 to %2",
+    "helpUrl": "",
+    "type": "setActorValue",
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "key",
+        "text": "name"
+      },
+      {
+        "type": "field_input",
+        "name": "value",
+        "text": "actor1"
+      }
+    ],
+    "category": "Data"
+  },
+  {
+    "func_description": "getActorValue(\"%s\")",
+    "message0": "get actor data %1",
+    "category": "Data",
+    "output": { "type": "field_number" },
+    "examples": [
+      {
+        "desc": "",
+        "code": "registerCloneEvent(function(msg)\n    setActorValue(\"name\", msg.name)\n    moveForward(msg.dist);\nend)\nregisterClickEvent(function()\n    local myname = getActorValue(\"name\")\n    say(\"my name is \"..myname)\nend)\nsetActorValue(\"name\", \"Default\")\nclone(\"myself\", {name = \"clone1\", dist=1})\nclone(nil, {name = \"clone2\", dist=2})\nsay(\"click us!\")\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#459197",
+    "canRun": false,
+    "type": "getActorValue",
+    "helpUrl": "",
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "key",
+        "text": "name"
+      }
+    ]
+  },
+  {
+    "func_description": "say(\"%s\", %s)",
+    "message0": "Say%1 for  %2 seconds",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "say(\"Jump!\", 2)\nmove(0,1,0)\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#7abb55",
+    "category": "Looks",
+    "type": "sayAndWait",
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "text",
+        "text": "hello!"
+      },
+      {
+        "type": "field_number",
+        "name": "duration",
+        "text": 2
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "say(\"%s\")",
+    "message0": "say %1",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "show dialog on top of character",
+        "code": "say(\"Hello!\")\nwait(1)\nsay(\"\")\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#7abb55",
+    "category": "Looks",
+    "type": "say",
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "text",
+        "text": "hello!"
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "tip(\"%s\")",
+    "message0": "show tip %1",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "tip(\"Start Game in 3!\")\nwait(1)\ntip(\"Start Game in 2!\")\nwait(1)\ntip(\"Start Game in 1!\")\nwait(1)\ntip(\"\")\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#7abb55",
+    "category": "Looks",
+    "type": "tip",
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "text",
+        "text": "Start Game!"
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "show()",
+    "message0": "show",
+    "helpUrl": "",
+    "colour": "#7abb55",
+    "arg0": [ ],
+    "type": "show",
+    "canRun": true,
+    "category": "Looks"
+  },
+  {
+    "func_description": "hide()",
+    "message0": "hide",
+    "helpUrl": "",
+    "colour": "#7abb55",
+    "arg0": [ ],
+    "type": "hide",
+    "canRun": true,
+    "category": "Looks"
+  },
+  {
+    "func_description": "anim(%d)",
+    "message0": "播放动作编号 %1",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "anim(4)\nmove(-2,0,0,1)\nanim(0)\n",
+        "canRun": true
+      },
+      {
+        "desc": "常用动作编号",
+        "code": "-- 0: standing\n-- 4: walking \n-- 5: running\n-- check movie block for more ids\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#7abb55",
+    "category": "Looks",
+    "type": "anim",
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "animId",
+        "text": 4
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "play(%d, %d)",
+    "message0": "play from %1 to %2 ms",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "play animation in movie block",
+        "code": "play(10, 1000)\nsay(\"No looping\", 1)\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#7abb55",
+    "category": "Looks",
+    "type": "play",
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "timeFrom",
+        "text": 10
+      },
+      {
+        "type": "field_number",
+        "name": "timeTo",
+        "text": 1000
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "playLoop(%d, %d)",
+    "message0": "play looped from %1 to %2 ms",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "play animation in movie block",
+        "code": "playLoop(10, 1000)\nsay(\"Looping\", 3)\nstop()\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#7abb55",
+    "category": "Looks",
+    "type": "playLoop",
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "timeFrom",
+        "text": 10
+      },
+      {
+        "type": "field_number",
+        "name": "timeTo",
+        "text": 1000
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "playSpeed(%d)",
+    "message0": "播放速度%1",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "playSpeed(4)\nplayLoop(0, 1000)\nsay(\"Looping\", 3)\nplaySpeed(1)\nstop()\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#7abb55",
+    "category": "Looks",
+    "type": "playSpeed",
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "speed",
+        "text": 1
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "stop()",
+    "message0": "stop playing",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "play/pause actor animation",
+        "code": "playLoop(10, 1000)\nwait(2)\nstop()\nturn(15)\nplayLoop(10, 1000)\nwait(2)\nstop()\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#7abb55",
+    "category": "Looks",
+    "type": "stop",
+    "arg0": [ ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "scale(%d)",
+    "message0": "scale %1 percent",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "scale(50)\nwait(1)\nscale(-50)\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#7abb55",
+    "category": "Looks",
+    "type": "scale",
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "scaleDelta",
+        "text": 10
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "scaleTo(%d)",
+    "message0": "scale to %1 percent",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "for i=1, 20 do\n    scale(10)\nend\nscaleTo(50)\nwait(0.5)\nscaleTo(200)\nwait(0.5)\nscaleTo(100)\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#7abb55",
+    "category": "Looks",
+    "type": "scaleTo",
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "scale",
+        "text": 100
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "focus(\"%s\")",
+    "color": "#cc0000",
+    "canRun": true,
+    "colour": "#7abb55",
+    "examples": [
+      {
+        "desc": "",
+        "code": "focus()\nmoveForward(2,2)\nfocus(\"player\")\n",
+        "canRun": true
+      }
+    ],
+    "message0": "focus on actor %1",
+    "helpUrl": "",
+    "type": "focus",
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "name",
+        "text": "myself"
+      }
+    ],
+    "category": "Looks"
+  },
+  {
+    "func_description": "camera(%s, %s, %s)",
+    "color": "#cc0000",
+    "canRun": true,
+    "colour": "#7abb55",
+    "examples": [
+      {
+        "desc": "",
+        "code": "for i=1, 100 do\n    camera(10+i*0.1, nil, nil)\n    wait(0.05)\nend\n",
+        "canRun": true
+      }
+    ],
+    "message0": "摄影机距离%1角度%2朝向%3",
+    "helpUrl": "",
+    "type": "camera",
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "dist",
+        "text": "12"
+      },
+      {
+        "type": "field_input",
+        "name": "pitch",
+        "text": "45"
+      },
+      {
+        "type": "field_input",
+        "name": "facing",
+        "text": "90"
+      }
+    ],
+    "category": "Looks"
+  },
+  {
+    "func_description": "getScale()",
+    "message0": "scale",
+    "category": "Looks",
+    "output": { "type": "field_number" },
+    "examples": [
+      {
+        "desc": "",
+        "code": "while(true) do\n    if(getScale() >= 200) then\n        scaleTo(100)\n    else\n        scale(10)\n    end\nend\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#7abb55",
+    "canRun": false,
+    "type": "getScale",
+    "helpUrl": "",
     "arg0": [ ]
+  },
+  {
+    "func_description": "getPlayTime()",
+    "message0": "animation time",
+    "category": "Looks",
+    "output": { "type": "field_number" },
+    "examples": [
+      {
+        "desc": "",
+        "code": "playLoop(10, 2000)\nwhile(true) do\n    if(getPlayTime() > 1000) then\n        say(\"hi\")\n    else\n        say(\"\")\n    end\n    wait(0.01);\nend\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#7abb55",
+    "canRun": false,
+    "type": "getPlayTime",
+    "helpUrl": "",
+    "arg0": [ ]
+  },
+  {
+    "func_description": "moveForward(%d, %d)",
+    "message0": "move forward %1 block in %2 secs",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "turn(30);\nfor i=1, 20 do\n    moveForward(0.05)\nend\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#0078d7",
+    "category": "Motion",
+    "type": "moveForward",
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "dist",
+        "text": 1
+      },
+      {
+        "type": "field_number",
+        "name": "duration",
+        "text": 0.5
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "turn(%d)",
+    "message0": "turn %1 degree",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "turnTo(-60)\nfor i=1, 100 do\n    turn(-3)\nend\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#0078d7",
+    "category": "Motion",
+    "type": "turn",
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "degree",
+        "text": 15
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "turnTo(%d)",
+    "message0": "turn to %1 degree direction",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "turnTo(-60)\nwait(1)\nturnTo(0)\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#0078d7",
+    "category": "Motion",
+    "type": "turnTo",
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "degree",
+        "text": 90
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "turnTo(\"%s\")",
+    "message0": "turn to %1",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "turn to mouse pointer or given player",
+        "code": "turnTo(\"mouse-pointer\")\nmoveForward(1, 1)\nturnTo(\"@p\")\nmoveForward(1, 1)\nturnTo(\"frog\")\nmoveForward(1, 1)\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#0078d7",
+    "category": "Motion",
+    "type": "turnToTarget",
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "targetName",
+        "text": "mouse-pointer"
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "move(%s, %s, %s, %s)",
+    "message0": "move %1 %2 %3 in %4 secs",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "turnTo(0)\nmove(0.5,1,0, 0.5)\nmove(1,-1,0, 0.5)\nsay(\"jump!\", 1)\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#0078d7",
+    "category": "Motion",
+    "type": "move",
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "x",
+        "text": 1
+      },
+      {
+        "type": "field_number",
+        "name": "y",
+        "text": 0
+      },
+      {
+        "type": "field_number",
+        "name": "z",
+        "text": 0
+      },
+      {
+        "type": "field_number",
+        "name": "duration",
+        "text": 0.5
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "moveTo(%s, %s, %s)",
+    "isDynamicNPLCode": true,
+    "helpUrl": "",
+    "colour": "#0078d7",
+    "examples": [
+      {
+        "desc": "",
+        "code": "moveTo(19257,5,19174)\nmoveTo(\"mouse-pointer\")\nmoveTo(\"@p\")\nmoveTo(\"frog\")\n",
+        "canRun": false
+      }
+    ],
+    "canRun": true,
+    "message0": "move to %1 %2 %3",
+    "type": "moveTo",
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "x"
+      },
+      {
+        "type": "field_number",
+        "name": "y"
+      },
+      {
+        "type": "field_number",
+        "name": "z"
+      }
+    ],
+    "category": "Motion"
+  },
+  {
+    "func_description": "moveTo(\"%s\")",
+    "message0": "move to %1",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "teleport to main player, mouse pointer, given actor",
+        "code": "say(\"current player\", 1)\nmoveTo(\"@p\")\nsay(\"mouse-pointer\", 1)\nmoveTo(\"mouse-pointer\")\nsay(\"the frog actor if any\", 1)\nmoveTo(\"frog\")\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#0078d7",
+    "category": "Motion",
+    "type": "moveToTarget",
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "targetName",
+        "text": "mouse-pointer"
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "walk(%s, %s, %s, %s)",
+    "message0": "walk %1 %2 %3 for %4 seconds",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "walk(1,0) -- x,z\nwalk(0,1) -- x,z\nwalk(-1,0,-1) -- x,y,z\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#0078d7",
+    "category": "Motion",
+    "type": "walk",
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "x",
+        "text": 1
+      },
+      {
+        "type": "field_number",
+        "name": "y",
+        "text": 0
+      },
+      {
+        "type": "field_number",
+        "name": "z",
+        "text": 0
+      },
+      {
+        "type": "field_number",
+        "name": "duration",
+        "text": 0.5
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "walkForward(%s, %s)",
+    "message0": "Walk forward%1 for %2 secs",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "turnTo(0)\nwalkForward(1)\nturn(180)\nwalkForward(1, 0.5)\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#0078d7",
+    "category": "Motion",
+    "type": "walkForward",
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "dist",
+        "text": 1
+      },
+      {
+        "type": "field_number",
+        "name": "duration",
+        "text": 0.5
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "velocity(\"%s\")",
+    "message0": "set velocity %1",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "velocity(\"~ 10 ~\")\nwait(0.3)\nvelocity(\"add 2 ~ 2\")\nwait(2)\nvelocity(\"0 0 0\")\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#0078d7",
+    "category": "Motion",
+    "type": "velocity",
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "cmd_text",
+        "text": "~ 5 ~"
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "bounce()",
+    "message0": "bounce",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "bounce when touching blocks",
+        "code": "turnTo(45)\nwhile(true) do\n    moveForward(0.02)\n    if(isTouching(\"block\")) then\n        bounce()\n    end\nend\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#0078d7",
+    "category": "Motion",
+    "type": "bounce",
+    "arg0": [ ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "getX()",
+    "message0": "get X coordinate",
+    "category": "Motion",
+    "output": { "type": "field_number" },
+    "examples": [
+      {
+        "desc": "",
+        "code": "while(true) do\n    say(getX())\nend\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#0078d7",
+    "canRun": false,
+    "type": "getX",
+    "helpUrl": "",
+    "arg0": [ ]
+  },
+  {
+    "func_description": "getY()",
+    "message0": "get Y coordinate",
+    "category": "Motion",
+    "output": { "type": "field_number" },
+    "examples": [
+      {
+        "desc": "",
+        "code": "while(true) do\n    say(getY())\n    if(getY()<3) then\n        tip(\"Game Over!\")\n    end\nend\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#0078d7",
+    "canRun": false,
+    "type": "getY",
+    "helpUrl": "",
+    "arg0": [ ]
+  },
+  {
+    "func_description": "getZ()",
+    "message0": "get Z coordinate",
+    "category": "Motion",
+    "output": { "type": "field_number" },
+    "examples": [
+      {
+        "desc": "",
+        "code": "while(true) do\n    say(getZ())\nend\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#0078d7",
+    "canRun": false,
+    "type": "getZ",
+    "helpUrl": "",
+    "arg0": [ ]
+  },
+  {
+    "func_description": "getPos()",
+    "message0": "actor xyz position",
+    "category": "Motion",
+    "output": { "type": "field_number" },
+    "examples": [
+      {
+        "desc": "",
+        "code": "local x, y, z = getPos()\nsetPos(x, y+0.5, z)\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#0078d7",
+    "canRun": false,
+    "type": "getPos",
+    "helpUrl": "",
+    "arg0": [ ]
+  },
+  {
+    "func_description": "setPos(%s, %s, %s)",
+    "message0": "set actor position %1 %2 %3",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "local x, y, z = getPos()\nsetPos(x, y+0.5, z)\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#0078d7",
+    "category": "Motion",
+    "type": "setPos",
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "x"
+      },
+      {
+        "type": "field_number",
+        "name": "y"
+      },
+      {
+        "type": "field_number",
+        "name": "z"
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "getFacing()",
+    "message0": "facing",
+    "category": "Motion",
+    "output": { "type": "field_number" },
+    "examples": [
+      {
+        "desc": "",
+        "code": "while(true) do\n    say(getFacing())\nend\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#0078d7",
+    "canRun": false,
+    "type": "getFacing",
+    "helpUrl": "",
+    "arg0": [ ]
+  },
+  {
+    "func_description": "registerClickEvent(function()\\n%send)",
+    "message0": "when this actor was clicked%1",
+    "canRun": false,
+    "examples": [
+      {
+        "desc": "",
+        "code": "registerClickEvent(function()\n    for i=1, 20 do\n        scale(10)\n    end\n    for i=1, 20 do\n        scale(-10)\n    end\nend)\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#764bcc",
+    "category": "Events",
+    "type": "registerClickEvent",
+    "arg0": [
+      {
+        "type": "input_statement",
+        "name": "input",
+        "text": ""
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "registerKeyPressedEvent(\"%s\", function()\\n%send)",
+    "message0": "when %1 key is pressed %2",
+    "canRun": false,
+    "examples": [
+      {
+        "desc": "Space key to jump",
+        "code": "registerKeyPressedEvent(\"space\",function()\n    say(\"Jump!\", 1)\n    move(0,1,0, 0.5)\n    move(0,-1,0, 0.5)\n    walkForward(0)\nend)\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#764bcc",
+    "category": "Events",
+    "type": "registerKeyPressedEvent",
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "keyname",
+        "text": "space"
+      },
+      {
+        "type": "input_statement",
+        "name": "input",
+        "text": ""
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "registerAnimationEvent(%d, function()\\n%send)",
+    "message0": "when animation time is %1 %2",
+    "canRun": false,
+    "examples": [
+      {
+        "desc": "",
+        "code": "registerAnimationEvent(10, function()\n    say(\"anim started\", 3)\nend)\nregisterAnimationEvent(1000, function()\n    say(\"anim stopped\", 1)\nend)\nregisterClickEvent(function()\n    play(10, 1000)\nend);\nsay(\"click me!\")\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#764bcc",
+    "category": "Events",
+    "type": "registerAnimationEvent",
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "time",
+        "text": 1000
+      },
+      {
+        "type": "input_statement",
+        "name": "input",
+        "text": ""
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "registerBroadcastEvent(\"%s\", function()\\n%send)",
+    "color": "#00cc00",
+    "canRun": false,
+    "colour": "#764bcc",
+    "examples": [
+      {
+        "desc": "",
+        "code": "registerBroadcastEvent(\"jump\", function()\n    move(0,1,0)\n    wait(1)\n    move(0,-1,0)\nend)\nregisterClickEvent(function()\n    broadcastAndWait(\"jump\")\n    say(\"That was fun!\", 2)\nend)\nsay(\"click to jump!\")\n",
+        "canRun": true
+      }
+    ],
+    "message0": "when receive%1 %2",
+    "helpUrl": "",
+    "type": "registerBroadcastEvent",
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "msg",
+        "text": "message0"
+      },
+      {
+        "type": "input_statement",
+        "name": "input",
+        "text": ""
+      }
+    ],
+    "category": "Events"
+  },
+  {
+    "func_description": "broadcast(\"%s\")",
+    "color": "#00cc00",
+    "canRun": false,
+    "colour": "#764bcc",
+    "examples": [
+      {
+        "desc": "",
+        "code": "registerBroadcastEvent(\"hello\", function(msg)\n    say(\"hello\"..msg)\n    move(0,1,0, 0.5)\n    move(0,-1,0, 0.5)\n    say(\"bye\")\nend)\nfor i=1, 2 do\n    broadcast(\"hello\", i)\n    wait(0.5)\nend\n",
+        "canRun": true
+      }
+    ],
+    "message0": "broadcast %1",
+    "helpUrl": "",
+    "type": "broadcast",
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "msg",
+        "text": "message0"
+      }
+    ],
+    "category": "Events"
+  },
+  {
+    "func_description": "broadcastAndWait(\"%s\")",
+    "color": "#00cc00",
+    "canRun": false,
+    "colour": "#764bcc",
+    "examples": [
+      {
+        "desc": "",
+        "code": "registerBroadcastEvent(\"hi\", function()\n    say(\"hi\")\n    wait(1)\n    say(\"bye\")\n    wait(1)\nend)\nfor i=1, 2 do\n    broadcastAndWait(\"hi\")\nend\n",
+        "canRun": true
+      }
+    ],
+    "message0": "broadcast %1 and wait",
+    "helpUrl": "",
+    "type": "broadcastAndWait",
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "msg",
+        "text": "message0"
+      }
+    ],
+    "category": "Events"
+  },
+  {
+    "func_description": "cmd(\"%s\")",
+    "color": "#cc0000",
+    "canRun": false,
+    "colour": "#764bcc",
+    "examples": [
+      {
+        "desc": "",
+        "code": "cmd(\"/setblock ~0 ~0 ~1 62\")\ncmd(\"/cameradist 12\")\ncmd(\"/camerayaw 0\")\ncmd(\"/camerapitch 0.5\")\n",
+        "canRun": true
+      }
+    ],
+    "message0": "run command %1",
+    "helpUrl": "",
+    "type": "cmd",
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "msg",
+        "text": "/tip hello"
+      }
+    ],
+    "category": "Events"
+  },
+  {
+    "func_description": "wait(%s)",
+    "message0": "wait %1 secs",
+    "canRun": false,
+    "examples": [
+      {
+        "desc": "",
+        "code": "say(\"hi\")\nwait(1)\nsay(\"bye\", 1)\n",
+        "canRun": true
+      },
+      {
+        "desc": "等待下一个时钟周期",
+        "code": "while(true) do\n    if(isKeyPressed(\"space\")) then\n        say(\"space is pressed\", 1)\n    end\n    wait()\nend\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#d83b01",
+    "category": "Control",
+    "type": "wait",
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "time",
+        "text": 1
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "for i=1, %d do\\n%send",
+    "message0": "repeat %1 %2",
+    "canRun": false,
+    "examples": [
+      {
+        "desc": "",
+        "code": "for i=1, 10 do\n    moveForward(0.1)\nend\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#d83b01",
+    "category": "Control",
+    "type": "repeat",
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "times",
+        "text": 10
+      },
+      {
+        "type": "input_statement",
+        "name": "input",
+        "text": ""
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "while(true) do\\n%send",
+    "message0": "forever%1",
+    "canRun": false,
+    "examples": [
+      {
+        "desc": "",
+        "code": "while(true) do\n    moveForward(0.01)\nend\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#d83b01",
+    "category": "Control",
+    "type": "forever",
+    "arg0": [
+      {
+        "type": "input_statement",
+        "name": "input",
+        "text": ""
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "if(%s) then\\n%selse\\n%send",
+    "message0": "if %1 ​​then %2 else %3",
+    "canRun": false,
+    "examples": [
+      {
+        "desc": "",
+        "code": "while(true) do\n    if(distanceTo(\"mouse-pointer\")<3) then\n        say(\"mouse-pointer\")\n    else\n        say(\"\")\n    end\n    wait(0.01)\nend\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#d83b01",
+    "category": "Control",
+    "type": "if_else",
+    "arg0": [
+      {
+        "type": "input_expression",
+        "name": "expression",
+        "text": ""
+      },
+      {
+        "type": "input_statement",
+        "name": "input_true",
+        "text": ""
+      },
+      {
+        "type": "input_statement",
+        "name": "input_else",
+        "text": ""
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "for %s, %s in pairs(%s) do\\n%send",
+    "message0": "for each %1,%2 in%3%4",
+    "canRun": false,
+    "examples": [
+      {
+        "desc": "",
+        "code": "myData = {\n    key1=\"value1\", \n    key2=\"value2\",\n    key2=\"value2\",\n}\nfor k, v in pairs(myData) do\n    say(v, 1);\nend\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#d83b01",
+    "category": "Control",
+    "type": "forKeyValue",
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "key",
+        "text": "key"
+      },
+      {
+        "type": "field_input",
+        "name": "value",
+        "text": "value"
+      },
+      {
+        "type": "field_input",
+        "name": "data",
+        "text": "data"
+      },
+      {
+        "type": "input_statement",
+        "name": "input",
+        "text": ""
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "for %s, %s in ipairs(%s) do\\n%send",
+    "message0": "for each%1,%2 in array%3%4",
+    "canRun": false,
+    "examples": [
+      {
+        "desc": "",
+        "code": "myData = {\n    {x=1, y=0, z=0, duration=0.5},\n    {x=0, y=0, z=1, duration=0.5},\n    {x=-1, y=0, z=-1, duration=1},\n}\nfor i, item in ipairs(myData) do\n    move(item.x, item.y, item.z, item.duration)\nend\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#d83b01",
+    "category": "Control",
+    "type": "forIndexValue",
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "i",
+        "text": "index"
+      },
+      {
+        "type": "field_input",
+        "name": "item",
+        "text": "item"
+      },
+      {
+        "type": "field_input",
+        "name": "data",
+        "text": "data"
+      },
+      {
+        "type": "input_statement",
+        "name": "input",
+        "text": ""
+      }
+    ],
+    "helpUrl": ""
   },
   {
     "func_description": "run(function()\\n%send)",
     "color": "#00cc00",
     "canRun": false,
     "colour": "#d83b01",
-    "category": "Control",
     "examples": [
       {
         "desc": "",
@@ -1977,65 +1444,195 @@
         "canRun": true
       }
     ],
+    "message0": "Run in parallel %1",
     "helpUrl": "",
-    "message0": "并行执行%1",
     "type": "run",
-    "all_fields": {
-      "input": {
-        "type": "input_statement",
-        "text": "",
-        "name": "input",
-        "argIndex": 1
-      }
-    },
     "arg0": [
       {
         "type": "input_statement",
-        "text": "",
         "name": "input",
-        "argIndex": 1
+        "text": ""
       }
-    ]
+    ],
+    "category": "Control"
+  },
+  {
+    "func_description": "exit()",
+    "message0": "exit",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "say(\"Press X key to exit\")\nregisterKeyPressedEvent(\"x\", function()\n    exit()\nend)\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#d83b01",
+    "category": "Control",
+    "type": "exit",
+    "arg0": [ ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "restart()",
+    "message0": "restart",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "say(\"Press X key to restart\")\nregisterKeyPressedEvent(\"x\", function()\n    restart()\nend)\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#d83b01",
+    "category": "Control",
+    "type": "restart",
+    "arg0": [ ],
+    "helpUrl": ""
   },
   {
     "func_description": "isTouching(\"%s\")",
-    "message0": "是否碰到%1",
-    "canRun": false,
+    "message0": "touching %1 ?",
+    "category": "Sensing",
     "output": { "type": "field_number" },
-    "colour": "#69b090",
     "examples": [
       {
-        "desc": "是否和方块与人物有接触",
+        "desc": "touching blocks or actors?",
         "code": "turnTo(45)\nwhile(true) do\n    moveForward(0.1)\n    if(isTouching(62)) then\n        say(\"grass block!\", 1)\n    elseif(isTouching(\"block\")) then\n        bounce()\n    elseif(isTouching(\"box\")) then\n        bounce()\n    end\nend\n",
         "canRun": true
       }
     ],
+    "colour": "#69b090",
+    "canRun": false,
+    "type": "isTouching",
+    "helpUrl": "",
     "arg0": [
       {
         "type": "field_input",
-        "text": "block",
         "name": "input",
-        "argIndex": 1
+        "text": "block"
+      }
+    ]
+  },
+  {
+    "func_description": "setActorValue(\"name\", \"%s\")",
+    "message0": "设置名字为%1",
+    "canRun": false,
+    "examples": [
+      {
+        "desc": "复制的对象也可有不同的名字",
+        "code": "registerCloneEvent(function(name)\n    setActorValue(\"name\", name)\n    moveForward(1);\nend)\nregisterClickEvent(function()\n    local myname = getActorValue(\"name\")\n    say(\"my name is \"..myname)\nend)\nsetActorValue(\"name\", \"Default\")\nclone(\"myself\", \"Cloned\")\nsay(\"click us!\")\n",
+        "canRun": true
       }
     ],
-    "helpUrl": "",
-    "type": "isTouching",
-    "all_fields": {
-      "input": {
+    "colour": "#69b090",
+    "category": "Sensing",
+    "type": "setName",
+    "arg0": [
+      {
         "type": "field_input",
-        "text": "block",
-        "name": "input",
-        "argIndex": 1
+        "name": "name",
+        "text": "frog"
       }
-    },
-    "category": "Sensing"
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "setActorValue(\"physicsRadius\", %s)",
+    "message0": "设置物理半径%1",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "cmd(\"/show boundingbox\")\nsetBlock(getX(), getY()+2, getZ(), 62)\nsetActorValue(\"physicsRadius\", 0.5)\nsetActorValue(\"physicsHeight\", 2)\nmove(0, 0.2, 0)\nif(isTouching(\"block\")) then\n    say(\"touched!\", 1)\nend\nsetBlock(getX(), getY()+2, getZ(), 0)\nwait(2)\nmove(0, -0.2, 0)\ncmd(\"/hide boundingbox\")\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#69b090",
+    "category": "Sensing",
+    "type": "setPhysicsRaidus",
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "radius",
+        "text": 0.25
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "setActorValue(\"physicsHeight\", %s)",
+    "message0": "设置物理高度%1",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "cmd(\"/show boundingbox\")\nsetBlock(getX(), getY()+2, getZ(), 62)\nsetActorValue(\"physicsRadius\", 0.5)\nsetActorValue(\"physicsHeight\", 2)\nmove(0, 0.2, 0)\nif(isTouching(\"block\")) then\n    say(\"touched!\", 1)\nend\nsetBlock(getX(), getY()+2, getZ(), 0)\nwait(2)\nmove(0, -0.2, 0)\ncmd(\"/hide boundingbox\")\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#69b090",
+    "category": "Sensing",
+    "type": "setPhysicsHeight",
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "height",
+        "text": 1
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "registerCollisionEvent(%s, function()\\n%send)",
+    "message0": "当碰到%1时%2",
+    "canRun": false,
+    "examples": [
+      {
+        "desc": "",
+        "code": "broadcastCollision()\nregisterCollisionEvent(\"frog\", function()\nend)\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#69b090",
+    "category": "Sensing",
+    "type": "registerCollisionEvent",
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "name",
+        "text": "name"
+      },
+      {
+        "type": "input_statement",
+        "name": "input",
+        "text": ""
+      }
+    ],
+    "helpUrl": ""
+  },
+  {
+    "func_description": "broadcastCollision()",
+    "message0": "广播碰撞消息",
+    "canRun": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "broadcastCollision()\nregisterCollisionEvent(\"frog\", function()\nend)\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#69b090",
+    "category": "Sensing",
+    "type": "broadcastCollision",
+    "arg0": [ ],
+    "helpUrl": ""
   },
   {
     "func_description": "distanceTo(\"%s\")",
-    "message0": "到%1的距离",
-    "canRun": false,
+    "message0": "distance to %1",
+    "category": "Sensing",
     "output": { "type": "field_number" },
-    "colour": "#69b090",
     "examples": [
       {
         "desc": "",
@@ -2043,103 +1640,205 @@
         "canRun": true
       }
     ],
+    "colour": "#69b090",
+    "canRun": false,
+    "type": "distanceTo",
+    "helpUrl": "",
     "arg0": [
       {
         "type": "field_input",
-        "text": "mouse-pointer",
         "name": "input",
-        "argIndex": 1
+        "text": "mouse-pointer"
       }
-    ],
-    "helpUrl": "",
-    "type": "distanceTo",
-    "all_fields": {
-      "input": {
-        "type": "field_input",
-        "text": "mouse-pointer",
-        "name": "input",
-        "argIndex": 1
-      }
-    },
-    "category": "Sensing"
+    ]
   },
   {
-    "func_description": "isKeyPressed(\"%s\")",
-    "message0": "%1键是否按下",
-    "canRun": false,
-    "output": { "type": "field_number" },
-    "colour": "#69b090",
+    "func_description": "ask(\"%s\")",
+    "message0": "提问%1并等待回答",
+    "canRun": true,
     "examples": [
       {
         "desc": "",
-        "code": "say(\"press left/right key to move me!\")\nwhile(true) do\n    if(isKeyPressed(\"left\")) then\n        move(0, 0.1)\n        say(\"\")\n    elseif(isKeyPressed(\"right\")) then\n        move(0, -0.1)\n        say(\"\")\n    end\nend\n",
+        "code": "ask(\"what is your name\")\nsay(\"hello \"..tostring(answer), 2)\n\nask(\"select your choice\", {\"choice A\", \"choice B\"})\nif(answer == 1) then\n    say(\"you choose A\")\nelseif(answer == 2) then\n    say(\"you choose B\")\nend\n",
+        "canRun": true
+      },
+      {
+        "desc": "关闭对话框",
+        "code": "run(function()\n   wait(3)\n   ask()\nend)\nask(\"Please answer in 3 seconds\")\nsay(\"hello \"..tostring(answer), 2)\n",
         "canRun": true
       }
     ],
+    "colour": "#69b090",
+    "category": "Sensing",
+    "type": "askAndWait",
     "arg0": [
       {
         "type": "field_input",
-        "text": "space",
         "name": "input",
-        "argIndex": 1
+        "text": "你叫什么名字?"
       }
     ],
-    "helpUrl": "",
-    "type": "isKeyPressed",
-    "all_fields": {
-      "input": {
-        "type": "field_input",
-        "text": "space",
-        "name": "input",
-        "argIndex": 1
+    "helpUrl": ""
+  },
+  {
+    "func_description": "get(\"answer\")",
+    "message0": "提问的结果",
+    "category": "Sensing",
+    "output": { "type": "field_number" },
+    "examples": [
+      {
+        "desc": "",
+        "code": "say(\"<div style='color:#ff0000'>Like A or B?</div>html are supported\")\nask(\"type A or B\")\nif(answer == \"A\") then\n   say(\"A is good\", 2)\nelseif(answer == \"B\") then\n   say(\"B is fine\", 2)\nelse\n   say(\"i do not understand you\", 2)\nend\n",
+        "canRun": true
       }
-    },
-    "category": "Sensing"
+    ],
+    "colour": "#69b090",
+    "canRun": false,
+    "type": "answer",
+    "helpUrl": "",
+    "arg0": [ ]
+  },
+  {
+    "func_description": "isKeyPressed(\"%s\")",
+    "message0": "is %1 key pressed?",
+    "category": "Sensing",
+    "output": { "type": "field_number" },
+    "examples": [
+      {
+        "desc": "",
+        "code": "say(\"press left/right key to move me!\")\nwhile(true) do\n    if(isKeyPressed(\"left\")) then\n        move(0, 0.1)\n        say(\"\")\n    elseif(isKeyPressed(\"right\")) then\n        move(0, -0.1)\n        say(\"\")\n    end\n    wait()\nend\n",
+        "canRun": true
+      },
+      {
+        "desc": "",
+        "code": "say(\"press any key to continue!\")\nwhile(true) do\n    if(isKeyPressed(\"any\")) then\n        say(\"you pressed a key!\", 2)\n    end\n    wait()\nend\n",
+        "canRun": true
+      },
+      {
+        "desc": "按键列表",
+        "code": "-- a,b,c,...z\n-- 1,2,3,...9,0\n-- f1,f2,...,f12,escape\n-- space,left,right,up,down\n-- numpad0,numpad1,...,numpad9\n-- return,minus,equals,back,tab,\n-- lcontrol,lshift,lmenu\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#69b090",
+    "canRun": false,
+    "type": "isKeyPressed",
+    "helpUrl": "",
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "input",
+        "text": "space"
+      }
+    ]
   },
   {
     "func_description": "isMouseDown()",
-    "message0": "鼠标是否按下",
-    "canRun": false,
+    "message0": "mouse down?",
+    "category": "Sensing",
     "output": { "type": "field_number" },
-    "colour": "#69b090",
     "examples": [
       {
-        "desc": "点击任意位置传送",
+        "desc": "Click anywhere to teleport",
         "code": "say(\"click anywhere\")\nwhile(true) do\n    if(isMouseDown()) then\n        moveTo(\"mouse-pointer\")\n        wait(0.3)\n    end\nend\n",
         "canRun": true
       }
     ],
-    "arg0": [ ],
-    "helpUrl": "",
+    "colour": "#69b090",
+    "canRun": false,
     "type": "isMouseDown",
-    "all_fields": [ ],
-    "category": "Sensing"
+    "helpUrl": "",
+    "arg0": [ ]
   },
   {
     "func_description": "mousePickBlock()",
-    "message0": "鼠标选取",
-    "canRun": false,
+    "message0": "mouse pick",
+    "category": "Sensing",
     "output": { "type": "field_number" },
-    "colour": "#69b090",
     "examples": [
       {
-        "desc": "点击任意位置传送",
+        "desc": "Click anywhere to teleport",
         "code": "while(true) do\n    local x, y, z, blockid = mousePickBlock();\n    if(x) then\n        say(format(\"%s %s %s :%d\", x, y, z, blockid))\n    end\nend\n",
         "canRun": true
       }
     ],
-    "arg0": [ ],
-    "helpUrl": "",
+    "colour": "#69b090",
+    "canRun": false,
     "type": "mousePickBlock",
-    "all_fields": [ ],
-    "category": "Sensing"
+    "helpUrl": "",
+    "arg0": [ ]
+  },
+  {
+    "func_description": "getBlock(%s, %s, %s)",
+    "message0": "get block id %1 %2 %3",
+    "category": "Sensing",
+    "output": { "type": "field_number" },
+    "examples": [
+      {
+        "desc": "",
+        "code": "local x,y,z = getPos();\nlocal id = getBlock(x,y-1,z)\nsay(\"block below is \"..id, 2)\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#69b090",
+    "canRun": false,
+    "type": "getBlock",
+    "helpUrl": "",
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "x"
+      },
+      {
+        "type": "field_number",
+        "name": "y"
+      },
+      {
+        "type": "field_number",
+        "name": "z"
+      }
+    ]
+  },
+  {
+    "func_description": "setBlock(%s, %s, %s, %s)",
+    "message0": "set block %1 %2 %3 to %4",
+    "canRun": false,
+    "examples": [
+      {
+        "desc": "",
+        "code": "local x,y,z = getPos()\nlocal id = getBlock(x,y+2,z)\nsetBlock(x,y+2,z, 62)\nwait(1)\n-- 0 to delete block\nsetBlock(x,y+2,z, 0)\nsetBlock(x,y+2,z, id)\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#69b090",
+    "category": "Sensing",
+    "type": "setBlock",
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "x"
+      },
+      {
+        "type": "field_number",
+        "name": "y"
+      },
+      {
+        "type": "field_number",
+        "name": "z"
+      },
+      {
+        "type": "field_number",
+        "name": "blockId",
+        "text": "62"
+      }
+    ],
+    "helpUrl": ""
   },
   {
     "func_description": "getTimer()",
-    "message0": "计时器",
-    "canRun": false,
+    "message0": "timer",
+    "category": "Sensing",
     "output": { "type": "field_number" },
-    "colour": "#69b090",
     "examples": [
       {
         "desc": "",
@@ -2147,17 +1846,16 @@
         "canRun": true
       }
     ],
-    "arg0": [ ],
-    "helpUrl": "",
+    "colour": "#69b090",
+    "canRun": false,
     "type": "timer",
-    "all_fields": [ ],
-    "category": "Sensing"
+    "helpUrl": "",
+    "arg0": [ ]
   },
   {
     "func_description": "resetTimer()",
-    "message0": "重置计时器",
-    "category": "Sensing",
-    "colour": "#69b090",
+    "message0": "reset timer",
+    "canRun": true,
     "examples": [
       {
         "desc": "",
@@ -2165,39 +1863,36 @@
         "canRun": true
       }
     ],
-    "arg0": [ ],
-    "canRun": true,
+    "colour": "#69b090",
+    "category": "Sensing",
     "type": "resetTimer",
-    "all_fields": [ ],
+    "arg0": [ ],
     "helpUrl": ""
   },
   {
     "func_description": "cmd(\"/mode game\")",
-    "message0": "设置为游戏模式",
-    "canRun": true,
-    "colour": "#69b090",
-    "category": "Sensing",
+    "message0": "set to game mode",
     "helpUrl": "",
+    "colour": "#69b090",
+    "arg0": [ ],
     "type": "mode",
-    "all_fields": [ ],
-    "arg0": [ ]
+    "canRun": true,
+    "category": "Sensing"
   },
   {
     "func_description": "cmd(\"/mode edit\")",
-    "message0": "设置为编辑模式",
-    "canRun": true,
-    "colour": "#69b090",
-    "category": "Sensing",
+    "message0": "set to edit mode",
     "helpUrl": "",
+    "colour": "#69b090",
+    "arg0": [ ],
     "type": "modeEdit",
-    "all_fields": [ ],
-    "arg0": [ ]
+    "canRun": true,
+    "category": "Sensing"
   },
   {
     "func_description": "playNote(\"%s\", %s)",
-    "message0": "播放音符%1持续%2节拍",
-    "category": "Sound",
-    "colour": "#8f6d40",
+    "message0": "play note %1 for %2 beats",
+    "canRun": true,
     "examples": [
       {
         "desc": "",
@@ -2205,153 +1900,103 @@
         "canRun": true
       }
     ],
+    "colour": "#8f6d40",
+    "category": "Sound",
+    "type": "playNote",
     "arg0": [
       {
         "type": "field_input",
-        "text": "7",
         "name": "note",
-        "argIndex": 1
+        "text": "7"
       },
       {
         "type": "field_number",
-        "text": 0.25,
         "name": "beat",
-        "argIndex": 2
+        "text": 0.25
       }
     ],
-    "canRun": true,
-    "type": "playNote",
-    "all_fields": {
-      "beat": {
-        "type": "field_number",
-        "text": 0.25,
-        "name": "beat",
-        "argIndex": 2
-      },
-      "note": {
-        "type": "field_input",
-        "text": "7",
-        "name": "note",
-        "argIndex": 1
-      }
-    },
     "helpUrl": ""
   },
   {
     "func_description": "playMusic(\"%s\")",
-    "message0": "播放背景音乐%1",
-    "category": "Sound",
-    "colour": "#8f6d40",
+    "message0": "play background music %1",
+    "canRun": true,
     "examples": [
       {
-        "desc": "播放音乐后停止",
+        "desc": "Stop after playing music",
         "code": "playMusic(\"2\")\nwait(5)\nplayMusic()\n",
         "canRun": true
       }
     ],
+    "colour": "#8f6d40",
+    "category": "Sound",
+    "type": "playMusic",
     "arg0": [
       {
         "type": "field_input",
-        "text": "1",
         "name": "filename",
-        "argIndex": 1
+        "text": "1"
       }
     ],
-    "canRun": true,
-    "type": "playMusic",
-    "all_fields": {
-      "filename": {
-        "type": "field_input",
-        "text": "1",
-        "name": "filename",
-        "argIndex": 1
-      }
-    },
     "helpUrl": ""
   },
   {
     "func_description": "playSound(\"%s\")",
-    "message0": "播放MP3音乐%1",
-    "category": "Sound",
-    "colour": "#8f6d40",
+    "message0": "play MP3 music file%1",
+    "canRun": true,
     "examples": [
       {
-        "desc": "播放音乐后停止",
+        "desc": "Stop after playing music",
         "code": "playSound(\"break\")\nwait(1)\nplaySound(\"click\")\n",
         "canRun": true
       }
     ],
+    "colour": "#8f6d40",
+    "category": "Sound",
+    "type": "playSound",
     "arg0": [
       {
         "type": "field_input",
-        "text": "break",
         "name": "filename",
-        "argIndex": 1
+        "text": "break"
       }
     ],
-    "canRun": true,
-    "type": "playSound",
-    "all_fields": {
-      "filename": {
-        "type": "field_input",
-        "text": "break",
-        "name": "filename",
-        "argIndex": 1
-      }
-    },
     "helpUrl": ""
   },
   {
     "func_description": "(%s) + (%s)",
     "message0": "%1+%2",
-    "canRun": false,
+    "category": "Operators",
     "output": { "type": "field_number" },
-    "colour": "#569138",
     "examples": [
       {
-        "desc": "数字的加减乘除",
+        "desc": "+-*/ of numbers",
         "code": "say(\"1+1=?\")\nwait(1)\nsay(1+1)\n",
         "canRun": true
       }
     ],
+    "colour": "#569138",
+    "canRun": false,
+    "type": "addition",
+    "helpUrl": "",
     "arg0": [
       {
         "type": "input_expression",
-        "text": "",
         "name": "left",
-        "argIndex": 1
+        "text": ""
       },
       {
         "type": "input_expression",
-        "text": "",
         "name": "right",
-        "argIndex": 2
+        "text": ""
       }
-    ],
-    "helpUrl": "",
-    "type": "addition",
-    "all_fields": {
-      "right": {
-        "type": "input_expression",
-        "text": "",
-        "name": "right",
-        "argIndex": 2
-      },
-      "left": {
-        "type": "input_expression",
-        "text": "",
-        "name": "left",
-        "argIndex": 1
-      }
-    },
-    "category": "Operators"
+    ]
   },
   {
     "func_description": "math.random(%s,%s)",
-    "message0": "随机选择从%1到%2",
-    "canRun": false,
+    "message0": "pick random %1 to %2",
+    "category": "Operators",
     "output": { "type": "field_number" },
-    "colour": "#569138",
     "examples": [
       {
         "desc": "",
@@ -2359,212 +2004,139 @@
         "canRun": true
       }
     ],
+    "colour": "#569138",
+    "canRun": false,
+    "type": "random",
+    "helpUrl": "",
     "arg0": [
       {
         "type": "field_number",
-        "text": "1",
         "name": "from",
-        "argIndex": 1
+        "text": "1"
       },
       {
         "type": "field_number",
-        "text": "10",
         "name": "to",
-        "argIndex": 2
+        "text": "10"
       }
-    ],
-    "helpUrl": "",
-    "type": "random",
-    "all_fields": {
-      "to": {
-        "type": "field_number",
-        "text": "10",
-        "name": "to",
-        "argIndex": 2
-      },
-      "from": {
-        "type": "field_number",
-        "text": "1",
-        "name": "from",
-        "argIndex": 1
-      }
-    },
-    "category": "Operators"
+    ]
   },
   {
     "func_description": "(%s) == (%s)",
     "message0": "%1==%2",
-    "canRun": false,
+    "category": "Operators",
     "output": { "type": "field_number" },
-    "colour": "#569138",
     "examples": [
       {
-        "desc": "比较两个数值",
+        "desc": "Compare two values",
         "code": "while(true) do\n    a = math.random(0,10)\n    if(a==0) then\n        say(a)\n    elseif(a<=3) then\n        say(a..\"<=3\")\n    elseif(a>6) then\n        say(a..\">6\")\n    else\n        say(\"3<\"..a..\"<=6\")\n    end\n    wait(2)\nend\n",
         "canRun": true
       }
     ],
+    "colour": "#569138",
+    "canRun": false,
+    "type": "equal",
+    "helpUrl": "",
     "arg0": [
       {
         "type": "input_expression",
-        "text": "",
         "name": "left",
-        "argIndex": 1
+        "text": ""
       },
       {
         "type": "input_expression",
-        "text": "",
         "name": "right",
-        "argIndex": 2
+        "text": ""
       }
-    ],
-    "helpUrl": "",
-    "type": "equal",
-    "all_fields": {
-      "right": {
-        "type": "input_expression",
-        "text": "",
-        "name": "right",
-        "argIndex": 2
-      },
-      "left": {
-        "type": "input_expression",
-        "text": "",
-        "name": "left",
-        "argIndex": 1
-      }
-    },
-    "category": "Operators"
+    ]
   },
   {
     "func_description": "(%s) and (%s)",
-    "message0": "%1 与 %2",
-    "canRun": false,
+    "message0": "%1 and %2",
+    "category": "Operators",
     "output": { "type": "field_number" },
-    "colour": "#569138",
     "examples": [
       {
-        "desc": "同时满足条件",
+        "desc": "While meeting both conditions",
         "code": "while(true) do\n    a = math.random(0,10)\n    if(3<a and a<=6) then\n        say(\"3<\"..a..\"<=6\")\n    else\n        say(a)\n    end\n    wait(2)\nend\n",
         "canRun": true
       }
     ],
+    "colour": "#569138",
+    "canRun": false,
+    "type": "and",
+    "helpUrl": "",
     "arg0": [
       {
         "type": "input_expression",
-        "text": "",
         "name": "left",
-        "argIndex": 1
+        "text": ""
       },
       {
         "type": "input_expression",
-        "text": "",
         "name": "right",
-        "argIndex": 2
+        "text": ""
       }
-    ],
-    "helpUrl": "",
-    "type": "and",
-    "all_fields": {
-      "right": {
-        "type": "input_expression",
-        "text": "",
-        "name": "right",
-        "argIndex": 2
-      },
-      "left": {
-        "type": "input_expression",
-        "text": "",
-        "name": "left",
-        "argIndex": 1
-      }
-    },
-    "category": "Operators"
+    ]
   },
   {
     "func_description": "(%s) or (%s)",
-    "message0": "%1 或 %2",
-    "canRun": false,
+    "message0": "%1 or %2",
+    "category": "Operators",
     "output": { "type": "field_number" },
-    "colour": "#569138",
     "examples": [
       {
-        "desc": "左边或右边满足条件",
+        "desc": "Left or right meet the conditions",
         "code": "while(true) do\n    a = math.random(0,10)\n    if(a<=3 or a>6) then\n        say(a)\n    else\n        say(\"3<\"..a..\"<=6\")\n    end\n    wait(2)\nend\n",
         "canRun": true
       }
     ],
+    "colour": "#569138",
+    "canRun": false,
+    "type": "or",
+    "helpUrl": "",
     "arg0": [
       {
         "type": "input_expression",
-        "text": "",
         "name": "left",
-        "argIndex": 1
+        "text": ""
       },
       {
         "type": "input_expression",
-        "text": "",
         "name": "right",
-        "argIndex": 2
+        "text": ""
       }
-    ],
-    "helpUrl": "",
-    "type": "or",
-    "all_fields": {
-      "right": {
-        "type": "input_expression",
-        "text": "",
-        "name": "right",
-        "argIndex": 2
-      },
-      "left": {
-        "type": "input_expression",
-        "text": "",
-        "name": "left",
-        "argIndex": 1
-      }
-    },
-    "category": "Operators"
+    ]
   },
   {
     "func_description": "(not %s)",
-    "message0": "不满足%1",
-    "canRun": false,
+    "message0": "not %1",
+    "category": "Operators",
     "output": { "type": "field_number" },
-    "colour": "#569138",
     "examples": [
       {
-        "desc": "是否不为真",
+        "desc": "whether it is not true",
         "code": "while(true) do\n    a = math.random(0,10)\n    if((not (3<=a)) or (not (a>6))) then\n        say(\"3<\"..a..\"<=6\")\n    else\n        say(a)\n    end\n    wait(2)\nend\n",
         "canRun": true
       }
     ],
+    "colour": "#569138",
+    "canRun": false,
+    "type": "not",
+    "helpUrl": "",
     "arg0": [
       {
         "type": "input_expression",
-        "text": "",
         "name": "left",
-        "argIndex": 1
+        "text": ""
       }
-    ],
-    "helpUrl": "",
-    "type": "not",
-    "all_fields": {
-      "left": {
-        "type": "input_expression",
-        "text": "",
-        "name": "left",
-        "argIndex": 1
-      }
-    },
-    "category": "Operators"
+    ]
   },
   {
     "func_description": "(\"%s\"..\"%s\")",
-    "message0": "连接字符串%1和%2",
-    "canRun": false,
+    "message0": "join %1 %2",
+    "category": "Operators",
     "output": { "type": "field_number" },
-    "colour": "#569138",
     "examples": [
       {
         "desc": "",
@@ -2572,44 +2144,28 @@
         "canRun": true
       }
     ],
+    "colour": "#569138",
+    "canRun": false,
+    "type": "join",
+    "helpUrl": "",
     "arg0": [
       {
         "type": "field_input",
-        "text": "hello",
         "name": "left",
-        "argIndex": 1
+        "text": "hello"
       },
       {
         "type": "field_input",
-        "text": "world",
         "name": "right",
-        "argIndex": 2
+        "text": "world"
       }
-    ],
-    "helpUrl": "",
-    "type": "join",
-    "all_fields": {
-      "right": {
-        "type": "field_input",
-        "text": "world",
-        "name": "right",
-        "argIndex": 2
-      },
-      "left": {
-        "type": "field_input",
-        "text": "hello",
-        "name": "left",
-        "argIndex": 1
-      }
-    },
-    "category": "Operators"
+    ]
   },
   {
     "func_description": "(#\"%s\")",
-    "message0": "字符串%1的长度",
-    "canRun": false,
+    "message0": "length of %1",
+    "category": "Operators",
     "output": { "type": "field_number" },
-    "colour": "#569138",
     "examples": [
       {
         "desc": "",
@@ -2617,32 +2173,23 @@
         "canRun": true
       }
     ],
+    "colour": "#569138",
+    "canRun": false,
+    "type": "lengthOf",
+    "helpUrl": "",
     "arg0": [
       {
         "type": "field_input",
-        "text": "hello",
         "name": "left",
-        "argIndex": 1
+        "text": "hello"
       }
-    ],
-    "helpUrl": "",
-    "type": "lengthOf",
-    "all_fields": {
-      "left": {
-        "type": "field_input",
-        "text": "hello",
-        "name": "left",
-        "argIndex": 1
-      }
-    },
-    "category": "Operators"
+    ]
   },
   {
     "func_description": "(%s%%s)",
-    "message0": "%1模%2",
-    "canRun": false,
+    "message0": "%1 mod %2",
+    "category": "Operators",
     "output": { "type": "field_number" },
-    "colour": "#569138",
     "examples": [
       {
         "desc": "",
@@ -2650,44 +2197,28 @@
         "canRun": true
       }
     ],
+    "colour": "#569138",
+    "canRun": false,
+    "type": "mod",
+    "helpUrl": "",
     "arg0": [
       {
         "type": "field_number",
-        "text": "66",
         "name": "left",
-        "argIndex": 1
+        "text": "66"
       },
       {
         "type": "field_number",
-        "text": "10",
         "name": "right",
-        "argIndex": 2
+        "text": "10"
       }
-    ],
-    "helpUrl": "",
-    "type": "mod",
-    "all_fields": {
-      "right": {
-        "type": "field_number",
-        "text": "10",
-        "name": "right",
-        "argIndex": 2
-      },
-      "left": {
-        "type": "field_number",
-        "text": "66",
-        "name": "left",
-        "argIndex": 1
-      }
-    },
-    "category": "Operators"
+    ]
   },
   {
     "func_description": "math.floor(%s+0.5)",
-    "message0": "四舍五入取整%1",
-    "canRun": false,
+    "message0": "round %1",
+    "category": "Operators",
     "output": { "type": "field_number" },
-    "colour": "#569138",
     "examples": [
       {
         "desc": "",
@@ -2695,32 +2226,23 @@
         "canRun": true
       }
     ],
+    "colour": "#569138",
+    "canRun": false,
+    "type": "round",
+    "helpUrl": "",
     "arg0": [
       {
         "type": "field_number",
-        "text": 5.5,
         "name": "left",
-        "argIndex": 1
+        "text": 5.5
       }
-    ],
-    "helpUrl": "",
-    "type": "round",
-    "all_fields": {
-      "left": {
-        "type": "field_number",
-        "text": 5.5,
-        "name": "left",
-        "argIndex": 1
-      }
-    },
-    "category": "Operators"
+    ]
   },
   {
     "func_description": "math.sqrt(%s)",
-    "message0": "开根号%1",
-    "canRun": false,
+    "message0": "sqrt of %1",
+    "category": "Operators",
     "output": { "type": "field_number" },
-    "colour": "#569138",
     "examples": [
       {
         "desc": "",
@@ -2728,24 +2250,16 @@
         "canRun": true
       }
     ],
+    "colour": "#569138",
+    "canRun": false,
+    "type": "math.sqrt",
+    "helpUrl": "",
     "arg0": [
       {
         "type": "field_number",
-        "text": 9,
         "name": "left",
-        "argIndex": 1
+        "text": 9
       }
-    ],
-    "helpUrl": "",
-    "type": "math.sqrt",
-    "all_fields": {
-      "left": {
-        "type": "field_number",
-        "text": 9,
-        "name": "left",
-        "argIndex": 1
-      }
-    },
-    "category": "Operators"
+    ]
   }
 ]

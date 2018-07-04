@@ -6,9 +6,13 @@ Date: 2017/10/23
 define([
     "js/Mod/CodeBlockEditor/angular.config",
     "js/Mod/CodeBlockEditor/BlocklyLoader",
-], function (app,BlocklyLoader){    
+    "text!js/Mod/CodeBlockEditor/BlocklySourceTemplate/BlocklyMenu.xml",
+    "text!js/Mod/CodeBlockEditor/BlocklySourceTemplate/BlocklyConfigSource.json",
+    "text!js/Mod/CodeBlockEditor/BlocklySourceTemplate/BlocklyExecution.js",
+], function (app, BlocklyLoader, template_menu_xml, template_config_json, template_execution_str) {
     app.registerController('CodeBlockEditorController', ['$scope',
         function ($scope) {
+            var debug = getUrlParameter("debug");
             var menu_parent_id = "blocklyDiv";
             var gWorkSpace;
             $scope.onLoad = function(menu_xml, config_json, execution_str) {
@@ -41,7 +45,12 @@ define([
                     $scope.onLoad(menu_xml, config_json, execution_str);
                 });
             }
-            $scope.onMakeEditor();
+            if(debug == "true"){
+                $scope.onLoad(template_menu_xml, template_config_json, template_execution_str);
+            }else{
+                $scope.onMakeEditor();
+            }
+
         }]);
 
 

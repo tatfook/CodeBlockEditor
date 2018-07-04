@@ -38,9 +38,17 @@ define([
             item.previousStatement = null;
             item.nextStatement = null;
 
-            if (arg0.output) {
-                var old_output = arg0.output;
-                arg0.output = old_output.type;
+            if (item.type == "getVariableValue") {
+                console.log("==getVariableValue", item.output);
+            }
+            if (item.output) {
+                var old_output = item.output;
+                if (old_output.type == "null") {
+                    item.output = null;
+                } else {
+                    item.output = old_output.type;
+                }
+
             }
         }
         return item;
