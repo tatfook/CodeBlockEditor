@@ -35,12 +35,13 @@ define([
 
             item.args0 = arg0;
 
-            item.previousStatement = null;
-            item.nextStatement = null;
-
-            if (item.type == "getVariableValue") {
-                console.log("==getVariableValue", item.output);
+            if (item.previousStatement == true) {
+                item.previousStatement = null;
             }
+            if (item.nextStatement == true) {
+                item.nextStatement = null;
+            }
+            
             if (item.output) {
                 var old_output = item.output;
                 if (old_output.type == "null") {

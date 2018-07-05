@@ -1,17 +1,61 @@
+Blockly.Lua['wait'] = function (block) {
+    var wait_field_number_time_var = block.getFieldValue('time');
+    return 'wait(%s)\n'.format(wait_field_number_time_var);
+};
+Blockly.Lua['repeat'] = function (block) {
+    var repeat_field_number_times_var = block.getFieldValue('times');
+    var repeat_input_statement_input_var = Blockly.Lua.statementToCode(block, 'input') || '';
+    return 'for i=1, %d do\n%send\n'.format(repeat_field_number_times_var, repeat_input_statement_input_var);
+};
+Blockly.Lua['forever'] = function (block) {
+    var forever_input_statement_input_var = Blockly.Lua.statementToCode(block, 'input') || '';
+    return 'while(true) do\n%send\n'.format(forever_input_statement_input_var);
+};
+Blockly.Lua['if_else'] = function (block) {
+    var if_else_input_value_expression_var = Blockly.Lua.valueToCode(block, 'expression', Blockly.Lua.ORDER_ATOMIC) || '""';
+    var if_else_input_statement_input_true_var = Blockly.Lua.statementToCode(block, 'input_true') || '';
+    var if_else_input_statement_input_else_var = Blockly.Lua.statementToCode(block, 'input_else') || '';
+    return 'if(%s) then\n%selse\n%send\n'.format(if_else_input_value_expression_var, if_else_input_statement_input_true_var, if_else_input_statement_input_else_var);
+};
+Blockly.Lua['forKeyValue'] = function (block) {
+    var forKeyValue_field_input_key_var = block.getFieldValue('key');
+    var forKeyValue_field_input_value_var = block.getFieldValue('value');
+    var forKeyValue_field_input_data_var = block.getFieldValue('data');
+    var forKeyValue_input_statement_input_var = Blockly.Lua.statementToCode(block, 'input') || '';
+    return 'for %s, %s in pairs(%s) do\n%send\n'.format(forKeyValue_field_input_key_var, forKeyValue_field_input_value_var, forKeyValue_field_input_data_var, forKeyValue_input_statement_input_var);
+};
+Blockly.Lua['forIndexValue'] = function (block) {
+    var forIndexValue_field_input_i_var = block.getFieldValue('i');
+    var forIndexValue_field_input_item_var = block.getFieldValue('item');
+    var forIndexValue_field_input_data_var = block.getFieldValue('data');
+    var forIndexValue_input_statement_input_var = Blockly.Lua.statementToCode(block, 'input') || '';
+    return 'for %s, %s in ipairs(%s) do\n%send\n'.format(forIndexValue_field_input_i_var, forIndexValue_field_input_item_var, forIndexValue_field_input_data_var, forIndexValue_input_statement_input_var);
+};
+Blockly.Lua['run'] = function (block) {
+    var run_input_statement_input_var = Blockly.Lua.statementToCode(block, 'input') || '';
+    return 'run(function()\n%send)\n'.format(run_input_statement_input_var);
+};
+Blockly.Lua['exit'] = function (block) {
+
+    return 'exit()\n'.format();
+};
+Blockly.Lua['restart'] = function (block) {
+
+    return 'restart()\n'.format();
+};
 Blockly.Lua['setLocalVariable'] = function (block) {
-    var setLocalVariable_field_variable_var_var = Blockly.Lua.variableDB_.getName(block.getFieldValue('var'), Blockly.Variables.NAME_TYPE) || '';
+    var setLocalVariable_field_variable_var_var = Blockly.Lua.variableDB_.getName(block.getFieldValue('var'), Blockly.Variables.NAME_TYPE) || '""';
     var setLocalVariable_input_value_value_var = Blockly.Lua.valueToCode(block, 'value', Blockly.Lua.ORDER_ATOMIC) || '""';
     return 'local %s = %s\n'.format(setLocalVariable_field_variable_var_var, setLocalVariable_input_value_value_var);
 };
 Blockly.Lua['getLocalVariable'] = function (block) {
-    var getLocalVariable_field_variable_var_var = Blockly.Lua.variableDB_.getName(block.getFieldValue('var'), Blockly.Variables.NAME_TYPE) || '';
-    //return '%s\n'.format(getLocalVariable_field_variable_var_var);
-    return [getLocalVariable_field_variable_var_var];
+    var getLocalVariable_field_variable_var_var = Blockly.Lua.variableDB_.getName(block.getFieldValue('var'), Blockly.Variables.NAME_TYPE) || '""';
+    return ['%s'.format(getLocalVariable_field_variable_var_var), Blockly.Lua.ORDER_ATOMIC];
 };
 Blockly.Lua['set'] = function (block) {
     var set_field_input_key_var = block.getFieldValue('key');
     var set_field_input_value_var = block.getFieldValue('value');
-    return ['set("%s", "%s")\n'.format(set_field_input_key_var, set_field_input_value_var)];
+    return 'set("%s", "%s")\n'.format(set_field_input_key_var, set_field_input_value_var);
 };
 Blockly.Lua['showVariable'] = function (block) {
     var showVariable_field_input_name_var = block.getFieldValue('name');
@@ -48,7 +92,38 @@ Blockly.Lua['setActorValue'] = function (block) {
 };
 Blockly.Lua['getActorValue'] = function (block) {
     var getActorValue_field_input_key_var = block.getFieldValue('key');
-    return 'getActorValue("%s")\n'.format(getActorValue_field_input_key_var);
+    return ['getActorValue("%s")'.format(getActorValue_field_input_key_var), Blockly.Lua.ORDER_ATOMIC];
+};
+Blockly.Lua['registerClickEvent'] = function (block) {
+    var registerClickEvent_input_statement_input_var = Blockly.Lua.statementToCode(block, 'input') || '';
+    return 'registerClickEvent(function()\n%send)\n'.format(registerClickEvent_input_statement_input_var);
+};
+Blockly.Lua['registerKeyPressedEvent'] = function (block) {
+    var registerKeyPressedEvent_field_input_keyname_var = block.getFieldValue('keyname');
+    var registerKeyPressedEvent_input_statement_input_var = Blockly.Lua.statementToCode(block, 'input') || '';
+    return 'registerKeyPressedEvent("%s", function()\n%send)\n'.format(registerKeyPressedEvent_field_input_keyname_var, registerKeyPressedEvent_input_statement_input_var);
+};
+Blockly.Lua['registerAnimationEvent'] = function (block) {
+    var registerAnimationEvent_field_number_time_var = block.getFieldValue('time');
+    var registerAnimationEvent_input_statement_input_var = Blockly.Lua.statementToCode(block, 'input') || '';
+    return 'registerAnimationEvent(%d, function()\n%send)\n'.format(registerAnimationEvent_field_number_time_var, registerAnimationEvent_input_statement_input_var);
+};
+Blockly.Lua['registerBroadcastEvent'] = function (block) {
+    var registerBroadcastEvent_field_input_msg_var = block.getFieldValue('msg');
+    var registerBroadcastEvent_input_statement_input_var = Blockly.Lua.statementToCode(block, 'input') || '';
+    return 'registerBroadcastEvent("%s", function()\n%send)\n'.format(registerBroadcastEvent_field_input_msg_var, registerBroadcastEvent_input_statement_input_var);
+};
+Blockly.Lua['broadcast'] = function (block) {
+    var broadcast_field_input_msg_var = block.getFieldValue('msg');
+    return 'broadcast("%s")\n'.format(broadcast_field_input_msg_var);
+};
+Blockly.Lua['broadcastAndWait'] = function (block) {
+    var broadcastAndWait_field_input_msg_var = block.getFieldValue('msg');
+    return 'broadcastAndWait("%s")\n'.format(broadcastAndWait_field_input_msg_var);
+};
+Blockly.Lua['cmd'] = function (block) {
+    var cmd_field_input_msg_var = block.getFieldValue('msg');
+    return 'cmd("%s")\n'.format(cmd_field_input_msg_var);
 };
 Blockly.Lua['sayAndWait'] = function (block) {
     var sayAndWait_field_input_text_var = block.getFieldValue('text');
@@ -113,11 +188,11 @@ Blockly.Lua['camera'] = function (block) {
 };
 Blockly.Lua['getScale'] = function (block) {
 
-    return 'getScale()\n'.format();
+    return ['getScale()'.format(), Blockly.Lua.ORDER_ATOMIC];
 };
 Blockly.Lua['getPlayTime'] = function (block) {
 
-    return 'getPlayTime()\n'.format();
+    return ['getPlayTime()'.format(), Blockly.Lua.ORDER_ATOMIC];
 };
 Blockly.Lua['moveForward'] = function (block) {
     var moveForward_field_number_dist_var = block.getFieldValue('dist');
@@ -175,19 +250,19 @@ Blockly.Lua['bounce'] = function (block) {
 };
 Blockly.Lua['getX'] = function (block) {
 
-    return 'getX()\n'.format();
+    return ['getX()'.format(), Blockly.Lua.ORDER_ATOMIC];
 };
 Blockly.Lua['getY'] = function (block) {
 
-    return 'getY()\n'.format();
+    return ['getY()'.format(), Blockly.Lua.ORDER_ATOMIC];
 };
 Blockly.Lua['getZ'] = function (block) {
 
-    return 'getZ()\n'.format();
+    return ['getZ()'.format(), Blockly.Lua.ORDER_ATOMIC];
 };
 Blockly.Lua['getPos'] = function (block) {
 
-    return 'getPos()\n'.format();
+    return ['getPos()'.format(), Blockly.Lua.ORDER_ATOMIC];
 };
 Blockly.Lua['setPos'] = function (block) {
     var setPos_field_number_x_var = block.getFieldValue('x');
@@ -197,87 +272,74 @@ Blockly.Lua['setPos'] = function (block) {
 };
 Blockly.Lua['getFacing'] = function (block) {
 
-    return 'getFacing()\n'.format();
+    return ['getFacing()'.format(), Blockly.Lua.ORDER_ATOMIC];
 };
-Blockly.Lua['registerClickEvent'] = function (block) {
-    var registerClickEvent_input_statement_input_var = Blockly.Lua.statementToCode(block, 'input') || '';
-    return 'registerClickEvent(function()\n%send)\n'.format(registerClickEvent_input_statement_input_var);
+Blockly.Lua['getString'] = function (block) {
+    var getString_field_input_left_var = block.getFieldValue('left');
+    return ['"%s"'.format(getString_field_input_left_var), Blockly.Lua.ORDER_ATOMIC];
 };
-Blockly.Lua['registerKeyPressedEvent'] = function (block) {
-    var registerKeyPressedEvent_field_input_keyname_var = block.getFieldValue('keyname');
-    var registerKeyPressedEvent_input_statement_input_var = Blockly.Lua.statementToCode(block, 'input') || '';
-    return 'registerKeyPressedEvent("%s", function()\n%send)\n'.format(registerKeyPressedEvent_field_input_keyname_var, registerKeyPressedEvent_input_statement_input_var);
+Blockly.Lua['getBoolean'] = function (block) {
+    var getBoolean_field_dropdown_left_var = block.getFieldValue('left');
+    return ['%s'.format(getBoolean_field_dropdown_left_var), Blockly.Lua.ORDER_ATOMIC];
 };
-Blockly.Lua['registerAnimationEvent'] = function (block) {
-    var registerAnimationEvent_field_number_time_var = block.getFieldValue('time');
-    var registerAnimationEvent_input_statement_input_var = Blockly.Lua.statementToCode(block, 'input') || '';
-    return 'registerAnimationEvent(%d, function()\n%send)\n'.format(registerAnimationEvent_field_number_time_var, registerAnimationEvent_input_statement_input_var);
+Blockly.Lua['getNumber'] = function (block) {
+    var getNumber_field_number_left_var = block.getFieldValue('left');
+    return ['%s'.format(getNumber_field_number_left_var), Blockly.Lua.ORDER_ATOMIC];
 };
-Blockly.Lua['registerBroadcastEvent'] = function (block) {
-    var registerBroadcastEvent_field_input_msg_var = block.getFieldValue('msg');
-    var registerBroadcastEvent_input_statement_input_var = Blockly.Lua.statementToCode(block, 'input') || '';
-    return 'registerBroadcastEvent("%s", function()\n%send)\n'.format(registerBroadcastEvent_field_input_msg_var, registerBroadcastEvent_input_statement_input_var);
+Blockly.Lua['addition'] = function (block) {
+    var addition_input_value_left_var = Blockly.Lua.valueToCode(block, 'left', Blockly.Lua.ORDER_ATOMIC) || '""';
+    var addition_input_value_right_var = Blockly.Lua.valueToCode(block, 'right', Blockly.Lua.ORDER_ATOMIC) || '""';
+    return ['((%s) + (%s))'.format(addition_input_value_left_var, addition_input_value_right_var), Blockly.Lua.ORDER_ATOMIC];
 };
-Blockly.Lua['broadcast'] = function (block) {
-    var broadcast_field_input_msg_var = block.getFieldValue('msg');
-    return 'broadcast("%s")\n'.format(broadcast_field_input_msg_var);
+Blockly.Lua['random'] = function (block) {
+    var random_field_number_from_var = block.getFieldValue('from');
+    var random_field_number_to_var = block.getFieldValue('to');
+    return ['math.random(%s,%s)'.format(random_field_number_from_var, random_field_number_to_var), Blockly.Lua.ORDER_ATOMIC];
 };
-Blockly.Lua['broadcastAndWait'] = function (block) {
-    var broadcastAndWait_field_input_msg_var = block.getFieldValue('msg');
-    return 'broadcastAndWait("%s")\n'.format(broadcastAndWait_field_input_msg_var);
+Blockly.Lua['equal'] = function (block) {
+    var equal_input_value_left_var = Blockly.Lua.valueToCode(block, 'left', Blockly.Lua.ORDER_ATOMIC) || '""';
+    var equal_input_value_right_var = Blockly.Lua.valueToCode(block, 'right', Blockly.Lua.ORDER_ATOMIC) || '""';
+    return ['((%s) == (%s))'.format(equal_input_value_left_var, equal_input_value_right_var), Blockly.Lua.ORDER_ATOMIC];
 };
-Blockly.Lua['cmd'] = function (block) {
-    var cmd_field_input_msg_var = block.getFieldValue('msg');
-    return 'cmd("%s")\n'.format(cmd_field_input_msg_var);
+Blockly.Lua['and'] = function (block) {
+    var and_input_value_left_var = Blockly.Lua.valueToCode(block, 'left', Blockly.Lua.ORDER_ATOMIC) || '""';
+    var and_input_value_right_var = Blockly.Lua.valueToCode(block, 'right', Blockly.Lua.ORDER_ATOMIC) || '""';
+    return ['((%s) and (%s))'.format(and_input_value_left_var, and_input_value_right_var), Blockly.Lua.ORDER_ATOMIC];
 };
-Blockly.Lua['wait'] = function (block) {
-    var wait_field_number_time_var = block.getFieldValue('time');
-    return 'wait(%s)\n'.format(wait_field_number_time_var);
+Blockly.Lua['or'] = function (block) {
+    var or_input_value_left_var = Blockly.Lua.valueToCode(block, 'left', Blockly.Lua.ORDER_ATOMIC) || '""';
+    var or_input_value_right_var = Blockly.Lua.valueToCode(block, 'right', Blockly.Lua.ORDER_ATOMIC) || '""';
+    return ['((%s) or (%s))'.format(or_input_value_left_var, or_input_value_right_var), Blockly.Lua.ORDER_ATOMIC];
 };
-Blockly.Lua['repeat'] = function (block) {
-    var repeat_field_number_times_var = block.getFieldValue('times');
-    var repeat_input_statement_input_var = Blockly.Lua.statementToCode(block, 'input') || '';
-    return 'for i=1, %d do\n%send\n'.format(repeat_field_number_times_var, repeat_input_statement_input_var);
+Blockly.Lua['not'] = function (block) {
+    var not_input_value_left_var = Blockly.Lua.valueToCode(block, 'left', Blockly.Lua.ORDER_ATOMIC) || '""';
+    return ['(not %s)'.format(not_input_value_left_var), Blockly.Lua.ORDER_ATOMIC];
 };
-Blockly.Lua['forever'] = function (block) {
-    var forever_input_statement_input_var = Blockly.Lua.statementToCode(block, 'input') || '';
-    return 'while(true) do\n%send\n'.format(forever_input_statement_input_var);
+Blockly.Lua['join'] = function (block) {
+    var join_field_input_left_var = block.getFieldValue('left');
+    var join_field_input_right_var = block.getFieldValue('right');
+    return ['("%s".."%s")'.format(join_field_input_left_var, join_field_input_right_var), Blockly.Lua.ORDER_ATOMIC];
 };
-Blockly.Lua['if_else'] = function (block) {
-    var if_else_input_expression_expression_var = block.getFieldValue('expression');
-    var if_else_input_statement_input_true_var = Blockly.Lua.statementToCode(block, 'input_true') || '';
-    var if_else_input_statement_input_else_var = Blockly.Lua.statementToCode(block, 'input_else') || '';
-    return 'if(%s) then\n%selse\n%send\n'.format(if_else_input_expression_expression_var, if_else_input_statement_input_true_var, if_else_input_statement_input_else_var);
+Blockly.Lua['lengthOf'] = function (block) {
+    var lengthOf_field_input_left_var = block.getFieldValue('left');
+    return ['(#"%s")'.format(lengthOf_field_input_left_var), Blockly.Lua.ORDER_ATOMIC];
 };
-Blockly.Lua['forKeyValue'] = function (block) {
-    var forKeyValue_field_input_key_var = block.getFieldValue('key');
-    var forKeyValue_field_input_value_var = block.getFieldValue('value');
-    var forKeyValue_field_input_data_var = block.getFieldValue('data');
-    var forKeyValue_input_statement_input_var = Blockly.Lua.statementToCode(block, 'input') || '';
-    return 'for %s, %s in pairs(%s) do\n%send\n'.format(forKeyValue_field_input_key_var, forKeyValue_field_input_value_var, forKeyValue_field_input_data_var, forKeyValue_input_statement_input_var);
+Blockly.Lua['mod'] = function (block) {
+    var mod_field_number_left_var = block.getFieldValue('left');
+    var mod_field_number_right_var = block.getFieldValue('right');
+    return ['(%s%%s)'.format(mod_field_number_left_var, mod_field_number_right_var), Blockly.Lua.ORDER_ATOMIC];
 };
-Blockly.Lua['forIndexValue'] = function (block) {
-    var forIndexValue_field_input_i_var = block.getFieldValue('i');
-    var forIndexValue_field_input_item_var = block.getFieldValue('item');
-    var forIndexValue_field_input_data_var = block.getFieldValue('data');
-    var forIndexValue_input_statement_input_var = Blockly.Lua.statementToCode(block, 'input') || '';
-    return 'for %s, %s in ipairs(%s) do\n%send\n'.format(forIndexValue_field_input_i_var, forIndexValue_field_input_item_var, forIndexValue_field_input_data_var, forIndexValue_input_statement_input_var);
+Blockly.Lua['round'] = function (block) {
+    var round_field_number_left_var = block.getFieldValue('left');
+    return ['math.floor(%s+0.5)'.format(round_field_number_left_var), Blockly.Lua.ORDER_ATOMIC];
 };
-Blockly.Lua['run'] = function (block) {
-    var run_input_statement_input_var = Blockly.Lua.statementToCode(block, 'input') || '';
-    return 'run(function()\n%send)\n'.format(run_input_statement_input_var);
-};
-Blockly.Lua['exit'] = function (block) {
-
-    return 'exit()\n'.format();
-};
-Blockly.Lua['restart'] = function (block) {
-
-    return 'restart()\n'.format();
+Blockly.Lua['math.sqrt'] = function (block) {
+    var math_sqrt_field_number_left_var = block.getFieldValue('left');
+    return ['math.sqrt(%s)'.format(math_sqrt_field_number_left_var), Blockly.Lua.ORDER_ATOMIC];
 };
 Blockly.Lua['isTouching'] = function (block) {
     var isTouching_field_input_input_var = block.getFieldValue('input');
-    return 'isTouching("%s")\n'.format(isTouching_field_input_input_var);
+    return ['isTouching("%s")'.format(isTouching_field_input_input_var), Blockly.Lua.ORDER_ATOMIC];
 };
 Blockly.Lua['setName'] = function (block) {
     var setName_field_input_name_var = block.getFieldValue('name');
@@ -302,7 +364,7 @@ Blockly.Lua['broadcastCollision'] = function (block) {
 };
 Blockly.Lua['distanceTo'] = function (block) {
     var distanceTo_field_input_input_var = block.getFieldValue('input');
-    return 'distanceTo("%s")\n'.format(distanceTo_field_input_input_var);
+    return ['distanceTo("%s")'.format(distanceTo_field_input_input_var), Blockly.Lua.ORDER_ATOMIC];
 };
 Blockly.Lua['askAndWait'] = function (block) {
     var askAndWait_field_input_input_var = block.getFieldValue('input');
@@ -310,25 +372,25 @@ Blockly.Lua['askAndWait'] = function (block) {
 };
 Blockly.Lua['answer'] = function (block) {
 
-    return 'get("answer")\n'.format();
+    return ['get("answer")'.format(), Blockly.Lua.ORDER_ATOMIC];
 };
 Blockly.Lua['isKeyPressed'] = function (block) {
     var isKeyPressed_field_input_input_var = block.getFieldValue('input');
-    return 'isKeyPressed("%s")\n'.format(isKeyPressed_field_input_input_var);
+    return ['isKeyPressed("%s")'.format(isKeyPressed_field_input_input_var), Blockly.Lua.ORDER_ATOMIC];
 };
 Blockly.Lua['isMouseDown'] = function (block) {
 
-    return 'isMouseDown()\n'.format();
+    return ['isMouseDown()'.format(), Blockly.Lua.ORDER_ATOMIC];
 };
 Blockly.Lua['mousePickBlock'] = function (block) {
 
-    return 'mousePickBlock()\n'.format();
+    return ['mousePickBlock()'.format(), Blockly.Lua.ORDER_ATOMIC];
 };
 Blockly.Lua['getBlock'] = function (block) {
     var getBlock_field_number_x_var = block.getFieldValue('x');
     var getBlock_field_number_y_var = block.getFieldValue('y');
     var getBlock_field_number_z_var = block.getFieldValue('z');
-    return 'getBlock(%s, %s, %s)\n'.format(getBlock_field_number_x_var, getBlock_field_number_y_var, getBlock_field_number_z_var);
+    return ['getBlock(%s, %s, %s)'.format(getBlock_field_number_x_var, getBlock_field_number_y_var, getBlock_field_number_z_var), Blockly.Lua.ORDER_ATOMIC];
 };
 Blockly.Lua['setBlock'] = function (block) {
     var setBlock_field_number_x_var = block.getFieldValue('x');
@@ -339,7 +401,7 @@ Blockly.Lua['setBlock'] = function (block) {
 };
 Blockly.Lua['timer'] = function (block) {
 
-    return 'getTimer()\n'.format();
+    return ['getTimer()'.format(), Blockly.Lua.ORDER_ATOMIC];
 };
 Blockly.Lua['resetTimer'] = function (block) {
 
@@ -365,55 +427,4 @@ Blockly.Lua['playMusic'] = function (block) {
 Blockly.Lua['playSound'] = function (block) {
     var playSound_field_input_filename_var = block.getFieldValue('filename');
     return 'playSound("%s")\n'.format(playSound_field_input_filename_var);
-};
-Blockly.Lua['addition'] = function (block) {
-    var addition_input_expression_left_var = block.getFieldValue('left');
-    var addition_input_expression_right_var = block.getFieldValue('right');
-    return '(%s) + (%s)\n'.format(addition_input_expression_left_var, addition_input_expression_right_var);
-};
-Blockly.Lua['random'] = function (block) {
-    var random_field_number_from_var = block.getFieldValue('from');
-    var random_field_number_to_var = block.getFieldValue('to');
-    return 'math.random(%s,%s)\n'.format(random_field_number_from_var, random_field_number_to_var);
-};
-Blockly.Lua['equal'] = function (block) {
-    var equal_input_expression_left_var = block.getFieldValue('left');
-    var equal_input_expression_right_var = block.getFieldValue('right');
-    return '(%s) == (%s)\n'.format(equal_input_expression_left_var, equal_input_expression_right_var);
-};
-Blockly.Lua['and'] = function (block) {
-    var and_input_expression_left_var = block.getFieldValue('left');
-    var and_input_expression_right_var = block.getFieldValue('right');
-    return '(%s) and (%s)\n'.format(and_input_expression_left_var, and_input_expression_right_var);
-};
-Blockly.Lua['or'] = function (block) {
-    var or_input_expression_left_var = block.getFieldValue('left');
-    var or_input_expression_right_var = block.getFieldValue('right');
-    return '(%s) or (%s)\n'.format(or_input_expression_left_var, or_input_expression_right_var);
-};
-Blockly.Lua['not'] = function (block) {
-    var not_input_expression_left_var = block.getFieldValue('left');
-    return '(not %s)\n'.format(not_input_expression_left_var);
-};
-Blockly.Lua['join'] = function (block) {
-    var join_field_input_left_var = block.getFieldValue('left');
-    var join_field_input_right_var = block.getFieldValue('right');
-    return '("%s".."%s")\n'.format(join_field_input_left_var, join_field_input_right_var);
-};
-Blockly.Lua['lengthOf'] = function (block) {
-    var lengthOf_field_input_left_var = block.getFieldValue('left');
-    return '(#"%s")\n'.format(lengthOf_field_input_left_var);
-};
-Blockly.Lua['mod'] = function (block) {
-    var mod_field_number_left_var = block.getFieldValue('left');
-    var mod_field_number_right_var = block.getFieldValue('right');
-    return '(%s%%s)\n'.format(mod_field_number_left_var, mod_field_number_right_var);
-};
-Blockly.Lua['round'] = function (block) {
-    var round_field_number_left_var = block.getFieldValue('left');
-    return 'math.floor(%s+0.5)\n'.format(round_field_number_left_var);
-};
-Blockly.Lua['math.sqrt'] = function (block) {
-    var math_sqrt_field_number_left_var = block.getFieldValue('left');
-    return 'math.sqrt(%s)\n'.format(math_sqrt_field_number_left_var);
 };

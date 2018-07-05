@@ -1,18 +1,269 @@
 ﻿[
   {
-    "func_description": "local %s = \"%s\"",
-    "message0": "设置局部变量%1为%2",
-    "canRun": true,
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "time",
+        "text": 1
+      }
+    ],
+    "message0": "wait %1 secs",
+    "canRun": false,
+    "colour": "#d83b01",
+    "previousStatement": true,
     "examples": [
       {
         "desc": "",
-        "code": "local item = \"\"\n",
+        "code": "say(\"hi\")\nwait(1)\nsay(\"bye\", 1)\n",
+        "canRun": true
+      },
+      {
+        "desc": "等待下一个时钟周期",
+        "code": "while(true) do\n    if(isKeyPressed(\"space\")) then\n        say(\"space is pressed\", 1)\n    end\n    wait()\nend\n",
         "canRun": true
       }
     ],
-    "colour": "#459197",
-    "category": "Data",
-    "type": "setLocalVariable",
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "wait",
+    "category": "Control",
+    "func_description": "wait(%s)"
+  },
+  {
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "times",
+        "text": 10
+      },
+      {
+        "type": "input_statement",
+        "name": "input",
+        "text": ""
+      }
+    ],
+    "message0": "repeat %1 %2",
+    "canRun": false,
+    "colour": "#d83b01",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "for i=1, 10 do\n    moveForward(0.1)\nend\n",
+        "canRun": true
+      }
+    ],
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "repeat",
+    "category": "Control",
+    "func_description": "for i=1, %d do\\n%send"
+  },
+  {
+    "arg0": [
+      {
+        "type": "input_statement",
+        "name": "input",
+        "text": ""
+      }
+    ],
+    "message0": "forever%1",
+    "canRun": false,
+    "colour": "#d83b01",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "while(true) do\n    moveForward(0.01)\nend\n",
+        "canRun": true
+      }
+    ],
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "forever",
+    "category": "Control",
+    "func_description": "while(true) do\\n%send"
+  },
+  {
+    "arg0": [
+      {
+        "type": "input_value",
+        "name": "expression",
+        "text": ""
+      },
+      {
+        "type": "input_statement",
+        "name": "input_true",
+        "text": ""
+      },
+      {
+        "type": "input_statement",
+        "name": "input_else",
+        "text": ""
+      }
+    ],
+    "message0": "if %1 ​​then %2 else %3",
+    "canRun": false,
+    "colour": "#d83b01",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "while(true) do\n    if(distanceTo(\"mouse-pointer\")<3) then\n        say(\"mouse-pointer\")\n    else\n        say(\"\")\n    end\n    wait(0.01)\nend\n",
+        "canRun": true
+      }
+    ],
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "if_else",
+    "category": "Control",
+    "func_description": "if(%s) then\\n%selse\\n%send"
+  },
+  {
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "key",
+        "text": "key"
+      },
+      {
+        "type": "field_input",
+        "name": "value",
+        "text": "value"
+      },
+      {
+        "type": "field_input",
+        "name": "data",
+        "text": "data"
+      },
+      {
+        "type": "input_statement",
+        "name": "input",
+        "text": ""
+      }
+    ],
+    "message0": "for each %1,%2 in%3%4",
+    "canRun": false,
+    "colour": "#d83b01",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "myData = {\n    key1=\"value1\", \n    key2=\"value2\",\n    key2=\"value2\",\n}\nfor k, v in pairs(myData) do\n    say(v, 1);\nend\n",
+        "canRun": true
+      }
+    ],
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "forKeyValue",
+    "category": "Control",
+    "func_description": "for %s, %s in pairs(%s) do\\n%send"
+  },
+  {
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "i",
+        "text": "index"
+      },
+      {
+        "type": "field_input",
+        "name": "item",
+        "text": "item"
+      },
+      {
+        "type": "field_input",
+        "name": "data",
+        "text": "data"
+      },
+      {
+        "type": "input_statement",
+        "name": "input",
+        "text": ""
+      }
+    ],
+    "message0": "for each%1,%2 in array%3%4",
+    "canRun": false,
+    "colour": "#d83b01",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "myData = {\n    {x=1, y=0, z=0, duration=0.5},\n    {x=0, y=0, z=1, duration=0.5},\n    {x=-1, y=0, z=-1, duration=1},\n}\nfor i, item in ipairs(myData) do\n    move(item.x, item.y, item.z, item.duration)\nend\n",
+        "canRun": true
+      }
+    ],
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "forIndexValue",
+    "category": "Control",
+    "func_description": "for %s, %s in ipairs(%s) do\\n%send"
+  },
+  {
+    "arg0": [
+      {
+        "type": "input_statement",
+        "name": "input",
+        "text": ""
+      }
+    ],
+    "message0": "Run in parallel %1",
+    "canRun": false,
+    "colour": "#d83b01",
+    "func_description": "run(function()\\n%send)",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "run(function()\n    say(\"follow mouse pointer!\")\n    while(true) do\n        if(distanceTo(\"mouse-pointer\") < 7) then\n            turnTo(\"mouse-pointer\");\n        elseif(distanceTo(\"@p\") > 14) then\n            moveTo(\"@p\")\n        end\n    end\nend)\nrun(function()\n    while(true) do\n        moveForward(0.02)\n    end\nend)\n",
+        "canRun": true
+      }
+    ],
+    "color": "#00cc00",
+    "nextStatement": true,
+    "type": "run",
+    "category": "Control",
+    "helpUrl": ""
+  },
+  {
+    "arg0": [ ],
+    "message0": "exit",
+    "canRun": true,
+    "colour": "#d83b01",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "say(\"Press X key to exit\")\nregisterKeyPressedEvent(\"x\", function()\n    exit()\nend)\n",
+        "canRun": true
+      }
+    ],
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "exit",
+    "category": "Control",
+    "func_description": "exit()"
+  },
+  {
+    "arg0": [ ],
+    "message0": "restart",
+    "canRun": true,
+    "colour": "#d83b01",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "say(\"Press X key to restart\")\nregisterKeyPressedEvent(\"x\", function()\n    restart()\nend)\n",
+        "canRun": true
+      }
+    ],
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "restart",
+    "category": "Control",
+    "func_description": "restart()"
+  },
+  {
     "arg0": [
       {
         "type": "field_variable",
@@ -25,7 +276,22 @@
         "type": "input_value"
       }
     ],
-    "helpUrl": ""
+    "message0": "设置局部变量%1为%2",
+    "canRun": true,
+    "colour": "#459197",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "local item = \"\"\n",
+        "canRun": true
+      }
+    ],
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "setLocalVariable",
+    "category": "Data",
+    "func_description": "local %s = %s"
   },
   {
     "func_description": "%s",
@@ -53,19 +319,6 @@
     ]
   },
   {
-    "func_description": "set(\"%s\", \"%s\")",
-    "message0": "Set variable %1 to %2",
-    "canRun": true,
-    "examples": [
-      {
-        "desc": "Can also use _G.a",
-        "code": "_G.a = _G.a or 1\nwhile(true) do\n    _G.a = a + 1\n    set(\"a\", get(\"a\") + 1)\n    say(a)\nend\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#459197",
-    "category": "Data",
-    "type": "set",
     "arg0": [
       {
         "type": "field_input",
@@ -78,12 +331,35 @@
         "text": "1"
       }
     ],
-    "helpUrl": ""
+    "message0": "Set variable %1 to %2",
+    "canRun": true,
+    "colour": "#459197",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "Can also use _G.a",
+        "code": "_G.a = _G.a or 1\nwhile(true) do\n    _G.a = a + 1\n    set(\"a\", get(\"a\") + 1)\n    say(a)\nend\n",
+        "canRun": true
+      }
+    ],
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "set",
+    "category": "Data",
+    "func_description": "set(\"%s\", \"%s\")"
   },
   {
-    "func_description": "showVariable(\"%s\")",
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "name",
+        "text": "score"
+      }
+    ],
     "message0": "show global variable %1",
     "canRun": true,
+    "colour": "#459197",
+    "previousStatement": true,
     "examples": [
       {
         "desc": "",
@@ -91,9 +367,13 @@
         "canRun": true
       }
     ],
-    "colour": "#459197",
-    "category": "Data",
+    "helpUrl": "",
+    "nextStatement": true,
     "type": "showVariable",
+    "category": "Data",
+    "func_description": "showVariable(\"%s\")"
+  },
+  {
     "arg0": [
       {
         "type": "field_input",
@@ -101,12 +381,10 @@
         "text": "score"
       }
     ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "hideVariable(\"%s\")",
     "message0": "hide global variable %1",
     "canRun": true,
+    "colour": "#459197",
+    "previousStatement": true,
     "examples": [
       {
         "desc": "",
@@ -114,22 +392,24 @@
         "canRun": true
       }
     ],
-    "colour": "#459197",
-    "category": "Data",
+    "helpUrl": "",
+    "nextStatement": true,
     "type": "hideVariable",
+    "category": "Data",
+    "func_description": "hideVariable(\"%s\")"
+  },
+  {
     "arg0": [
       {
         "type": "field_input",
-        "name": "name",
-        "text": "score"
+        "name": "obj",
+        "text": "hello"
       }
     ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "log(\"%s\")",
     "message0": "Output log %1",
     "canRun": true,
+    "colour": "#459197",
+    "previousStatement": true,
     "examples": [
       {
         "desc": "Check log.txt or F11 to see the log",
@@ -137,9 +417,13 @@
         "canRun": true
       }
     ],
-    "colour": "#459197",
-    "category": "Data",
+    "helpUrl": "",
+    "nextStatement": true,
     "type": "log",
+    "category": "Data",
+    "func_description": "log(\"%s\")"
+  },
+  {
     "arg0": [
       {
         "type": "field_input",
@@ -147,12 +431,10 @@
         "text": "hello"
       }
     ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "echo(\"%s\")",
     "message0": "输出到聊天框%1",
     "canRun": true,
+    "colour": "#459197",
+    "previousStatement": true,
     "examples": [
       {
         "desc": "",
@@ -160,33 +442,13 @@
         "canRun": true
       }
     ],
-    "colour": "#459197",
-    "category": "Data",
+    "helpUrl": "",
+    "nextStatement": true,
     "type": "echo",
-    "arg0": [
-      {
-        "type": "field_input",
-        "name": "obj",
-        "text": "hello"
-      }
-    ],
-    "helpUrl": ""
+    "category": "Data",
+    "func_description": "echo(\"%s\")"
   },
   {
-    "func_description": "registerCloneEvent(function()\\n%send)",
-    "color": "#cc0000",
-    "canRun": false,
-    "colour": "#459197",
-    "examples": [
-      {
-        "desc": "",
-        "code": "registerCloneEvent(function(msg)\n    move(msg or 1, 0, 0, 0.5)\n    wait(1)\n    delete()\nend)\nclone()\nclone(\"myself\", 2)\nclone(\"myself\", 3)\n",
-        "canRun": true
-      }
-    ],
-    "message0": "when this actor is cloned %1",
-    "helpUrl": "",
-    "type": "registerCloneEvent",
     "arg0": [
       {
         "type": "input_statement",
@@ -194,23 +456,25 @@
         "text": ""
       }
     ],
-    "category": "Data"
-  },
-  {
-    "func_description": "clone(\"%s\")",
-    "color": "#cc0000",
+    "message0": "when this actor is cloned %1",
     "canRun": false,
     "colour": "#459197",
+    "func_description": "registerCloneEvent(function()\\n%send)",
+    "previousStatement": true,
     "examples": [
       {
         "desc": "",
-        "code": "registerClickEvent(function()\n    move(1,0,0, 0.5)\nend)\nclone()\nclone()\nsay(\"click\")\n",
+        "code": "registerCloneEvent(function(msg)\n    move(msg or 1, 0, 0, 0.5)\n    wait(1)\n    delete()\nend)\nclone()\nclone(\"myself\", 2)\nclone(\"myself\", 3)\n",
         "canRun": true
       }
     ],
-    "message0": "create clone of %1",
-    "helpUrl": "",
-    "type": "clone",
+    "color": "#cc0000",
+    "nextStatement": true,
+    "type": "registerCloneEvent",
+    "category": "Data",
+    "helpUrl": ""
+  },
+  {
     "arg0": [
       {
         "type": "field_input",
@@ -218,13 +482,31 @@
         "text": "myself"
       }
     ],
-    "category": "Data"
+    "message0": "create clone of %1",
+    "canRun": false,
+    "colour": "#459197",
+    "func_description": "clone(\"%s\")",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "registerClickEvent(function()\n    move(1,0,0, 0.5)\nend)\nclone()\nclone()\nsay(\"click\")\n",
+        "canRun": true
+      }
+    ],
+    "color": "#cc0000",
+    "nextStatement": true,
+    "type": "clone",
+    "category": "Data",
+    "helpUrl": ""
   },
   {
-    "func_description": "delete()",
+    "arg0": [ ],
     "color": "#cc0000",
-    "category": "Data",
+    "canRun": false,
     "colour": "#459197",
+    "func_description": "delete()",
+    "previousStatement": true,
     "examples": [
       {
         "desc": "",
@@ -232,27 +514,13 @@
         "canRun": true
       }
     ],
-    "canRun": false,
-    "helpUrl": "",
+    "category": "Data",
+    "nextStatement": true,
     "type": "delete",
-    "arg0": [ ],
-    "message0": "delete this clone"
+    "message0": "delete this clone",
+    "helpUrl": ""
   },
   {
-    "func_description": "setActorValue(\"%s\", \"%s\")",
-    "color": "#cc0000",
-    "canRun": false,
-    "colour": "#459197",
-    "examples": [
-      {
-        "desc": "",
-        "code": "registerCloneEvent(function(name)\n    setActorValue(\"name\", name)\n    moveForward(1);\nend)\nregisterClickEvent(function()\n    local myname = getActorValue(\"name\")\n    say(\"my name is \"..myname)\nend)\nsetActorValue(\"name\", \"Default\")\nclone(\"myself\", \"Cloned\")\nsay(\"click us!\")\n",
-        "canRun": true
-      }
-    ],
-    "message0": "set actor data %1 to %2",
-    "helpUrl": "",
-    "type": "setActorValue",
     "arg0": [
       {
         "type": "field_input",
@@ -265,7 +533,23 @@
         "text": "actor1"
       }
     ],
-    "category": "Data"
+    "message0": "set actor data %1 to %2",
+    "canRun": false,
+    "colour": "#459197",
+    "func_description": "setActorValue(\"%s\", \"%s\")",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "registerCloneEvent(function(name)\n    setActorValue(\"name\", name)\n    moveForward(1);\nend)\nregisterClickEvent(function()\n    local myname = getActorValue(\"name\")\n    say(\"my name is \"..myname)\nend)\nsetActorValue(\"name\", \"Default\")\nclone(\"myself\", \"Cloned\")\nsay(\"click us!\")\n",
+        "canRun": true
+      }
+    ],
+    "color": "#cc0000",
+    "nextStatement": true,
+    "type": "setActorValue",
+    "category": "Data",
+    "helpUrl": ""
   },
   {
     "func_description": "getActorValue(\"%s\")",
@@ -292,19 +576,200 @@
     ]
   },
   {
-    "func_description": "say(\"%s\", %s)",
-    "message0": "Say%1 for  %2 seconds",
-    "canRun": true,
+    "arg0": [
+      {
+        "type": "input_statement",
+        "name": "input",
+        "text": ""
+      }
+    ],
+    "message0": "when this actor was clicked%1",
+    "canRun": false,
+    "colour": "#764bcc",
+    "previousStatement": true,
     "examples": [
       {
         "desc": "",
-        "code": "say(\"Jump!\", 2)\nmove(0,1,0)\n",
+        "code": "registerClickEvent(function()\n    for i=1, 20 do\n        scale(10)\n    end\n    for i=1, 20 do\n        scale(-10)\n    end\nend)\n",
         "canRun": true
       }
     ],
-    "colour": "#7abb55",
-    "category": "Looks",
-    "type": "sayAndWait",
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "registerClickEvent",
+    "category": "Events",
+    "func_description": "registerClickEvent(function()\\n%send)"
+  },
+  {
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "keyname",
+        "text": "space"
+      },
+      {
+        "type": "input_statement",
+        "name": "input",
+        "text": ""
+      }
+    ],
+    "message0": "when %1 key is pressed %2",
+    "canRun": false,
+    "colour": "#764bcc",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "Space key to jump",
+        "code": "registerKeyPressedEvent(\"space\",function()\n    say(\"Jump!\", 1)\n    move(0,1,0, 0.5)\n    move(0,-1,0, 0.5)\n    walkForward(0)\nend)\n",
+        "canRun": true
+      }
+    ],
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "registerKeyPressedEvent",
+    "category": "Events",
+    "func_description": "registerKeyPressedEvent(\"%s\", function()\\n%send)"
+  },
+  {
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "time",
+        "text": 1000
+      },
+      {
+        "type": "input_statement",
+        "name": "input",
+        "text": ""
+      }
+    ],
+    "message0": "when animation time is %1 %2",
+    "canRun": false,
+    "colour": "#764bcc",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "registerAnimationEvent(10, function()\n    say(\"anim started\", 3)\nend)\nregisterAnimationEvent(1000, function()\n    say(\"anim stopped\", 1)\nend)\nregisterClickEvent(function()\n    play(10, 1000)\nend);\nsay(\"click me!\")\n",
+        "canRun": true
+      }
+    ],
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "registerAnimationEvent",
+    "category": "Events",
+    "func_description": "registerAnimationEvent(%d, function()\\n%send)"
+  },
+  {
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "msg",
+        "text": "message0"
+      },
+      {
+        "type": "input_statement",
+        "name": "input",
+        "text": ""
+      }
+    ],
+    "message0": "when receive%1 %2",
+    "canRun": false,
+    "colour": "#764bcc",
+    "func_description": "registerBroadcastEvent(\"%s\", function()\\n%send)",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "registerBroadcastEvent(\"jump\", function()\n    move(0,1,0)\n    wait(1)\n    move(0,-1,0)\nend)\nregisterClickEvent(function()\n    broadcastAndWait(\"jump\")\n    say(\"That was fun!\", 2)\nend)\nsay(\"click to jump!\")\n",
+        "canRun": true
+      }
+    ],
+    "color": "#00cc00",
+    "nextStatement": true,
+    "type": "registerBroadcastEvent",
+    "category": "Events",
+    "helpUrl": ""
+  },
+  {
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "msg",
+        "text": "message0"
+      }
+    ],
+    "message0": "broadcast %1",
+    "canRun": false,
+    "colour": "#764bcc",
+    "func_description": "broadcast(\"%s\")",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "registerBroadcastEvent(\"hello\", function(msg)\n    say(\"hello\"..msg)\n    move(0,1,0, 0.5)\n    move(0,-1,0, 0.5)\n    say(\"bye\")\nend)\nfor i=1, 2 do\n    broadcast(\"hello\", i)\n    wait(0.5)\nend\n",
+        "canRun": true
+      }
+    ],
+    "color": "#00cc00",
+    "nextStatement": true,
+    "type": "broadcast",
+    "category": "Events",
+    "helpUrl": ""
+  },
+  {
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "msg",
+        "text": "message0"
+      }
+    ],
+    "message0": "broadcast %1 and wait",
+    "canRun": false,
+    "colour": "#764bcc",
+    "func_description": "broadcastAndWait(\"%s\")",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "registerBroadcastEvent(\"hi\", function()\n    say(\"hi\")\n    wait(1)\n    say(\"bye\")\n    wait(1)\nend)\nfor i=1, 2 do\n    broadcastAndWait(\"hi\")\nend\n",
+        "canRun": true
+      }
+    ],
+    "color": "#00cc00",
+    "nextStatement": true,
+    "type": "broadcastAndWait",
+    "category": "Events",
+    "helpUrl": ""
+  },
+  {
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "msg",
+        "text": "/tip hello"
+      }
+    ],
+    "message0": "run command %1",
+    "canRun": false,
+    "colour": "#764bcc",
+    "func_description": "cmd(\"%s\")",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "cmd(\"/setblock ~0 ~0 ~1 62\")\ncmd(\"/cameradist 12\")\ncmd(\"/camerayaw 0\")\ncmd(\"/camerapitch 0.5\")\n",
+        "canRun": true
+      }
+    ],
+    "color": "#cc0000",
+    "nextStatement": true,
+    "type": "cmd",
+    "category": "Events",
+    "helpUrl": ""
+  },
+  {
     "arg0": [
       {
         "type": "field_input",
@@ -317,22 +782,24 @@
         "text": 2
       }
     ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "say(\"%s\")",
-    "message0": "say %1",
+    "message0": "Say%1 for  %2 seconds",
     "canRun": true,
+    "colour": "#7abb55",
+    "previousStatement": true,
     "examples": [
       {
-        "desc": "show dialog on top of character",
-        "code": "say(\"Hello!\")\nwait(1)\nsay(\"\")\n",
+        "desc": "",
+        "code": "say(\"Jump!\", 2)\nmove(0,1,0)\n",
         "canRun": true
       }
     ],
-    "colour": "#7abb55",
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "sayAndWait",
     "category": "Looks",
-    "type": "say",
+    "func_description": "say(\"%s\", %s)"
+  },
+  {
     "arg0": [
       {
         "type": "field_input",
@@ -340,22 +807,24 @@
         "text": "hello!"
       }
     ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "tip(\"%s\")",
-    "message0": "show tip %1",
+    "message0": "say %1",
     "canRun": true,
+    "colour": "#7abb55",
+    "previousStatement": true,
     "examples": [
       {
-        "desc": "",
-        "code": "tip(\"Start Game in 3!\")\nwait(1)\ntip(\"Start Game in 2!\")\nwait(1)\ntip(\"Start Game in 1!\")\nwait(1)\ntip(\"\")\n",
+        "desc": "show dialog on top of character",
+        "code": "say(\"Hello!\")\nwait(1)\nsay(\"\")\n",
         "canRun": true
       }
     ],
-    "colour": "#7abb55",
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "say",
     "category": "Looks",
-    "type": "tip",
+    "func_description": "say(\"%s\")"
+  },
+  {
     "arg0": [
       {
         "type": "field_input",
@@ -363,32 +832,59 @@
         "text": "Start Game!"
       }
     ],
-    "helpUrl": ""
+    "message0": "show tip %1",
+    "canRun": true,
+    "colour": "#7abb55",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "tip(\"Start Game in 3!\")\nwait(1)\ntip(\"Start Game in 2!\")\nwait(1)\ntip(\"Start Game in 1!\")\nwait(1)\ntip(\"\")\n",
+        "canRun": true
+      }
+    ],
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "tip",
+    "category": "Looks",
+    "func_description": "tip(\"%s\")"
   },
   {
     "func_description": "show()",
     "message0": "show",
-    "helpUrl": "",
+    "canRun": true,
+    "previousStatement": true,
     "colour": "#7abb55",
     "arg0": [ ],
+    "nextStatement": true,
     "type": "show",
-    "canRun": true,
-    "category": "Looks"
+    "category": "Looks",
+    "helpUrl": ""
   },
   {
     "func_description": "hide()",
     "message0": "hide",
-    "helpUrl": "",
+    "canRun": true,
+    "previousStatement": true,
     "colour": "#7abb55",
     "arg0": [ ],
+    "nextStatement": true,
     "type": "hide",
-    "canRun": true,
-    "category": "Looks"
+    "category": "Looks",
+    "helpUrl": ""
   },
   {
-    "func_description": "anim(%d)",
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "animId",
+        "text": 4
+      }
+    ],
     "message0": "播放动作编号 %1",
     "canRun": true,
+    "colour": "#7abb55",
+    "previousStatement": true,
     "examples": [
       {
         "desc": "",
@@ -401,22 +897,29 @@
         "canRun": true
       }
     ],
-    "colour": "#7abb55",
-    "category": "Looks",
+    "helpUrl": "",
+    "nextStatement": true,
     "type": "anim",
+    "category": "Looks",
+    "func_description": "anim(%d)"
+  },
+  {
     "arg0": [
       {
         "type": "field_number",
-        "name": "animId",
-        "text": 4
+        "name": "timeFrom",
+        "text": 10
+      },
+      {
+        "type": "field_number",
+        "name": "timeTo",
+        "text": 1000
       }
     ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "play(%d, %d)",
     "message0": "play from %1 to %2 ms",
     "canRun": true,
+    "colour": "#7abb55",
+    "previousStatement": true,
     "examples": [
       {
         "desc": "play animation in movie block",
@@ -424,9 +927,13 @@
         "canRun": true
       }
     ],
-    "colour": "#7abb55",
-    "category": "Looks",
+    "helpUrl": "",
+    "nextStatement": true,
     "type": "play",
+    "category": "Looks",
+    "func_description": "play(%d, %d)"
+  },
+  {
     "arg0": [
       {
         "type": "field_number",
@@ -439,12 +946,10 @@
         "text": 1000
       }
     ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "playLoop(%d, %d)",
     "message0": "play looped from %1 to %2 ms",
     "canRun": true,
+    "colour": "#7abb55",
+    "previousStatement": true,
     "examples": [
       {
         "desc": "play animation in movie block",
@@ -452,37 +957,13 @@
         "canRun": true
       }
     ],
-    "colour": "#7abb55",
-    "category": "Looks",
+    "helpUrl": "",
+    "nextStatement": true,
     "type": "playLoop",
-    "arg0": [
-      {
-        "type": "field_number",
-        "name": "timeFrom",
-        "text": 10
-      },
-      {
-        "type": "field_number",
-        "name": "timeTo",
-        "text": 1000
-      }
-    ],
-    "helpUrl": ""
+    "category": "Looks",
+    "func_description": "playLoop(%d, %d)"
   },
   {
-    "func_description": "playSpeed(%d)",
-    "message0": "播放速度%1",
-    "canRun": true,
-    "examples": [
-      {
-        "desc": "",
-        "code": "playSpeed(4)\nplayLoop(0, 1000)\nsay(\"Looping\", 3)\nplaySpeed(1)\nstop()\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#7abb55",
-    "category": "Looks",
-    "type": "playSpeed",
     "arg0": [
       {
         "type": "field_number",
@@ -490,12 +971,29 @@
         "text": 1
       }
     ],
-    "helpUrl": ""
+    "message0": "播放速度%1",
+    "canRun": true,
+    "colour": "#7abb55",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "playSpeed(4)\nplayLoop(0, 1000)\nsay(\"Looping\", 3)\nplaySpeed(1)\nstop()\n",
+        "canRun": true
+      }
+    ],
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "playSpeed",
+    "category": "Looks",
+    "func_description": "playSpeed(%d)"
   },
   {
-    "func_description": "stop()",
+    "arg0": [ ],
     "message0": "stop playing",
     "canRun": true,
+    "colour": "#7abb55",
+    "previousStatement": true,
     "examples": [
       {
         "desc": "play/pause actor animation",
@@ -503,26 +1001,13 @@
         "canRun": true
       }
     ],
-    "colour": "#7abb55",
-    "category": "Looks",
+    "helpUrl": "",
+    "nextStatement": true,
     "type": "stop",
-    "arg0": [ ],
-    "helpUrl": ""
+    "category": "Looks",
+    "func_description": "stop()"
   },
   {
-    "func_description": "scale(%d)",
-    "message0": "scale %1 percent",
-    "canRun": true,
-    "examples": [
-      {
-        "desc": "",
-        "code": "scale(50)\nwait(1)\nscale(-50)\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#7abb55",
-    "category": "Looks",
-    "type": "scale",
     "arg0": [
       {
         "type": "field_number",
@@ -530,22 +1015,24 @@
         "text": 10
       }
     ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "scaleTo(%d)",
-    "message0": "scale to %1 percent",
+    "message0": "scale %1 percent",
     "canRun": true,
+    "colour": "#7abb55",
+    "previousStatement": true,
     "examples": [
       {
         "desc": "",
-        "code": "for i=1, 20 do\n    scale(10)\nend\nscaleTo(50)\nwait(0.5)\nscaleTo(200)\nwait(0.5)\nscaleTo(100)\n",
+        "code": "scale(50)\nwait(1)\nscale(-50)\n",
         "canRun": true
       }
     ],
-    "colour": "#7abb55",
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "scale",
     "category": "Looks",
-    "type": "scaleTo",
+    "func_description": "scale(%d)"
+  },
+  {
     "arg0": [
       {
         "type": "field_number",
@@ -553,23 +1040,24 @@
         "text": 100
       }
     ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "focus(\"%s\")",
-    "color": "#cc0000",
+    "message0": "scale to %1 percent",
     "canRun": true,
     "colour": "#7abb55",
+    "previousStatement": true,
     "examples": [
       {
         "desc": "",
-        "code": "focus()\nmoveForward(2,2)\nfocus(\"player\")\n",
+        "code": "for i=1, 20 do\n    scale(10)\nend\nscaleTo(50)\nwait(0.5)\nscaleTo(200)\nwait(0.5)\nscaleTo(100)\n",
         "canRun": true
       }
     ],
-    "message0": "focus on actor %1",
     "helpUrl": "",
-    "type": "focus",
+    "nextStatement": true,
+    "type": "scaleTo",
+    "category": "Looks",
+    "func_description": "scaleTo(%d)"
+  },
+  {
     "arg0": [
       {
         "type": "field_input",
@@ -577,23 +1065,25 @@
         "text": "myself"
       }
     ],
-    "category": "Looks"
-  },
-  {
-    "func_description": "camera(%s, %s, %s)",
-    "color": "#cc0000",
+    "message0": "focus on actor %1",
     "canRun": true,
     "colour": "#7abb55",
+    "func_description": "focus(\"%s\")",
+    "previousStatement": true,
     "examples": [
       {
         "desc": "",
-        "code": "for i=1, 100 do\n    camera(10+i*0.1, nil, nil)\n    wait(0.05)\nend\n",
+        "code": "focus()\nmoveForward(2,2)\nfocus(\"player\")\n",
         "canRun": true
       }
     ],
-    "message0": "摄影机距离%1角度%2朝向%3",
-    "helpUrl": "",
-    "type": "camera",
+    "color": "#cc0000",
+    "nextStatement": true,
+    "type": "focus",
+    "category": "Looks",
+    "helpUrl": ""
+  },
+  {
     "arg0": [
       {
         "type": "field_input",
@@ -611,7 +1101,23 @@
         "text": "90"
       }
     ],
-    "category": "Looks"
+    "message0": "摄影机距离%1角度%2朝向%3",
+    "canRun": true,
+    "colour": "#7abb55",
+    "func_description": "camera(%s, %s, %s)",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "for i=1, 100 do\n    camera(10+i*0.1, nil, nil)\n    wait(0.05)\nend\n",
+        "canRun": true
+      }
+    ],
+    "color": "#cc0000",
+    "nextStatement": true,
+    "type": "camera",
+    "category": "Looks",
+    "helpUrl": ""
   },
   {
     "func_description": "getScale()",
@@ -650,19 +1156,6 @@
     "arg0": [ ]
   },
   {
-    "func_description": "moveForward(%d, %d)",
-    "message0": "move forward %1 block in %2 secs",
-    "canRun": true,
-    "examples": [
-      {
-        "desc": "",
-        "code": "turn(30);\nfor i=1, 20 do\n    moveForward(0.05)\nend\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#0078d7",
-    "category": "Motion",
-    "type": "moveForward",
     "arg0": [
       {
         "type": "field_number",
@@ -675,22 +1168,24 @@
         "text": 0.5
       }
     ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "turn(%d)",
-    "message0": "turn %1 degree",
+    "message0": "move forward %1 block in %2 secs",
     "canRun": true,
+    "colour": "#0078d7",
+    "previousStatement": true,
     "examples": [
       {
         "desc": "",
-        "code": "turnTo(-60)\nfor i=1, 100 do\n    turn(-3)\nend\n",
+        "code": "turn(30);\nfor i=1, 20 do\n    moveForward(0.05)\nend\n",
         "canRun": true
       }
     ],
-    "colour": "#0078d7",
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "moveForward",
     "category": "Motion",
-    "type": "turn",
+    "func_description": "moveForward(%d, %d)"
+  },
+  {
     "arg0": [
       {
         "type": "field_number",
@@ -698,22 +1193,24 @@
         "text": 15
       }
     ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "turnTo(%d)",
-    "message0": "turn to %1 degree direction",
+    "message0": "turn %1 degree",
     "canRun": true,
+    "colour": "#0078d7",
+    "previousStatement": true,
     "examples": [
       {
         "desc": "",
-        "code": "turnTo(-60)\nwait(1)\nturnTo(0)\n",
+        "code": "turnTo(-60)\nfor i=1, 100 do\n    turn(-3)\nend\n",
         "canRun": true
       }
     ],
-    "colour": "#0078d7",
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "turn",
     "category": "Motion",
-    "type": "turnTo",
+    "func_description": "turn(%d)"
+  },
+  {
     "arg0": [
       {
         "type": "field_number",
@@ -721,22 +1218,24 @@
         "text": 90
       }
     ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "turnTo(\"%s\")",
-    "message0": "turn to %1",
+    "message0": "turn to %1 degree direction",
     "canRun": true,
+    "colour": "#0078d7",
+    "previousStatement": true,
     "examples": [
       {
-        "desc": "turn to mouse pointer or given player",
-        "code": "turnTo(\"mouse-pointer\")\nmoveForward(1, 1)\nturnTo(\"@p\")\nmoveForward(1, 1)\nturnTo(\"frog\")\nmoveForward(1, 1)\n",
+        "desc": "",
+        "code": "turnTo(-60)\nwait(1)\nturnTo(0)\n",
         "canRun": true
       }
     ],
-    "colour": "#0078d7",
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "turnTo",
     "category": "Motion",
-    "type": "turnToTarget",
+    "func_description": "turnTo(%d)"
+  },
+  {
     "arg0": [
       {
         "type": "field_input",
@@ -744,22 +1243,24 @@
         "text": "mouse-pointer"
       }
     ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "move(%s, %s, %s, %s)",
-    "message0": "move %1 %2 %3 in %4 secs",
+    "message0": "turn to %1",
     "canRun": true,
+    "colour": "#0078d7",
+    "previousStatement": true,
     "examples": [
       {
-        "desc": "",
-        "code": "turnTo(0)\nmove(0.5,1,0, 0.5)\nmove(1,-1,0, 0.5)\nsay(\"jump!\", 1)\n",
+        "desc": "turn to mouse pointer or given player",
+        "code": "turnTo(\"mouse-pointer\")\nmoveForward(1, 1)\nturnTo(\"@p\")\nmoveForward(1, 1)\nturnTo(\"frog\")\nmoveForward(1, 1)\n",
         "canRun": true
       }
     ],
-    "colour": "#0078d7",
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "turnToTarget",
     "category": "Motion",
-    "type": "move",
+    "func_description": "turnTo(\"%s\")"
+  },
+  {
     "arg0": [
       {
         "type": "field_number",
@@ -782,23 +1283,24 @@
         "text": 0.5
       }
     ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "moveTo(%s, %s, %s)",
-    "isDynamicNPLCode": true,
-    "helpUrl": "",
+    "message0": "move %1 %2 %3 in %4 secs",
+    "canRun": true,
     "colour": "#0078d7",
+    "previousStatement": true,
     "examples": [
       {
         "desc": "",
-        "code": "moveTo(19257,5,19174)\nmoveTo(\"mouse-pointer\")\nmoveTo(\"@p\")\nmoveTo(\"frog\")\n",
-        "canRun": false
+        "code": "turnTo(0)\nmove(0.5,1,0, 0.5)\nmove(1,-1,0, 0.5)\nsay(\"jump!\", 1)\n",
+        "canRun": true
       }
     ],
-    "canRun": true,
-    "message0": "move to %1 %2 %3",
-    "type": "moveTo",
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "move",
+    "category": "Motion",
+    "func_description": "move(%s, %s, %s, %s)"
+  },
+  {
     "arg0": [
       {
         "type": "field_number",
@@ -813,22 +1315,25 @@
         "name": "z"
       }
     ],
-    "category": "Motion"
-  },
-  {
-    "func_description": "moveTo(\"%s\")",
-    "message0": "move to %1",
+    "message0": "move to %1 %2 %3",
     "canRun": true,
+    "colour": "#0078d7",
+    "func_description": "moveTo(%s, %s, %s)",
+    "previousStatement": true,
     "examples": [
       {
-        "desc": "teleport to main player, mouse pointer, given actor",
-        "code": "say(\"current player\", 1)\nmoveTo(\"@p\")\nsay(\"mouse-pointer\", 1)\nmoveTo(\"mouse-pointer\")\nsay(\"the frog actor if any\", 1)\nmoveTo(\"frog\")\n",
-        "canRun": true
+        "desc": "",
+        "code": "moveTo(19257,5,19174)\nmoveTo(\"mouse-pointer\")\nmoveTo(\"@p\")\nmoveTo(\"frog\")\n",
+        "canRun": false
       }
     ],
-    "colour": "#0078d7",
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "moveTo",
     "category": "Motion",
-    "type": "moveToTarget",
+    "isDynamicNPLCode": true
+  },
+  {
     "arg0": [
       {
         "type": "field_input",
@@ -836,22 +1341,24 @@
         "text": "mouse-pointer"
       }
     ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "walk(%s, %s, %s, %s)",
-    "message0": "walk %1 %2 %3 for %4 seconds",
+    "message0": "move to %1",
     "canRun": true,
+    "colour": "#0078d7",
+    "previousStatement": true,
     "examples": [
       {
-        "desc": "",
-        "code": "walk(1,0) -- x,z\nwalk(0,1) -- x,z\nwalk(-1,0,-1) -- x,y,z\n",
+        "desc": "teleport to main player, mouse pointer, given actor",
+        "code": "say(\"current player\", 1)\nmoveTo(\"@p\")\nsay(\"mouse-pointer\", 1)\nmoveTo(\"mouse-pointer\")\nsay(\"the frog actor if any\", 1)\nmoveTo(\"frog\")\n",
         "canRun": true
       }
     ],
-    "colour": "#0078d7",
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "moveToTarget",
     "category": "Motion",
-    "type": "walk",
+    "func_description": "moveTo(\"%s\")"
+  },
+  {
     "arg0": [
       {
         "type": "field_number",
@@ -874,22 +1381,24 @@
         "text": 0.5
       }
     ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "walkForward(%s, %s)",
-    "message0": "Walk forward%1 for %2 secs",
+    "message0": "walk %1 %2 %3 for %4 seconds",
     "canRun": true,
+    "colour": "#0078d7",
+    "previousStatement": true,
     "examples": [
       {
         "desc": "",
-        "code": "turnTo(0)\nwalkForward(1)\nturn(180)\nwalkForward(1, 0.5)\n",
+        "code": "walk(1,0) -- x,z\nwalk(0,1) -- x,z\nwalk(-1,0,-1) -- x,y,z\n",
         "canRun": true
       }
     ],
-    "colour": "#0078d7",
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "walk",
     "category": "Motion",
-    "type": "walkForward",
+    "func_description": "walk(%s, %s, %s, %s)"
+  },
+  {
     "arg0": [
       {
         "type": "field_number",
@@ -902,22 +1411,24 @@
         "text": 0.5
       }
     ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "velocity(\"%s\")",
-    "message0": "set velocity %1",
+    "message0": "Walk forward%1 for %2 secs",
     "canRun": true,
+    "colour": "#0078d7",
+    "previousStatement": true,
     "examples": [
       {
         "desc": "",
-        "code": "velocity(\"~ 10 ~\")\nwait(0.3)\nvelocity(\"add 2 ~ 2\")\nwait(2)\nvelocity(\"0 0 0\")\n",
+        "code": "turnTo(0)\nwalkForward(1)\nturn(180)\nwalkForward(1, 0.5)\n",
         "canRun": true
       }
     ],
-    "colour": "#0078d7",
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "walkForward",
     "category": "Motion",
-    "type": "velocity",
+    "func_description": "walkForward(%s, %s)"
+  },
+  {
     "arg0": [
       {
         "type": "field_input",
@@ -925,12 +1436,29 @@
         "text": "~ 5 ~"
       }
     ],
-    "helpUrl": ""
+    "message0": "set velocity %1",
+    "canRun": true,
+    "colour": "#0078d7",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "velocity(\"~ 10 ~\")\nwait(0.3)\nvelocity(\"add 2 ~ 2\")\nwait(2)\nvelocity(\"0 0 0\")\n",
+        "canRun": true
+      }
+    ],
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "velocity",
+    "category": "Motion",
+    "func_description": "velocity(\"%s\")"
   },
   {
-    "func_description": "bounce()",
+    "arg0": [ ],
     "message0": "bounce",
     "canRun": true,
+    "colour": "#0078d7",
+    "previousStatement": true,
     "examples": [
       {
         "desc": "bounce when touching blocks",
@@ -938,11 +1466,11 @@
         "canRun": true
       }
     ],
-    "colour": "#0078d7",
-    "category": "Motion",
+    "helpUrl": "",
+    "nextStatement": true,
     "type": "bounce",
-    "arg0": [ ],
-    "helpUrl": ""
+    "category": "Motion",
+    "func_description": "bounce()"
   },
   {
     "func_description": "getX()",
@@ -1017,19 +1545,6 @@
     "arg0": [ ]
   },
   {
-    "func_description": "setPos(%s, %s, %s)",
-    "message0": "set actor position %1 %2 %3",
-    "canRun": true,
-    "examples": [
-      {
-        "desc": "",
-        "code": "local x, y, z = getPos()\nsetPos(x, y+0.5, z)\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#0078d7",
-    "category": "Motion",
-    "type": "setPos",
     "arg0": [
       {
         "type": "field_number",
@@ -1044,7 +1559,22 @@
         "name": "z"
       }
     ],
-    "helpUrl": ""
+    "message0": "set actor position %1 %2 %3",
+    "canRun": true,
+    "colour": "#0078d7",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "local x, y, z = getPos()\nsetPos(x, y+0.5, z)\n",
+        "canRun": true
+      }
+    ],
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "setPos",
+    "category": "Motion",
+    "func_description": "setPos(%s, %s, %s)"
   },
   {
     "func_description": "getFacing()",
@@ -1065,907 +1595,83 @@
     "arg0": [ ]
   },
   {
-    "func_description": "registerClickEvent(function()\\n%send)",
-    "message0": "when this actor was clicked%1",
-    "canRun": false,
-    "examples": [
-      {
-        "desc": "",
-        "code": "registerClickEvent(function()\n    for i=1, 20 do\n        scale(10)\n    end\n    for i=1, 20 do\n        scale(-10)\n    end\nend)\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#764bcc",
-    "category": "Events",
-    "type": "registerClickEvent",
-    "arg0": [
-      {
-        "type": "input_statement",
-        "name": "input",
-        "text": ""
-      }
-    ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "registerKeyPressedEvent(\"%s\", function()\\n%send)",
-    "message0": "when %1 key is pressed %2",
-    "canRun": false,
-    "examples": [
-      {
-        "desc": "Space key to jump",
-        "code": "registerKeyPressedEvent(\"space\",function()\n    say(\"Jump!\", 1)\n    move(0,1,0, 0.5)\n    move(0,-1,0, 0.5)\n    walkForward(0)\nend)\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#764bcc",
-    "category": "Events",
-    "type": "registerKeyPressedEvent",
-    "arg0": [
-      {
-        "type": "field_input",
-        "name": "keyname",
-        "text": "space"
-      },
-      {
-        "type": "input_statement",
-        "name": "input",
-        "text": ""
-      }
-    ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "registerAnimationEvent(%d, function()\\n%send)",
-    "message0": "when animation time is %1 %2",
-    "canRun": false,
-    "examples": [
-      {
-        "desc": "",
-        "code": "registerAnimationEvent(10, function()\n    say(\"anim started\", 3)\nend)\nregisterAnimationEvent(1000, function()\n    say(\"anim stopped\", 1)\nend)\nregisterClickEvent(function()\n    play(10, 1000)\nend);\nsay(\"click me!\")\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#764bcc",
-    "category": "Events",
-    "type": "registerAnimationEvent",
-    "arg0": [
-      {
-        "type": "field_number",
-        "name": "time",
-        "text": 1000
-      },
-      {
-        "type": "input_statement",
-        "name": "input",
-        "text": ""
-      }
-    ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "registerBroadcastEvent(\"%s\", function()\\n%send)",
-    "color": "#00cc00",
-    "canRun": false,
-    "colour": "#764bcc",
-    "examples": [
-      {
-        "desc": "",
-        "code": "registerBroadcastEvent(\"jump\", function()\n    move(0,1,0)\n    wait(1)\n    move(0,-1,0)\nend)\nregisterClickEvent(function()\n    broadcastAndWait(\"jump\")\n    say(\"That was fun!\", 2)\nend)\nsay(\"click to jump!\")\n",
-        "canRun": true
-      }
-    ],
-    "message0": "when receive%1 %2",
-    "helpUrl": "",
-    "type": "registerBroadcastEvent",
-    "arg0": [
-      {
-        "type": "field_input",
-        "name": "msg",
-        "text": "message0"
-      },
-      {
-        "type": "input_statement",
-        "name": "input",
-        "text": ""
-      }
-    ],
-    "category": "Events"
-  },
-  {
-    "func_description": "broadcast(\"%s\")",
-    "color": "#00cc00",
-    "canRun": false,
-    "colour": "#764bcc",
-    "examples": [
-      {
-        "desc": "",
-        "code": "registerBroadcastEvent(\"hello\", function(msg)\n    say(\"hello\"..msg)\n    move(0,1,0, 0.5)\n    move(0,-1,0, 0.5)\n    say(\"bye\")\nend)\nfor i=1, 2 do\n    broadcast(\"hello\", i)\n    wait(0.5)\nend\n",
-        "canRun": true
-      }
-    ],
-    "message0": "broadcast %1",
-    "helpUrl": "",
-    "type": "broadcast",
-    "arg0": [
-      {
-        "type": "field_input",
-        "name": "msg",
-        "text": "message0"
-      }
-    ],
-    "category": "Events"
-  },
-  {
-    "func_description": "broadcastAndWait(\"%s\")",
-    "color": "#00cc00",
-    "canRun": false,
-    "colour": "#764bcc",
-    "examples": [
-      {
-        "desc": "",
-        "code": "registerBroadcastEvent(\"hi\", function()\n    say(\"hi\")\n    wait(1)\n    say(\"bye\")\n    wait(1)\nend)\nfor i=1, 2 do\n    broadcastAndWait(\"hi\")\nend\n",
-        "canRun": true
-      }
-    ],
-    "message0": "broadcast %1 and wait",
-    "helpUrl": "",
-    "type": "broadcastAndWait",
-    "arg0": [
-      {
-        "type": "field_input",
-        "name": "msg",
-        "text": "message0"
-      }
-    ],
-    "category": "Events"
-  },
-  {
-    "func_description": "cmd(\"%s\")",
-    "color": "#cc0000",
-    "canRun": false,
-    "colour": "#764bcc",
-    "examples": [
-      {
-        "desc": "",
-        "code": "cmd(\"/setblock ~0 ~0 ~1 62\")\ncmd(\"/cameradist 12\")\ncmd(\"/camerayaw 0\")\ncmd(\"/camerapitch 0.5\")\n",
-        "canRun": true
-      }
-    ],
-    "message0": "run command %1",
-    "helpUrl": "",
-    "type": "cmd",
-    "arg0": [
-      {
-        "type": "field_input",
-        "name": "msg",
-        "text": "/tip hello"
-      }
-    ],
-    "category": "Events"
-  },
-  {
-    "func_description": "wait(%s)",
-    "message0": "wait %1 secs",
-    "canRun": false,
-    "examples": [
-      {
-        "desc": "",
-        "code": "say(\"hi\")\nwait(1)\nsay(\"bye\", 1)\n",
-        "canRun": true
-      },
-      {
-        "desc": "等待下一个时钟周期",
-        "code": "while(true) do\n    if(isKeyPressed(\"space\")) then\n        say(\"space is pressed\", 1)\n    end\n    wait()\nend\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#d83b01",
-    "category": "Control",
-    "type": "wait",
-    "arg0": [
-      {
-        "type": "field_number",
-        "name": "time",
-        "text": 1
-      }
-    ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "for i=1, %d do\\n%send",
-    "message0": "repeat %1 %2",
-    "canRun": false,
-    "examples": [
-      {
-        "desc": "",
-        "code": "for i=1, 10 do\n    moveForward(0.1)\nend\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#d83b01",
-    "category": "Control",
-    "type": "repeat",
-    "arg0": [
-      {
-        "type": "field_number",
-        "name": "times",
-        "text": 10
-      },
-      {
-        "type": "input_statement",
-        "name": "input",
-        "text": ""
-      }
-    ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "while(true) do\\n%send",
-    "message0": "forever%1",
-    "canRun": false,
-    "examples": [
-      {
-        "desc": "",
-        "code": "while(true) do\n    moveForward(0.01)\nend\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#d83b01",
-    "category": "Control",
-    "type": "forever",
-    "arg0": [
-      {
-        "type": "input_statement",
-        "name": "input",
-        "text": ""
-      }
-    ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "if(%s) then\\n%selse\\n%send",
-    "message0": "if %1 ​​then %2 else %3",
-    "canRun": false,
-    "examples": [
-      {
-        "desc": "",
-        "code": "while(true) do\n    if(distanceTo(\"mouse-pointer\")<3) then\n        say(\"mouse-pointer\")\n    else\n        say(\"\")\n    end\n    wait(0.01)\nend\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#d83b01",
-    "category": "Control",
-    "type": "if_else",
-    "arg0": [
-      {
-        "type": "input_expression",
-        "name": "expression",
-        "text": ""
-      },
-      {
-        "type": "input_statement",
-        "name": "input_true",
-        "text": ""
-      },
-      {
-        "type": "input_statement",
-        "name": "input_else",
-        "text": ""
-      }
-    ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "for %s, %s in pairs(%s) do\\n%send",
-    "message0": "for each %1,%2 in%3%4",
-    "canRun": false,
-    "examples": [
-      {
-        "desc": "",
-        "code": "myData = {\n    key1=\"value1\", \n    key2=\"value2\",\n    key2=\"value2\",\n}\nfor k, v in pairs(myData) do\n    say(v, 1);\nend\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#d83b01",
-    "category": "Control",
-    "type": "forKeyValue",
-    "arg0": [
-      {
-        "type": "field_input",
-        "name": "key",
-        "text": "key"
-      },
-      {
-        "type": "field_input",
-        "name": "value",
-        "text": "value"
-      },
-      {
-        "type": "field_input",
-        "name": "data",
-        "text": "data"
-      },
-      {
-        "type": "input_statement",
-        "name": "input",
-        "text": ""
-      }
-    ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "for %s, %s in ipairs(%s) do\\n%send",
-    "message0": "for each%1,%2 in array%3%4",
-    "canRun": false,
-    "examples": [
-      {
-        "desc": "",
-        "code": "myData = {\n    {x=1, y=0, z=0, duration=0.5},\n    {x=0, y=0, z=1, duration=0.5},\n    {x=-1, y=0, z=-1, duration=1},\n}\nfor i, item in ipairs(myData) do\n    move(item.x, item.y, item.z, item.duration)\nend\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#d83b01",
-    "category": "Control",
-    "type": "forIndexValue",
-    "arg0": [
-      {
-        "type": "field_input",
-        "name": "i",
-        "text": "index"
-      },
-      {
-        "type": "field_input",
-        "name": "item",
-        "text": "item"
-      },
-      {
-        "type": "field_input",
-        "name": "data",
-        "text": "data"
-      },
-      {
-        "type": "input_statement",
-        "name": "input",
-        "text": ""
-      }
-    ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "run(function()\\n%send)",
-    "color": "#00cc00",
-    "canRun": false,
-    "colour": "#d83b01",
-    "examples": [
-      {
-        "desc": "",
-        "code": "run(function()\n    say(\"follow mouse pointer!\")\n    while(true) do\n        if(distanceTo(\"mouse-pointer\") < 7) then\n            turnTo(\"mouse-pointer\");\n        elseif(distanceTo(\"@p\") > 14) then\n            moveTo(\"@p\")\n        end\n    end\nend)\nrun(function()\n    while(true) do\n        moveForward(0.02)\n    end\nend)\n",
-        "canRun": true
-      }
-    ],
-    "message0": "Run in parallel %1",
-    "helpUrl": "",
-    "type": "run",
-    "arg0": [
-      {
-        "type": "input_statement",
-        "name": "input",
-        "text": ""
-      }
-    ],
-    "category": "Control"
-  },
-  {
-    "func_description": "exit()",
-    "message0": "exit",
-    "canRun": true,
-    "examples": [
-      {
-        "desc": "",
-        "code": "say(\"Press X key to exit\")\nregisterKeyPressedEvent(\"x\", function()\n    exit()\nend)\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#d83b01",
-    "category": "Control",
-    "type": "exit",
-    "arg0": [ ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "restart()",
-    "message0": "restart",
-    "canRun": true,
-    "examples": [
-      {
-        "desc": "",
-        "code": "say(\"Press X key to restart\")\nregisterKeyPressedEvent(\"x\", function()\n    restart()\nend)\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#d83b01",
-    "category": "Control",
-    "type": "restart",
-    "arg0": [ ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "isTouching(\"%s\")",
-    "message0": "touching %1 ?",
-    "category": "Sensing",
+    "func_description": "\"%s\"",
+    "message0": "%1",
+    "category": "Operators",
     "output": { "type": "field_number" },
     "examples": [
       {
-        "desc": "touching blocks or actors?",
-        "code": "turnTo(45)\nwhile(true) do\n    moveForward(0.1)\n    if(isTouching(62)) then\n        say(\"grass block!\", 1)\n    elseif(isTouching(\"block\")) then\n        bounce()\n    elseif(isTouching(\"box\")) then\n        bounce()\n    end\nend\n",
+        "desc": "",
+        "code": "",
         "canRun": true
       }
     ],
-    "colour": "#69b090",
+    "colour": "#569138",
     "canRun": false,
-    "type": "isTouching",
+    "type": "getString",
     "helpUrl": "",
     "arg0": [
       {
         "type": "field_input",
-        "name": "input",
-        "text": "block"
+        "name": "left",
+        "text": ""
       }
     ]
   },
   {
-    "func_description": "setActorValue(\"name\", \"%s\")",
-    "message0": "设置名字为%1",
-    "canRun": false,
-    "examples": [
-      {
-        "desc": "复制的对象也可有不同的名字",
-        "code": "registerCloneEvent(function(name)\n    setActorValue(\"name\", name)\n    moveForward(1);\nend)\nregisterClickEvent(function()\n    local myname = getActorValue(\"name\")\n    say(\"my name is \"..myname)\nend)\nsetActorValue(\"name\", \"Default\")\nclone(\"myself\", \"Cloned\")\nsay(\"click us!\")\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#69b090",
-    "category": "Sensing",
-    "type": "setName",
-    "arg0": [
-      {
-        "type": "field_input",
-        "name": "name",
-        "text": "frog"
-      }
-    ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "setActorValue(\"physicsRadius\", %s)",
-    "message0": "设置物理半径%1",
-    "canRun": true,
-    "examples": [
-      {
-        "desc": "",
-        "code": "cmd(\"/show boundingbox\")\nsetBlock(getX(), getY()+2, getZ(), 62)\nsetActorValue(\"physicsRadius\", 0.5)\nsetActorValue(\"physicsHeight\", 2)\nmove(0, 0.2, 0)\nif(isTouching(\"block\")) then\n    say(\"touched!\", 1)\nend\nsetBlock(getX(), getY()+2, getZ(), 0)\nwait(2)\nmove(0, -0.2, 0)\ncmd(\"/hide boundingbox\")\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#69b090",
-    "category": "Sensing",
-    "type": "setPhysicsRaidus",
-    "arg0": [
-      {
-        "type": "field_number",
-        "name": "radius",
-        "text": 0.25
-      }
-    ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "setActorValue(\"physicsHeight\", %s)",
-    "message0": "设置物理高度%1",
-    "canRun": true,
-    "examples": [
-      {
-        "desc": "",
-        "code": "cmd(\"/show boundingbox\")\nsetBlock(getX(), getY()+2, getZ(), 62)\nsetActorValue(\"physicsRadius\", 0.5)\nsetActorValue(\"physicsHeight\", 2)\nmove(0, 0.2, 0)\nif(isTouching(\"block\")) then\n    say(\"touched!\", 1)\nend\nsetBlock(getX(), getY()+2, getZ(), 0)\nwait(2)\nmove(0, -0.2, 0)\ncmd(\"/hide boundingbox\")\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#69b090",
-    "category": "Sensing",
-    "type": "setPhysicsHeight",
-    "arg0": [
-      {
-        "type": "field_number",
-        "name": "height",
-        "text": 1
-      }
-    ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "registerCollisionEvent(%s, function()\\n%send)",
-    "message0": "当碰到%1时%2",
-    "canRun": false,
-    "examples": [
-      {
-        "desc": "",
-        "code": "broadcastCollision()\nregisterCollisionEvent(\"frog\", function()\nend)\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#69b090",
-    "category": "Sensing",
-    "type": "registerCollisionEvent",
-    "arg0": [
-      {
-        "type": "field_input",
-        "name": "name",
-        "text": "name"
-      },
-      {
-        "type": "input_statement",
-        "name": "input",
-        "text": ""
-      }
-    ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "broadcastCollision()",
-    "message0": "广播碰撞消息",
-    "canRun": true,
-    "examples": [
-      {
-        "desc": "",
-        "code": "broadcastCollision()\nregisterCollisionEvent(\"frog\", function()\nend)\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#69b090",
-    "category": "Sensing",
-    "type": "broadcastCollision",
-    "arg0": [ ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "distanceTo(\"%s\")",
-    "message0": "distance to %1",
-    "category": "Sensing",
+    "func_description": "%s",
+    "message0": "%1",
+    "category": "Operators",
     "output": { "type": "field_number" },
     "examples": [
       {
         "desc": "",
-        "code": "while(true) do\n    if(distanceTo(\"mouse-pointer\") < 3) then\n        say(\"mouse-pointer\")\n    elseif(distanceTo(\"@p\") < 10) then\n        say(\"player\")\n    elseif(distanceTo(\"@p\") > 10) then\n        say(\"nothing\")\n    end\n    wait(0.01)\nend\n",
+        "code": "",
         "canRun": true
       }
     ],
-    "colour": "#69b090",
+    "colour": "#569138",
     "canRun": false,
-    "type": "distanceTo",
+    "type": "getBoolean",
     "helpUrl": "",
     "arg0": [
       {
-        "type": "field_input",
-        "name": "input",
-        "text": "mouse-pointer"
+        "type": "field_dropdown",
+        "name": "left",
+        "options": [
+          [ "true", "true" ],
+          [ "false", "false" ]
+        ]
       }
     ]
   },
   {
-    "func_description": "ask(\"%s\")",
-    "message0": "提问%1并等待回答",
-    "canRun": true,
-    "examples": [
-      {
-        "desc": "",
-        "code": "ask(\"what is your name\")\nsay(\"hello \"..tostring(answer), 2)\n\nask(\"select your choice\", {\"choice A\", \"choice B\"})\nif(answer == 1) then\n    say(\"you choose A\")\nelseif(answer == 2) then\n    say(\"you choose B\")\nend\n",
-        "canRun": true
-      },
-      {
-        "desc": "关闭对话框",
-        "code": "run(function()\n   wait(3)\n   ask()\nend)\nask(\"Please answer in 3 seconds\")\nsay(\"hello \"..tostring(answer), 2)\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#69b090",
-    "category": "Sensing",
-    "type": "askAndWait",
-    "arg0": [
-      {
-        "type": "field_input",
-        "name": "input",
-        "text": "你叫什么名字?"
-      }
-    ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "get(\"answer\")",
-    "message0": "提问的结果",
-    "category": "Sensing",
+    "func_description": "%s",
+    "message0": "%1",
+    "category": "Operators",
     "output": { "type": "field_number" },
     "examples": [
       {
         "desc": "",
-        "code": "say(\"<div style='color:#ff0000'>Like A or B?</div>html are supported\")\nask(\"type A or B\")\nif(answer == \"A\") then\n   say(\"A is good\", 2)\nelseif(answer == \"B\") then\n   say(\"B is fine\", 2)\nelse\n   say(\"i do not understand you\", 2)\nend\n",
+        "code": "",
         "canRun": true
       }
     ],
-    "colour": "#69b090",
+    "colour": "#569138",
     "canRun": false,
-    "type": "answer",
-    "helpUrl": "",
-    "arg0": [ ]
-  },
-  {
-    "func_description": "isKeyPressed(\"%s\")",
-    "message0": "is %1 key pressed?",
-    "category": "Sensing",
-    "output": { "type": "field_number" },
-    "examples": [
-      {
-        "desc": "",
-        "code": "say(\"press left/right key to move me!\")\nwhile(true) do\n    if(isKeyPressed(\"left\")) then\n        move(0, 0.1)\n        say(\"\")\n    elseif(isKeyPressed(\"right\")) then\n        move(0, -0.1)\n        say(\"\")\n    end\n    wait()\nend\n",
-        "canRun": true
-      },
-      {
-        "desc": "",
-        "code": "say(\"press any key to continue!\")\nwhile(true) do\n    if(isKeyPressed(\"any\")) then\n        say(\"you pressed a key!\", 2)\n    end\n    wait()\nend\n",
-        "canRun": true
-      },
-      {
-        "desc": "按键列表",
-        "code": "-- a,b,c,...z\n-- 1,2,3,...9,0\n-- f1,f2,...,f12,escape\n-- space,left,right,up,down\n-- numpad0,numpad1,...,numpad9\n-- return,minus,equals,back,tab,\n-- lcontrol,lshift,lmenu\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#69b090",
-    "canRun": false,
-    "type": "isKeyPressed",
+    "type": "getNumber",
     "helpUrl": "",
     "arg0": [
       {
-        "type": "field_input",
-        "name": "input",
-        "text": "space"
+        "type": "field_number",
+        "name": "left",
+        "text": "0"
       }
     ]
   },
   {
-    "func_description": "isMouseDown()",
-    "message0": "mouse down?",
-    "category": "Sensing",
-    "output": { "type": "field_number" },
-    "examples": [
-      {
-        "desc": "Click anywhere to teleport",
-        "code": "say(\"click anywhere\")\nwhile(true) do\n    if(isMouseDown()) then\n        moveTo(\"mouse-pointer\")\n        wait(0.3)\n    end\nend\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#69b090",
-    "canRun": false,
-    "type": "isMouseDown",
-    "helpUrl": "",
-    "arg0": [ ]
-  },
-  {
-    "func_description": "mousePickBlock()",
-    "message0": "mouse pick",
-    "category": "Sensing",
-    "output": { "type": "field_number" },
-    "examples": [
-      {
-        "desc": "Click anywhere to teleport",
-        "code": "while(true) do\n    local x, y, z, blockid = mousePickBlock();\n    if(x) then\n        say(format(\"%s %s %s :%d\", x, y, z, blockid))\n    end\nend\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#69b090",
-    "canRun": false,
-    "type": "mousePickBlock",
-    "helpUrl": "",
-    "arg0": [ ]
-  },
-  {
-    "func_description": "getBlock(%s, %s, %s)",
-    "message0": "get block id %1 %2 %3",
-    "category": "Sensing",
-    "output": { "type": "field_number" },
-    "examples": [
-      {
-        "desc": "",
-        "code": "local x,y,z = getPos();\nlocal id = getBlock(x,y-1,z)\nsay(\"block below is \"..id, 2)\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#69b090",
-    "canRun": false,
-    "type": "getBlock",
-    "helpUrl": "",
-    "arg0": [
-      {
-        "type": "field_number",
-        "name": "x"
-      },
-      {
-        "type": "field_number",
-        "name": "y"
-      },
-      {
-        "type": "field_number",
-        "name": "z"
-      }
-    ]
-  },
-  {
-    "func_description": "setBlock(%s, %s, %s, %s)",
-    "message0": "set block %1 %2 %3 to %4",
-    "canRun": false,
-    "examples": [
-      {
-        "desc": "",
-        "code": "local x,y,z = getPos()\nlocal id = getBlock(x,y+2,z)\nsetBlock(x,y+2,z, 62)\nwait(1)\n-- 0 to delete block\nsetBlock(x,y+2,z, 0)\nsetBlock(x,y+2,z, id)\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#69b090",
-    "category": "Sensing",
-    "type": "setBlock",
-    "arg0": [
-      {
-        "type": "field_number",
-        "name": "x"
-      },
-      {
-        "type": "field_number",
-        "name": "y"
-      },
-      {
-        "type": "field_number",
-        "name": "z"
-      },
-      {
-        "type": "field_number",
-        "name": "blockId",
-        "text": "62"
-      }
-    ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "getTimer()",
-    "message0": "timer",
-    "category": "Sensing",
-    "output": { "type": "field_number" },
-    "examples": [
-      {
-        "desc": "",
-        "code": "resetTimer()\nwhile(getTimer()<5) do\n    moveForward(0.02)\nend\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#69b090",
-    "canRun": false,
-    "type": "timer",
-    "helpUrl": "",
-    "arg0": [ ]
-  },
-  {
-    "func_description": "resetTimer()",
-    "message0": "reset timer",
-    "canRun": true,
-    "examples": [
-      {
-        "desc": "",
-        "code": "resetTimer()\nwhile(getTimer()<2) do\n    wait(0.5);\nend\nsay(\"hi\", 2)\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#69b090",
-    "category": "Sensing",
-    "type": "resetTimer",
-    "arg0": [ ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "cmd(\"/mode game\")",
-    "message0": "set to game mode",
-    "helpUrl": "",
-    "colour": "#69b090",
-    "arg0": [ ],
-    "type": "mode",
-    "canRun": true,
-    "category": "Sensing"
-  },
-  {
-    "func_description": "cmd(\"/mode edit\")",
-    "message0": "set to edit mode",
-    "helpUrl": "",
-    "colour": "#69b090",
-    "arg0": [ ],
-    "type": "modeEdit",
-    "canRun": true,
-    "category": "Sensing"
-  },
-  {
-    "func_description": "playNote(\"%s\", %s)",
-    "message0": "play note %1 for %2 beats",
-    "canRun": true,
-    "examples": [
-      {
-        "desc": "",
-        "code": "while (true) do\n    playNote(\"1\", 0.5)\n    playNote(\"2\", 0.5)\n    playNote(\"3\", 0.5)\nend\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#8f6d40",
-    "category": "Sound",
-    "type": "playNote",
-    "arg0": [
-      {
-        "type": "field_input",
-        "name": "note",
-        "text": "7"
-      },
-      {
-        "type": "field_number",
-        "name": "beat",
-        "text": 0.25
-      }
-    ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "playMusic(\"%s\")",
-    "message0": "play background music %1",
-    "canRun": true,
-    "examples": [
-      {
-        "desc": "Stop after playing music",
-        "code": "playMusic(\"2\")\nwait(5)\nplayMusic()\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#8f6d40",
-    "category": "Sound",
-    "type": "playMusic",
-    "arg0": [
-      {
-        "type": "field_input",
-        "name": "filename",
-        "text": "1"
-      }
-    ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "playSound(\"%s\")",
-    "message0": "play MP3 music file%1",
-    "canRun": true,
-    "examples": [
-      {
-        "desc": "Stop after playing music",
-        "code": "playSound(\"break\")\nwait(1)\nplaySound(\"click\")\n",
-        "canRun": true
-      }
-    ],
-    "colour": "#8f6d40",
-    "category": "Sound",
-    "type": "playSound",
-    "arg0": [
-      {
-        "type": "field_input",
-        "name": "filename",
-        "text": "break"
-      }
-    ],
-    "helpUrl": ""
-  },
-  {
-    "func_description": "(%s) + (%s)",
-    "message0": "%1+%2",
+    "func_description": "((%s) + (%s))",
+    "message0": "%1 + %2 %3",
     "category": "Operators",
     "output": { "type": "field_number" },
     "examples": [
@@ -1981,14 +1687,16 @@
     "helpUrl": "",
     "arg0": [
       {
-        "type": "input_expression",
         "name": "left",
-        "text": ""
+        "type": "input_value"
       },
       {
-        "type": "input_expression",
+        "name": "dummy",
+        "type": "input_dummy"
+      },
+      {
         "name": "right",
-        "text": ""
+        "type": "input_value"
       }
     ]
   },
@@ -2022,8 +1730,8 @@
     ]
   },
   {
-    "func_description": "(%s) == (%s)",
-    "message0": "%1==%2",
+    "func_description": "((%s) == (%s))",
+    "message0": "%1 == %2 %3",
     "category": "Operators",
     "output": { "type": "field_number" },
     "examples": [
@@ -2039,20 +1747,24 @@
     "helpUrl": "",
     "arg0": [
       {
-        "type": "input_expression",
+        "type": "input_value",
         "name": "left",
         "text": ""
       },
       {
-        "type": "input_expression",
+        "name": "dummy",
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_value",
         "name": "right",
         "text": ""
       }
     ]
   },
   {
-    "func_description": "(%s) and (%s)",
-    "message0": "%1 and %2",
+    "func_description": "((%s) and (%s))",
+    "message0": "%1 与 %2 %3",
     "category": "Operators",
     "output": { "type": "field_number" },
     "examples": [
@@ -2068,20 +1780,24 @@
     "helpUrl": "",
     "arg0": [
       {
-        "type": "input_expression",
+        "type": "input_value",
         "name": "left",
         "text": ""
       },
       {
-        "type": "input_expression",
+        "name": "dummy",
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_value",
         "name": "right",
         "text": ""
       }
     ]
   },
   {
-    "func_description": "(%s) or (%s)",
-    "message0": "%1 or %2",
+    "func_description": "((%s) or (%s))",
+    "message0": "%1 或 %2 %3",
     "category": "Operators",
     "output": { "type": "field_number" },
     "examples": [
@@ -2097,12 +1813,16 @@
     "helpUrl": "",
     "arg0": [
       {
-        "type": "input_expression",
+        "type": "input_value",
         "name": "left",
         "text": ""
       },
       {
-        "type": "input_expression",
+        "name": "dummy",
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_value",
         "name": "right",
         "text": ""
       }
@@ -2110,7 +1830,7 @@
   },
   {
     "func_description": "(not %s)",
-    "message0": "not %1",
+    "message0": "不满足%1 %2",
     "category": "Operators",
     "output": { "type": "field_number" },
     "examples": [
@@ -2126,9 +1846,13 @@
     "helpUrl": "",
     "arg0": [
       {
-        "type": "input_expression",
+        "type": "input_value",
         "name": "left",
         "text": ""
+      },
+      {
+        "name": "dummy",
+        "type": "input_dummy"
       }
     ]
   },
@@ -2261,5 +1985,504 @@
         "text": 9
       }
     ]
+  },
+  {
+    "func_description": "isTouching(\"%s\")",
+    "message0": "touching %1 ?",
+    "category": "Sensing",
+    "output": { "type": "field_number" },
+    "examples": [
+      {
+        "desc": "touching blocks or actors?",
+        "code": "turnTo(45)\nwhile(true) do\n    moveForward(0.1)\n    if(isTouching(62)) then\n        say(\"grass block!\", 1)\n    elseif(isTouching(\"block\")) then\n        bounce()\n    elseif(isTouching(\"box\")) then\n        bounce()\n    end\nend\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#69b090",
+    "canRun": false,
+    "type": "isTouching",
+    "helpUrl": "",
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "input",
+        "text": "block"
+      }
+    ]
+  },
+  {
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "name",
+        "text": "frog"
+      }
+    ],
+    "message0": "设置名字为%1",
+    "canRun": false,
+    "colour": "#69b090",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "复制的对象也可有不同的名字",
+        "code": "registerCloneEvent(function(name)\n    setActorValue(\"name\", name)\n    moveForward(1);\nend)\nregisterClickEvent(function()\n    local myname = getActorValue(\"name\")\n    say(\"my name is \"..myname)\nend)\nsetActorValue(\"name\", \"Default\")\nclone(\"myself\", \"Cloned\")\nsay(\"click us!\")\n",
+        "canRun": true
+      }
+    ],
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "setName",
+    "category": "Sensing",
+    "func_description": "setActorValue(\"name\", \"%s\")"
+  },
+  {
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "radius",
+        "text": 0.25
+      }
+    ],
+    "message0": "设置物理半径%1",
+    "canRun": true,
+    "colour": "#69b090",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "cmd(\"/show boundingbox\")\nsetBlock(getX(), getY()+2, getZ(), 62)\nsetActorValue(\"physicsRadius\", 0.5)\nsetActorValue(\"physicsHeight\", 2)\nmove(0, 0.2, 0)\nif(isTouching(\"block\")) then\n    say(\"touched!\", 1)\nend\nsetBlock(getX(), getY()+2, getZ(), 0)\nwait(2)\nmove(0, -0.2, 0)\ncmd(\"/hide boundingbox\")\n",
+        "canRun": true
+      }
+    ],
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "setPhysicsRaidus",
+    "category": "Sensing",
+    "func_description": "setActorValue(\"physicsRadius\", %s)"
+  },
+  {
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "height",
+        "text": 1
+      }
+    ],
+    "message0": "设置物理高度%1",
+    "canRun": true,
+    "colour": "#69b090",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "cmd(\"/show boundingbox\")\nsetBlock(getX(), getY()+2, getZ(), 62)\nsetActorValue(\"physicsRadius\", 0.5)\nsetActorValue(\"physicsHeight\", 2)\nmove(0, 0.2, 0)\nif(isTouching(\"block\")) then\n    say(\"touched!\", 1)\nend\nsetBlock(getX(), getY()+2, getZ(), 0)\nwait(2)\nmove(0, -0.2, 0)\ncmd(\"/hide boundingbox\")\n",
+        "canRun": true
+      }
+    ],
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "setPhysicsHeight",
+    "category": "Sensing",
+    "func_description": "setActorValue(\"physicsHeight\", %s)"
+  },
+  {
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "name",
+        "text": "name"
+      },
+      {
+        "type": "input_statement",
+        "name": "input",
+        "text": ""
+      }
+    ],
+    "message0": "当碰到%1时%2",
+    "canRun": false,
+    "colour": "#69b090",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "broadcastCollision()\nregisterCollisionEvent(\"frog\", function()\nend)\n",
+        "canRun": true
+      }
+    ],
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "registerCollisionEvent",
+    "category": "Sensing",
+    "func_description": "registerCollisionEvent(%s, function()\\n%send)"
+  },
+  {
+    "arg0": [ ],
+    "message0": "广播碰撞消息",
+    "canRun": true,
+    "colour": "#69b090",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "broadcastCollision()\nregisterCollisionEvent(\"frog\", function()\nend)\n",
+        "canRun": true
+      }
+    ],
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "broadcastCollision",
+    "category": "Sensing",
+    "func_description": "broadcastCollision()"
+  },
+  {
+    "func_description": "distanceTo(\"%s\")",
+    "message0": "distance to %1",
+    "category": "Sensing",
+    "output": { "type": "field_number" },
+    "examples": [
+      {
+        "desc": "",
+        "code": "while(true) do\n    if(distanceTo(\"mouse-pointer\") < 3) then\n        say(\"mouse-pointer\")\n    elseif(distanceTo(\"@p\") < 10) then\n        say(\"player\")\n    elseif(distanceTo(\"@p\") > 10) then\n        say(\"nothing\")\n    end\n    wait(0.01)\nend\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#69b090",
+    "canRun": false,
+    "type": "distanceTo",
+    "helpUrl": "",
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "input",
+        "text": "mouse-pointer"
+      }
+    ]
+  },
+  {
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "input",
+        "text": "你叫什么名字?"
+      }
+    ],
+    "message0": "提问%1并等待回答",
+    "canRun": true,
+    "colour": "#69b090",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "ask(\"what is your name\")\nsay(\"hello \"..tostring(answer), 2)\n\nask(\"select your choice\", {\"choice A\", \"choice B\"})\nif(answer == 1) then\n    say(\"you choose A\")\nelseif(answer == 2) then\n    say(\"you choose B\")\nend\n",
+        "canRun": true
+      },
+      {
+        "desc": "关闭对话框",
+        "code": "run(function()\n   wait(3)\n   ask()\nend)\nask(\"Please answer in 3 seconds\")\nsay(\"hello \"..tostring(answer), 2)\n",
+        "canRun": true
+      }
+    ],
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "askAndWait",
+    "category": "Sensing",
+    "func_description": "ask(\"%s\")"
+  },
+  {
+    "func_description": "get(\"answer\")",
+    "message0": "提问的结果",
+    "category": "Sensing",
+    "output": { "type": "field_number" },
+    "examples": [
+      {
+        "desc": "",
+        "code": "say(\"<div style='color:#ff0000'>Like A or B?</div>html are supported\")\nask(\"type A or B\")\nif(answer == \"A\") then\n   say(\"A is good\", 2)\nelseif(answer == \"B\") then\n   say(\"B is fine\", 2)\nelse\n   say(\"i do not understand you\", 2)\nend\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#69b090",
+    "canRun": false,
+    "type": "answer",
+    "helpUrl": "",
+    "arg0": [ ]
+  },
+  {
+    "func_description": "isKeyPressed(\"%s\")",
+    "message0": "is %1 key pressed?",
+    "category": "Sensing",
+    "output": { "type": "field_number" },
+    "examples": [
+      {
+        "desc": "",
+        "code": "say(\"press left/right key to move me!\")\nwhile(true) do\n    if(isKeyPressed(\"left\")) then\n        move(0, 0.1)\n        say(\"\")\n    elseif(isKeyPressed(\"right\")) then\n        move(0, -0.1)\n        say(\"\")\n    end\n    wait()\nend\n",
+        "canRun": true
+      },
+      {
+        "desc": "",
+        "code": "say(\"press any key to continue!\")\nwhile(true) do\n    if(isKeyPressed(\"any\")) then\n        say(\"you pressed a key!\", 2)\n    end\n    wait()\nend\n",
+        "canRun": true
+      },
+      {
+        "desc": "按键列表",
+        "code": "-- a,b,c,...z\n-- 1,2,3,...9,0\n-- f1,f2,...,f12,escape\n-- space,left,right,up,down\n-- numpad0,numpad1,...,numpad9\n-- return,minus,equals,back,tab,\n-- lcontrol,lshift,lmenu\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#69b090",
+    "canRun": false,
+    "type": "isKeyPressed",
+    "helpUrl": "",
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "input",
+        "text": "space"
+      }
+    ]
+  },
+  {
+    "func_description": "isMouseDown()",
+    "message0": "mouse down?",
+    "category": "Sensing",
+    "output": { "type": "field_number" },
+    "examples": [
+      {
+        "desc": "Click anywhere to teleport",
+        "code": "say(\"click anywhere\")\nwhile(true) do\n    if(isMouseDown()) then\n        moveTo(\"mouse-pointer\")\n        wait(0.3)\n    end\nend\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#69b090",
+    "canRun": false,
+    "type": "isMouseDown",
+    "helpUrl": "",
+    "arg0": [ ]
+  },
+  {
+    "func_description": "mousePickBlock()",
+    "message0": "mouse pick",
+    "category": "Sensing",
+    "output": { "type": "field_number" },
+    "examples": [
+      {
+        "desc": "Click anywhere to teleport",
+        "code": "while(true) do\n    local x, y, z, blockid = mousePickBlock();\n    if(x) then\n        say(format(\"%s %s %s :%d\", x, y, z, blockid))\n    end\nend\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#69b090",
+    "canRun": false,
+    "type": "mousePickBlock",
+    "helpUrl": "",
+    "arg0": [ ]
+  },
+  {
+    "func_description": "getBlock(%s, %s, %s)",
+    "message0": "get block id %1 %2 %3",
+    "category": "Sensing",
+    "output": { "type": "field_number" },
+    "examples": [
+      {
+        "desc": "",
+        "code": "local x,y,z = getPos();\nlocal id = getBlock(x,y-1,z)\nsay(\"block below is \"..id, 2)\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#69b090",
+    "canRun": false,
+    "type": "getBlock",
+    "helpUrl": "",
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "x"
+      },
+      {
+        "type": "field_number",
+        "name": "y"
+      },
+      {
+        "type": "field_number",
+        "name": "z"
+      }
+    ]
+  },
+  {
+    "arg0": [
+      {
+        "type": "field_number",
+        "name": "x"
+      },
+      {
+        "type": "field_number",
+        "name": "y"
+      },
+      {
+        "type": "field_number",
+        "name": "z"
+      },
+      {
+        "type": "field_number",
+        "name": "blockId",
+        "text": "62"
+      }
+    ],
+    "message0": "set block %1 %2 %3 to %4",
+    "canRun": false,
+    "colour": "#69b090",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "local x,y,z = getPos()\nlocal id = getBlock(x,y+2,z)\nsetBlock(x,y+2,z, 62)\nwait(1)\n-- 0 to delete block\nsetBlock(x,y+2,z, 0)\nsetBlock(x,y+2,z, id)\n",
+        "canRun": true
+      }
+    ],
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "setBlock",
+    "category": "Sensing",
+    "func_description": "setBlock(%s, %s, %s, %s)"
+  },
+  {
+    "func_description": "getTimer()",
+    "message0": "timer",
+    "category": "Sensing",
+    "output": { "type": "field_number" },
+    "examples": [
+      {
+        "desc": "",
+        "code": "resetTimer()\nwhile(getTimer()<5) do\n    moveForward(0.02)\nend\n",
+        "canRun": true
+      }
+    ],
+    "colour": "#69b090",
+    "canRun": false,
+    "type": "timer",
+    "helpUrl": "",
+    "arg0": [ ]
+  },
+  {
+    "arg0": [ ],
+    "message0": "reset timer",
+    "canRun": true,
+    "colour": "#69b090",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "resetTimer()\nwhile(getTimer()<2) do\n    wait(0.5);\nend\nsay(\"hi\", 2)\n",
+        "canRun": true
+      }
+    ],
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "resetTimer",
+    "category": "Sensing",
+    "func_description": "resetTimer()"
+  },
+  {
+    "func_description": "cmd(\"/mode game\")",
+    "message0": "set to game mode",
+    "canRun": true,
+    "previousStatement": true,
+    "colour": "#69b090",
+    "arg0": [ ],
+    "nextStatement": true,
+    "type": "mode",
+    "category": "Sensing",
+    "helpUrl": ""
+  },
+  {
+    "func_description": "cmd(\"/mode edit\")",
+    "message0": "set to edit mode",
+    "canRun": true,
+    "previousStatement": true,
+    "colour": "#69b090",
+    "arg0": [ ],
+    "nextStatement": true,
+    "type": "modeEdit",
+    "category": "Sensing",
+    "helpUrl": ""
+  },
+  {
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "note",
+        "text": "7"
+      },
+      {
+        "type": "field_number",
+        "name": "beat",
+        "text": 0.25
+      }
+    ],
+    "message0": "play note %1 for %2 beats",
+    "canRun": true,
+    "colour": "#8f6d40",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "while (true) do\n    playNote(\"1\", 0.5)\n    playNote(\"2\", 0.5)\n    playNote(\"3\", 0.5)\nend\n",
+        "canRun": true
+      }
+    ],
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "playNote",
+    "category": "Sound",
+    "func_description": "playNote(\"%s\", %s)"
+  },
+  {
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "filename",
+        "text": "1"
+      }
+    ],
+    "message0": "play background music %1",
+    "canRun": true,
+    "colour": "#8f6d40",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "Stop after playing music",
+        "code": "playMusic(\"2\")\nwait(5)\nplayMusic()\n",
+        "canRun": true
+      }
+    ],
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "playMusic",
+    "category": "Sound",
+    "func_description": "playMusic(\"%s\")"
+  },
+  {
+    "arg0": [
+      {
+        "type": "field_input",
+        "name": "filename",
+        "text": "break"
+      }
+    ],
+    "message0": "play MP3 music file%1",
+    "canRun": true,
+    "colour": "#8f6d40",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "Stop after playing music",
+        "code": "playSound(\"break\")\nwait(1)\nplaySound(\"click\")\n",
+        "canRun": true
+      }
+    ],
+    "helpUrl": "",
+    "nextStatement": true,
+    "type": "playSound",
+    "category": "Sound",
+    "func_description": "playSound(\"%s\")"
   }
 ]
