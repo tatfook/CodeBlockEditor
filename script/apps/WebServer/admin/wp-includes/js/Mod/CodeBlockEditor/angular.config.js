@@ -14,7 +14,6 @@ define([
     app.registerController = app.controller;
     
     window.app = app;
-
     window.getUrlParameter = function (sParam) {
         var sPageURL = decodeURIComponent(window.location.search.substring(1)),
             sURLVariables = sPageURL.split("&"),

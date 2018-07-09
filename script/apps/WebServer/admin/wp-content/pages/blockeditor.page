@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Blockly Test</title>
+  <title>Code Block</title>
   <?npl
 	PAGE_NO_SIDE_BAR = true;
 	wp_enqueue_script("blockly_compressed",		"/wp-includes/js/blockly.mini/blockly_compressed.js");
@@ -32,11 +32,13 @@
 			local menu_xml = CodeBlocklySerializer.GetBlocklyMenuXml();
 			local config_json = CodeBlocklySerializer.GetBlocklyConfig();
 			local execution_str = CodeBlocklySerializer.GetBlocklyCode();
+			local keywords_json = CodeBlocklySerializer.GetKeywords();
 
 			wp_send_json({
 				menu_xml = menu_xml,
 				config_json = config_json,
 				execution_str = execution_str,
+				keywords_json = keywords_json,
 			},true);
 		end)
 
@@ -47,18 +49,14 @@
 </head>
 
 <body >
-<div ng-controller="CodeBlockEditorController" >
-<div>
-	<button ng-click="onRun('insert')" style="float:left;">插入</button>
-	<button ng-click="onRun('replace')"style="margin-left:5px;">替换</button>
-	<button ng-click="onRun('showcode')"style="margin-left:5px;">编译</button>
-</div>  
-  <div id="blocklyDiv" style="margin-top:5px;height: 480px; width: 1024px;">
-
-  </div>
-  <div>
-    <textarea cols="20" id="LuaCode_Orgin" style="height:200px; width:1024px;"></textarea>
-  </div>
-  </div>
+	<div ng-controller="CodeBlockEditorController" >
+		<div class="row">
+			<button ng-click="onRun('insert')" style="margin-left:15px;">插入</button>
+			<button ng-click="onRun('replace')" style="margin-left:5px;">替换</button>
+			<button ng-click="onRun('showcode')" style="margin-left:5px;">编译</button>
+		</div>  
+		<div id="blocklyDiv" style="margin-top:5px;height: 480px; width: 1024px;"></div>
+		<div id="editor" style="height:200px; width:1024px;"></div>
+	</div>
 </body>
 </html>

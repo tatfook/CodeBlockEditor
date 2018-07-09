@@ -21,5 +21,4 @@ http://localhost:8099/blockeditor
 -- Loading the static files which include menu_xml/config_json/execution_js from the folder of [BlocklySourceTemplate] to run blockly
 http://localhost:8099/blockeditor?debug=true
 ```
-![image](https://user-images.githubusercontent.com/5885941/42315274-9ea57e68-8079-11e8-9d45-a4a5ccf0d895.png)
-
+![image](https://user-images.githubusercontent.com/5885941/42445348-75932384-83a5-11e8-97dc-815d6debcf62.png)

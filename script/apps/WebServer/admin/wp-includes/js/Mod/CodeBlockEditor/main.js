@@ -34,6 +34,7 @@
             "jquery": "wp-includes/js/jquery/jquery.min",
             "domReady": "wp-includes/js/requirejs/domReady",
             "text": "wp-includes/js/requirejs/text",
+            "vs": "wp-includes/js/monaco-editor-0.10.1/package/min/vs",
         },
         shim: {
             "angular": {
