@@ -51,6 +51,7 @@
 <div>
 	<button ng-click="onRun('insert')" style="float:left;">插入</button>
 	<button ng-click="onRun('replace')"style="margin-left:5px;">替换</button>
+	<button ng-click="onRun('showcode')"style="margin-left:5px;">编译</button>
 </div>  
   <div id="blocklyDiv" style="margin-top:5px;height: 480px; width: 1024px;">
 

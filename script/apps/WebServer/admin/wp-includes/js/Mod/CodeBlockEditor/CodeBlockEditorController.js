@@ -29,8 +29,11 @@ define([
                 var code = Blockly.Lua.workspaceToCode(gWorkSpace);
                 var content = code.valueOf();
                 document.getElementById('LuaCode_Orgin').value = content;
+                state = state || "showcode"
 
-                state = state || "insert"
+                if (state == "showcode") {
+                    return;
+                }
                 var url = "/ajax/blockeditor?action=runblockly&state=" + state;
                 $.post(url, { code: content }, function (data) {
                     console.log(data);
