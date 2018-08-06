@@ -8,11 +8,13 @@ previousStatement = true -> previousStatement = null
 nextStatement = true -> nextStatement = null
 output = { type = "field_number" } -> output = "field_number"
 output = { type = "null" } -> output = null
-arg0 -> args0
+arg[0-9] -> args[0-9]
 
 text -> value in "field_number"
 ```
-### Preview
+### Links
+ - [define-blocks](https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks)
+
 ```lua
 -- Loading the config source dynamically after running paracraft every time
 http://localhost:8099/blockeditor
@@ -20,5 +22,8 @@ http://localhost:8099/blockeditor
 -- debug
 -- Loading the static files which include menu_xml/config_json/execution_js from the folder of [BlocklySourceTemplate] to run blockly
 http://localhost:8099/blockeditor?debug=true
+-- english version
+http://localhost:8099/blockeditor?debug=true&lang=en
 ```
-![image](https://user-images.githubusercontent.com/5885941/42445348-75932384-83a5-11e8-97dc-815d6debcf62.png)
+### Preview
+![image](https://user-images.githubusercontent.com/5885941/43708153-611999c6-999c-11e8-8232-bdee49664dc7.png)

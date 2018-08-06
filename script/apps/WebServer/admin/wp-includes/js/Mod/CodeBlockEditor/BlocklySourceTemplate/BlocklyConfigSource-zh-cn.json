@@ -7,7 +7,7 @@
         "text": 1
       }
     ],
-    "message0": "wait %1 secs",
+    "message0": "等待%1秒",
     "canRun": false,
     "colour": "#d83b01",
     "previousStatement": true,
@@ -18,7 +18,7 @@
         "canRun": true
       },
       {
-        "desc": "Waiting for the next clock cycle",
+        "desc": "等待下一个时钟周期",
         "code": "while(true) do\n    if(isKeyPressed(\"space\")) then\n        say(\"space is pressed\", 1)\n    end\n    wait()\nend\n",
         "canRun": true
       }
@@ -94,7 +94,7 @@
   },
   {
     "func_description": "while(true) do\\n%send",
-    "message0": "forever%1",
+    "message0": "永远重复%1",
     "canRun": false,
     "colour": "#d83b01",
     "arg1": [
@@ -311,7 +311,7 @@
   },
   {
     "arg0": [],
-    "message0": "exit",
+    "message0": "结束程序",
     "canRun": true,
     "colour": "#d83b01",
     "previousStatement": true,
@@ -330,7 +330,7 @@
   },
   {
     "arg0": [],
-    "message0": "restart",
+    "message0": "重新开始",
     "canRun": true,
     "colour": "#d83b01",
     "previousStatement": true,
@@ -362,7 +362,7 @@
     "previousStatement": true,
     "examples": [
       {
-        "desc": "become agent of current player",
+        "desc": "成为当前角色的化身",
         "code": "becomeAgent(\"@p\")\n",
         "canRun": true
       }
@@ -371,7 +371,7 @@
     "nextStatement": true,
     "type": "becomeAgent",
     "category": "Control",
-    "message0": "become %1's agent"
+    "message0": "成为%1的化身"
   },
   {
     "arg0": [
@@ -388,7 +388,7 @@
         "text": "value"
       }
     ],
-    "message0": "set local variable%1 to%2",
+    "message0": "设置局部变量%1为%2",
     "canRun": false,
     "colour": "#459197",
     "previousStatement": true,
@@ -407,7 +407,7 @@
   },
   {
     "func_description": "%s",
-    "message0": "get local variable %1",
+    "message0": "获取局部变量%1",
     "category": "Data",
     "output": { "type": "null" },
     "examples": [
@@ -444,13 +444,13 @@
         "text": "1"
       }
     ],
-    "message0": "Set variable %1 to %2",
+    "message0": "设置全局变量%1为%2",
     "canRun": true,
     "colour": "#459197",
     "previousStatement": true,
     "examples": [
       {
-        "desc": "Can also use _G.a",
+        "desc": "也可以用_G.a",
         "code": "_G.a = _G.a or 1\nwhile(true) do\n    _G.a = a + 1\n    set(\"a\", get(\"a\") + 1)\n    say(a)\nend\n",
         "canRun": true
       }
@@ -469,7 +469,7 @@
         "text": "score"
       }
     ],
-    "message0": "show global variable %1",
+    "message0": "显示全局变量%1",
     "canRun": true,
     "colour": "#459197",
     "previousStatement": true,
@@ -494,7 +494,7 @@
         "text": "score"
       }
     ],
-    "message0": "hide global variable %1",
+    "message0": "隐藏全局变量%1",
     "canRun": true,
     "colour": "#459197",
     "previousStatement": true,
@@ -544,12 +544,12 @@
         "type": "field_dropdown",
         "name": "input",
         "options": [
-          [ "this actor", "myself" ],
-          [ "a given actor", "" ]
+          [ "此角色", "myself" ],
+          [ "某个角色", "" ]
         ]
       }
     ],
-    "message0": "clone %1",
+    "message0": "复制%1",
     "canRun": false,
     "colour": "#459197",
     "func_description": "clone(\"%s\")",
@@ -584,7 +584,7 @@
     "category": "Data",
     "nextStatement": true,
     "type": "delete",
-    "message0": "delete this clone",
+    "message0": "删除角色",
     "helpUrl": ""
   },
   {
@@ -593,12 +593,12 @@
         "type": "field_dropdown",
         "name": "key",
         "options": [
-          [ "name", "name" ],
-          [ "physics radius", "physicsRadius" ],
-          [ "physics height", "physicsHeight" ],
-          [ "Color", "color" ],
-          [ "text", "text" ],
-          [ "any variable", "" ]
+          [ "名字", "name" ],
+          [ "物理半径", "physicsRadius" ],
+          [ "物理高度", "physicsHeight" ],
+          [ "颜色", "color" ],
+          [ "文字", "text" ],
+          [ "任意变量", "" ]
         ]
       },
       {
@@ -607,7 +607,7 @@
         "text": "actor1"
       }
     ],
-    "message0": "set actor data %1 to %2",
+    "message0": "设置角色的%1为%2",
     "canRun": false,
     "colour": "#459197",
     "func_description": "setActorValue(\"%s\", \"%s\")",
@@ -627,7 +627,7 @@
   },
   {
     "func_description": "getActorValue(\"%s\")",
-    "message0": "get actor data %1",
+    "message0": "获取角色的%1",
     "category": "Data",
     "output": { "type": "field_number" },
     "examples": [
@@ -646,12 +646,12 @@
         "type": "field_dropdown",
         "name": "key",
         "options": [
-          [ "name", "name" ],
-          [ "physics radius", "physicsRadius" ],
-          [ "physics height", "physicsHeight" ],
-          [ "Color", "color" ],
-          [ "is agent", "isAgent" ],
-          [ "any variable", "" ]
+          [ "名字", "name" ],
+          [ "物理半径", "physicsRadius" ],
+          [ "物理高度", "physicsHeight" ],
+          [ "颜色", "color" ],
+          [ "是否为化身", "isAgent" ],
+          [ "任意变量", "" ]
         ]
       }
     ]
@@ -664,13 +664,13 @@
         "text": "hello"
       }
     ],
-    "message0": "output log %1",
+    "message0": "输出日志%1",
     "canRun": true,
     "colour": "#459197",
     "previousStatement": true,
     "examples": [
       {
-        "desc": "Check log.txt or F11 to see the log",
+        "desc": "查看log.txt或F11看日志",
         "code": "log(123)\nlog(\"hello\")\nsomething = {any=\"object\"}\nlog(something)\n",
         "canRun": true
       }
@@ -689,7 +689,7 @@
         "text": "hello"
       }
     ],
-    "message0": "echo to chat window%1",
+    "message0": "输出到聊天框%1",
     "canRun": true,
     "colour": "#459197",
     "previousStatement": true,
@@ -748,7 +748,7 @@
     "previousStatement": true,
     "examples": [
       {
-        "desc": "Space key to jump",
+        "desc": "空格跳跃",
         "code": "registerKeyPressedEvent(\"space\",function()\n    say(\"Jump!\", 1)\n    move(0,1,0, 0.5)\n    move(0,-1,0, 0.5)\n    walkForward(0)\nend)\n",
         "canRun": true
       }
@@ -758,11 +758,11 @@
         "type": "field_dropdown",
         "name": "keyname",
         "options": [
-          [ "space", "space" ],
-          [ "left", "left" ],
-          [ "right", "right" ],
-          [ "up", "up" ],
-          [ "down", "down" ],
+          [ "空格", "space" ],
+          [ "左", "left" ],
+          [ "右", "right" ],
+          [ "上", "up" ],
+          [ "下", "down" ],
           [ "ESC", "escape" ],
           [ "a", "a" ],
           [ "b", "b" ],
@@ -812,7 +812,7 @@
           [ "f10", "f10" ],
           [ "f11", "f11" ],
           [ "f12", "f12" ],
-          [ "enter", "return" ],
+          [ "回车", "return" ],
           [ "-", "minus" ],
           [ "+", "equal" ],
           [ "back", "back" ],
@@ -915,7 +915,7 @@
         "variable": "msg1"
       }
     ],
-    "message0": "broadcast %1",
+    "message0": "广播%1消息",
     "canRun": false,
     "colour": "#764bcc",
     "func_description": "broadcast(\"%s\")",
@@ -942,7 +942,7 @@
         "variable": "msg1"
       }
     ],
-    "message0": "broadcast %1 and wait",
+    "message0": "广播%1消息并等待返回",
     "canRun": false,
     "colour": "#764bcc",
     "func_description": "broadcastAndWait(\"%s\")",
@@ -968,7 +968,7 @@
         "text": "/tip hello"
       }
     ],
-    "message0": "run command %1",
+    "message0": "执行命令%1",
     "canRun": false,
     "colour": "#764bcc",
     "func_description": "cmd(\"%s\")",
@@ -999,7 +999,7 @@
         "text": 2
       }
     ],
-    "message0": "say%1 for  %2 seconds",
+    "message0": "说 %1 持续 %2 秒",
     "canRun": true,
     "colour": "#7abb55",
     "previousStatement": true,
@@ -1024,13 +1024,13 @@
         "text": "hello!"
       }
     ],
-    "message0": "say %1",
+    "message0": "说 %1",
     "canRun": true,
     "colour": "#7abb55",
     "previousStatement": true,
     "examples": [
       {
-        "desc": "show dialog on top of character",
+        "desc": "在人物头顶说些话",
         "code": "say(\"Hello!\")\nwait(1)\nsay(\"\")\n",
         "canRun": true
       }
@@ -1049,7 +1049,7 @@
         "text": "Start Game!"
       }
     ],
-    "message0": "show tip %1",
+    "message0": "提示文字%1",
     "canRun": true,
     "colour": "#7abb55",
     "previousStatement": true,
@@ -1068,7 +1068,7 @@
   },
   {
     "func_description": "show()",
-    "message0": "show",
+    "message0": "显示",
     "canRun": true,
     "previousStatement": true,
     "colour": "#7abb55",
@@ -1080,7 +1080,7 @@
   },
   {
     "func_description": "hide()",
-    "message0": "hide",
+    "message0": "隐藏",
     "canRun": true,
     "previousStatement": true,
     "colour": "#7abb55",
@@ -1098,7 +1098,7 @@
         "text": 4
       }
     ],
-    "message0": "play animation id%1",
+    "message0": "播放动作编号 %1",
     "canRun": true,
     "colour": "#7abb55",
     "previousStatement": true,
@@ -1109,7 +1109,7 @@
         "canRun": true
       },
       {
-        "desc": "animation id",
+        "desc": "常用动作编号",
         "code": "-- 0: standing\n-- 4: walking \n-- 5: running\n-- check movie block for more ids\n",
         "canRun": true
       }
@@ -1133,13 +1133,13 @@
         "text": 1000
       }
     ],
-    "message0": "play from %1 to %2 ms",
+    "message0": "播放从%1到%2毫秒",
     "canRun": true,
     "colour": "#7abb55",
     "previousStatement": true,
     "examples": [
       {
-        "desc": "play animation in movie block",
+        "desc": "播放电影方块中的角色动画",
         "code": "play(10, 1000)\nsay(\"No looping\", 1)\n",
         "canRun": true
       }
@@ -1163,13 +1163,13 @@
         "text": 1000
       }
     ],
-    "message0": "play looped from %1 to %2 ms",
+    "message0": "循环播放从%1到%2毫秒",
     "canRun": true,
     "colour": "#7abb55",
     "previousStatement": true,
     "examples": [
       {
-        "desc": "play animation in movie block",
+        "desc": "播放电影方块中的角色动画",
         "code": "playLoop(10, 1000)\nsay(\"Looping\", 3)\nstop()\n",
         "canRun": true
       }
@@ -1188,7 +1188,7 @@
         "text": 1
       }
     ],
-    "message0": "play speed %1",
+    "message0": "播放速度%1",
     "canRun": true,
     "colour": "#7abb55",
     "previousStatement": true,
@@ -1207,13 +1207,13 @@
   },
   {
     "arg0": [],
-    "message0": "stop playing",
+    "message0": "停止播放",
     "canRun": true,
     "colour": "#7abb55",
     "previousStatement": true,
     "examples": [
       {
-        "desc": "play/pause actor animation",
+        "desc": "播放/暂停角色动画",
         "code": "playLoop(10, 1000)\nwait(2)\nstop()\nturn(15)\nplayLoop(10, 1000)\nwait(2)\nstop()\n",
         "canRun": true
       }
@@ -1232,7 +1232,7 @@
         "text": 10
       }
     ],
-    "message0": "scale %1 percent",
+    "message0": "放缩百分之%1",
     "canRun": true,
     "colour": "#7abb55",
     "previousStatement": true,
@@ -1257,7 +1257,7 @@
         "text": 100
       }
     ],
-    "message0": "scale to %1 percent",
+    "message0": "放缩到百分之%1",
     "canRun": true,
     "colour": "#7abb55",
     "previousStatement": true,
@@ -1280,13 +1280,13 @@
         "type": "field_dropdown",
         "name": "name",
         "options": [
-          [ "this actor", "myself" ],
-          [ "main player", "player" ],
-          [ "a given actor name", "" ]
+          [ "此角色", "myself" ],
+          [ "主角", "player" ],
+          [ "某个角色名", "" ]
         ]
       }
     ],
-    "message0": "lookat %1",
+    "message0": "观看%1",
     "canRun": true,
     "colour": "#7abb55",
     "func_description": "focus(\"%s\")",
@@ -1322,7 +1322,7 @@
         "text": 90
       }
     ],
-    "message0": "camera dist %1 pitch %2 yaw %3",
+    "message0": "摄影机距离%1角度%2朝向%3",
     "canRun": true,
     "colour": "#7abb55",
     "func_description": "camera(%s, %s, %s)",
@@ -1342,7 +1342,7 @@
   },
   {
     "func_description": "getScale()",
-    "message0": "scale",
+    "message0": "放缩尺寸",
     "category": "Looks",
     "output": { "type": "field_number" },
     "examples": [
@@ -1360,7 +1360,7 @@
   },
   {
     "func_description": "getPlayTime()",
-    "message0": "animation time",
+    "message0": "动画时间",
     "category": "Looks",
     "output": { "type": "field_number" },
     "examples": [
@@ -1389,7 +1389,7 @@
         "text": 0.5
       }
     ],
-    "message0": "move forward %1 block in %2 secs",
+    "message0": "前进%1格 在%2秒内",
     "canRun": true,
     "colour": "#0078d7",
     "previousStatement": true,
@@ -1414,7 +1414,7 @@
         "text": 15
       }
     ],
-    "message0": "turn %1 degree",
+    "message0": "旋转%1度",
     "canRun": true,
     "colour": "#0078d7",
     "previousStatement": true,
@@ -1439,7 +1439,7 @@
         "text": 90
       }
     ],
-    "message0": "turn to %1 degree direction",
+    "message0": "旋转到%1方向",
     "canRun": true,
     "colour": "#0078d7",
     "previousStatement": true,
@@ -1462,19 +1462,19 @@
         "type": "field_dropdown",
         "name": "targetName",
         "options": [
-          [ "mouse", "mouse-pointer" ],
-          [ "the closest player", "@p" ],
-          [ "a given actor name", "" ]
+          [ "鼠标", "mouse-pointer" ],
+          [ "最近的玩家", "@p" ],
+          [ "某个角色名", "" ]
         ]
       }
     ],
-    "message0": "turn to %1",
+    "message0": "转向%1",
     "canRun": true,
     "colour": "#0078d7",
     "previousStatement": true,
     "examples": [
       {
-        "desc": "turn to mouse pointer or given player",
+        "desc": "转向鼠标,主角,指定角色",
         "code": "turnTo(\"mouse-pointer\")\nmoveForward(1, 1)\nturnTo(\"@p\")\nmoveForward(1, 1)\nturnTo(\"frog\")\nmoveForward(1, 1)\n",
         "canRun": true
       }
@@ -1508,7 +1508,7 @@
         "text": 0.5
       }
     ],
-    "message0": "move %1 %2 %3 in %4 secs",
+    "message0": "位移%1 %2 %3 在%4秒内",
     "canRun": true,
     "colour": "#0078d7",
     "previousStatement": true,
@@ -1540,7 +1540,7 @@
         "name": "z"
       }
     ],
-    "message0": "move to %1 %2 %3",
+    "message0": "瞬移到%1 %2 %3",
     "canRun": true,
     "colour": "#0078d7",
     "func_description": "moveTo(%s, %s, %s)",
@@ -1564,19 +1564,19 @@
         "type": "field_dropdown",
         "name": "targetName",
         "options": [
-          [ "mouse", "mouse-pointer" ],
-          [ "the closest player", "@p" ],
-          [ "a given actor name", "" ]
+          [ "鼠标", "mouse-pointer" ],
+          [ "最近的玩家", "@p" ],
+          [ "某个角色名", "" ]
         ]
       }
     ],
-    "message0": "move to %1",
+    "message0": "瞬移到%1",
     "canRun": true,
     "colour": "#0078d7",
     "previousStatement": true,
     "examples": [
       {
-        "desc": "teleport to main player, mouse pointer, given actor",
+        "desc": "瞬移到主角，鼠标，指定角色",
         "code": "say(\"current player\", 1)\nmoveTo(\"@p\")\nsay(\"mouse-pointer\", 1)\nmoveTo(\"mouse-pointer\")\nsay(\"the frog actor if any\", 1)\nmoveTo(\"frog\")\n",
         "canRun": true
       }
@@ -1610,7 +1610,7 @@
         "text": 0.5
       }
     ],
-    "message0": "walk %1 %2 %3 for %4 seconds",
+    "message0": "行走%1 %2 %3持续%4秒",
     "canRun": true,
     "colour": "#0078d7",
     "previousStatement": true,
@@ -1640,7 +1640,7 @@
         "text": 0.5
       }
     ],
-    "message0": "Walk forward%1 for %2 secs",
+    "message0": "向前走%1持续%2秒",
     "canRun": true,
     "colour": "#0078d7",
     "previousStatement": true,
@@ -1665,7 +1665,7 @@
         "text": "~ 5 ~"
       }
     ],
-    "message0": "set velocity %1",
+    "message0": "速度%1",
     "canRun": true,
     "colour": "#0078d7",
     "previousStatement": true,
@@ -1684,13 +1684,13 @@
   },
   {
     "arg0": [],
-    "message0": "bounce",
+    "message0": "反弹",
     "canRun": true,
     "colour": "#0078d7",
     "previousStatement": true,
     "examples": [
       {
-        "desc": "bounce when touching blocks",
+        "desc": "遇到方块反弹",
         "code": "turnTo(45)\nwhile(true) do\n    moveForward(0.02)\n    if(isTouching(\"block\")) then\n        bounce()\n    end\nend\n",
         "canRun": true
       }
@@ -1703,7 +1703,7 @@
   },
   {
     "func_description": "getX()",
-    "message0": "get X coordinate",
+    "message0": "X坐标",
     "category": "Motion",
     "output": { "type": "field_number" },
     "examples": [
@@ -1721,7 +1721,7 @@
   },
   {
     "func_description": "getY()",
-    "message0": "get Y coordinate",
+    "message0": "Y坐标",
     "category": "Motion",
     "output": { "type": "field_number" },
     "examples": [
@@ -1739,7 +1739,7 @@
   },
   {
     "func_description": "getZ()",
-    "message0": "get Z coordinate",
+    "message0": "Z坐标",
     "category": "Motion",
     "output": { "type": "field_number" },
     "examples": [
@@ -1757,7 +1757,7 @@
   },
   {
     "func_description": "getPos()",
-    "message0": "actor xyz position",
+    "message0": "角色xyz位置",
     "category": "Motion",
     "output": { "type": "field_number" },
     "examples": [
@@ -1788,7 +1788,7 @@
         "name": "z"
       }
     ],
-    "message0": "set actor position %1 %2 %3",
+    "message0": "设置角色位置%1 %2 %3",
     "canRun": true,
     "colour": "#0078d7",
     "previousStatement": true,
@@ -1807,7 +1807,7 @@
   },
   {
     "func_description": "getFacing()",
-    "message0": "facing",
+    "message0": "方向",
     "category": "Motion",
     "output": { "type": "field_number" },
     "examples": [
@@ -1905,7 +1905,7 @@
     "output": { "type": "field_number" },
     "examples": [
       {
-        "desc": "+-*/ of numbers",
+        "desc": "数字的加减乘除",
         "code": "say(\"1+1=?\")\nwait(1)\nsay(1+1)\n",
         "canRun": true
       }
@@ -1931,7 +1931,7 @@
   },
   {
     "func_description": "math.random(%s,%s)",
-    "message0": "pick random %1 to %2",
+    "message0": "随机选择从%1到%2",
     "category": "Operators",
     "output": { "type": "field_number" },
     "examples": [
@@ -1965,7 +1965,7 @@
     "output": { "type": "field_number" },
     "examples": [
       {
-        "desc": "Compare two values",
+        "desc": "比较两个数值",
         "code": "while(true) do\n    a = math.random(0,10)\n    if(a==0) then\n        say(a)\n    elseif(a<=3) then\n        say(a..\"<=3\")\n    elseif(a>6) then\n        say(a..\">6\")\n    else\n        say(\"3<\"..a..\"<=6\")\n    end\n    wait(2)\nend\n",
         "canRun": true
       }
@@ -1991,12 +1991,12 @@
   },
   {
     "func_description": "((%s) and (%s))",
-    "message0": "%1 and %2 %3",
+    "message0": "%1 与 %2 %3",
     "category": "Operators",
     "output": { "type": "field_number" },
     "examples": [
       {
-        "desc": "While meeting both conditions",
+        "desc": "同时满足条件",
         "code": "while(true) do\n    a = math.random(0,10)\n    if(3<a and a<=6) then\n        say(\"3<\"..a..\"<=6\")\n    else\n        say(a)\n    end\n    wait(2)\nend\n",
         "canRun": true
       }
@@ -2022,12 +2022,12 @@
   },
   {
     "func_description": "((%s) or (%s))",
-    "message0": "%1 or %2 %3",
+    "message0": "%1 或 %2 %3",
     "category": "Operators",
     "output": { "type": "field_number" },
     "examples": [
       {
-        "desc": "Left or right meet the conditions",
+        "desc": "左边或右边满足条件",
         "code": "while(true) do\n    a = math.random(0,10)\n    if(a<=3 or a>6) then\n        say(a)\n    else\n        say(\"3<\"..a..\"<=6\")\n    end\n    wait(2)\nend\n",
         "canRun": true
       }
@@ -2053,12 +2053,12 @@
   },
   {
     "func_description": "(not %s)",
-    "message0": "not %1 %2",
+    "message0": "不满足%1 %2",
     "category": "Operators",
     "output": { "type": "field_number" },
     "examples": [
       {
-        "desc": "whether it is not true",
+        "desc": "是否不为真",
         "code": "while(true) do\n    a = math.random(0,10)\n    if((not (3<=a)) or (not (a>6))) then\n        say(\"3<\"..a..\"<=6\")\n    else\n        say(a)\n    end\n    wait(2)\nend\n",
         "canRun": true
       }
@@ -2080,7 +2080,7 @@
   },
   {
     "func_description": "(\"%s\"..\"%s\")",
-    "message0": "join %1 %2",
+    "message0": "连接字符串%1和%2",
     "category": "Operators",
     "output": { "type": "field_number" },
     "examples": [
@@ -2109,7 +2109,7 @@
   },
   {
     "func_description": "(#\"%s\")",
-    "message0": "length of %1",
+    "message0": "字符串%1的长度",
     "category": "Operators",
     "output": { "type": "field_number" },
     "examples": [
@@ -2133,7 +2133,7 @@
   },
   {
     "func_description": "(%s%%s)",
-    "message0": "%1 mod %2",
+    "message0": "%1模%2",
     "category": "Operators",
     "output": { "type": "field_number" },
     "examples": [
@@ -2162,7 +2162,7 @@
   },
   {
     "func_description": "math.floor(%s+0.5)",
-    "message0": "round %1",
+    "message0": "四舍五入取整%1",
     "category": "Operators",
     "output": { "type": "field_number" },
     "examples": [
@@ -2186,7 +2186,7 @@
   },
   {
     "func_description": "math.%s(%s)",
-    "message0": "%1 %2",
+    "message0": "%1%2",
     "category": "Operators",
     "output": { "type": "field_number" },
     "examples": [
@@ -2205,14 +2205,14 @@
         "type": "field_dropdown",
         "name": "name",
         "options": [
-          [ "sqrt", "sqrt" ],
+          [ "开根号", "sqrt" ],
           [ "sin", "sin" ],
           [ "cos", "cos" ],
-          [ "abs", "abs" ],
+          [ "绝对值", "abs" ],
           [ "asin", "asin" ],
           [ "acos", "acos" ],
-          [ "ceiling", "ceil" ],
-          [ "floor", "floor" ],
+          [ "向上取整", "ceil" ],
+          [ "向下取整", "floor" ],
           [ "tab", "tan" ],
           [ "atan", "atan" ],
           [ "sin", "exp" ],
@@ -2229,12 +2229,12 @@
   },
   {
     "func_description": "isTouching(\"%s\")",
-    "message0": "touching %1 ?",
+    "message0": "是否碰到%1",
     "category": "Sensing",
     "output": { "type": "field_number" },
     "examples": [
       {
-        "desc": "touching blocks or actors?",
+        "desc": "是否和方块与人物有接触",
         "code": "turnTo(45)\nwhile(true) do\n    moveForward(0.1)\n    if(isTouching(62)) then\n        say(\"grass block!\", 1)\n    elseif(isTouching(\"block\")) then\n        bounce()\n    elseif(isTouching(\"box\")) then\n        bounce()\n    end\nend\n",
         "canRun": true
       }
@@ -2248,10 +2248,10 @@
         "type": "field_dropdown",
         "name": "input",
         "options": [
-          [ "blocks", "block" ],
-          [ "nearby player", "@a" ],
-          [ "a given block id", "62" ],
-          [ "a given actor name", "" ]
+          [ "方块", "block" ],
+          [ "附近玩家", "@a" ],
+          [ "某个方块id", "62" ],
+          [ "某个角色名", "" ]
         ]
       }
     ]
@@ -2264,13 +2264,13 @@
         "text": "frog"
       }
     ],
-    "message0": "set name to %1",
+    "message0": "设置名字为%1",
     "canRun": false,
     "colour": "#69b090",
     "previousStatement": true,
     "examples": [
       {
-        "desc": "cloned actor can have different names",
+        "desc": "复制的对象也可有不同的名字",
         "code": "registerCloneEvent(function(name)\n    setActorValue(\"name\", name)\n    moveForward(1);\nend)\nregisterClickEvent(function()\n    local myname = getActorValue(\"name\")\n    say(\"my name is \"..myname)\nend)\nsetActorValue(\"name\", \"Default\")\nclone(\"myself\", \"Cloned\")\nsay(\"click us!\")\n",
         "canRun": true
       }
@@ -2289,7 +2289,7 @@
         "text": 0.25
       }
     ],
-    "message0": "set physics radius %1",
+    "message0": "设置物理半径%1",
     "canRun": true,
     "colour": "#69b090",
     "previousStatement": true,
@@ -2314,7 +2314,7 @@
         "text": 1
       }
     ],
-    "message0": "set physics height %1",
+    "message0": "设置物理高度%1",
     "canRun": true,
     "colour": "#69b090",
     "previousStatement": true,
@@ -2366,7 +2366,7 @@
   },
   {
     "arg0": [],
-    "message0": "broadcast touch message",
+    "message0": "广播碰撞消息",
     "canRun": true,
     "colour": "#69b090",
     "previousStatement": true,
@@ -2385,7 +2385,7 @@
   },
   {
     "func_description": "distanceTo(\"%s\")",
-    "message0": "distance to %1",
+    "message0": "到%1的距离",
     "category": "Sensing",
     "output": { "type": "field_number" },
     "examples": [
@@ -2404,9 +2404,9 @@
         "type": "field_dropdown",
         "name": "input",
         "options": [
-          [ "mouse", "mouse-pointer" ],
-          [ "the closest player", "@p" ],
-          [ "a given actor name", "" ]
+          [ "鼠标", "mouse-pointer" ],
+          [ "最近的玩家", "@p" ],
+          [ "某个角色名", "" ]
         ]
       }
     ]
@@ -2416,10 +2416,10 @@
       {
         "type": "field_input",
         "name": "input",
-        "text": "what is your name?"
+        "text": "你叫什么名字?"
       }
     ],
-    "message0": "ask %1 and wait ",
+    "message0": "提问%1并等待回答",
     "canRun": true,
     "colour": "#69b090",
     "previousStatement": true,
@@ -2430,7 +2430,7 @@
         "canRun": true
       },
       {
-        "desc": "close dialog",
+        "desc": "关闭对话框",
         "code": "run(function()\n   wait(3)\n   ask()\nend)\nask(\"Please answer in 3 seconds\")\nsay(\"hello \"..tostring(answer), 2)\n",
         "canRun": true
       }
@@ -2443,7 +2443,7 @@
   },
   {
     "func_description": "get(\"answer\")",
-    "message0": "answer",
+    "message0": "提问的结果",
     "category": "Sensing",
     "output": { "type": "field_number" },
     "examples": [
@@ -2461,7 +2461,7 @@
   },
   {
     "func_description": "isKeyPressed(\"%s\")",
-    "message0": "is %1 key pressed?",
+    "message0": "%1键是否按下",
     "category": "Sensing",
     "output": { "type": "field_number" },
     "examples": [
@@ -2476,7 +2476,7 @@
         "canRun": true
       },
       {
-        "desc": "key list",
+        "desc": "按键列表",
         "code": "\n-- numpad0,numpad1,...,numpad9\n\n",
         "canRun": true
       }
@@ -2491,11 +2491,11 @@
         "text": "space",
         "name": "input",
         "options": [
-          [ "space", "space" ],
-          [ "left", "left" ],
-          [ "right", "right" ],
-          [ "up", "up" ],
-          [ "down", "down" ],
+          [ "空格", "space" ],
+          [ "左", "left" ],
+          [ "右", "right" ],
+          [ "上", "up" ],
+          [ "下", "down" ],
           [ "ESC", "escape" ],
           [ "a", "a" ],
           [ "b", "b" ],
@@ -2545,7 +2545,7 @@
           [ "f10", "f10" ],
           [ "f11", "f11" ],
           [ "f12", "f12" ],
-          [ "enter", "return" ],
+          [ "回车", "return" ],
           [ "-", "minus" ],
           [ "+", "equal" ],
           [ "back", "back" ],
@@ -2569,12 +2569,12 @@
   },
   {
     "func_description": "isMouseDown()",
-    "message0": "mouse down?",
+    "message0": "鼠标是否按下",
     "category": "Sensing",
     "output": { "type": "field_number" },
     "examples": [
       {
-        "desc": "Click anywhere to teleport",
+        "desc": "点击任意位置传送",
         "code": "say(\"click anywhere\")\nwhile(true) do\n    if(isMouseDown()) then\n        moveTo(\"mouse-pointer\")\n        wait(0.3)\n    end\nend\n",
         "canRun": true
       }
@@ -2587,12 +2587,12 @@
   },
   {
     "func_description": "mousePickBlock()",
-    "message0": "mouse pick",
+    "message0": "鼠标选取",
     "category": "Sensing",
     "output": { "type": "field_number" },
     "examples": [
       {
-        "desc": "Click anywhere to teleport",
+        "desc": "点击任意位置传送",
         "code": "while(true) do\n    local x, y, z, blockid = mousePickBlock();\n    if(x) then\n        say(format(\"%s %s %s :%d\", x, y, z, blockid))\n    end\nend\n",
         "canRun": true
       }
@@ -2605,7 +2605,7 @@
   },
   {
     "func_description": "getBlock(%s, %s, %s)",
-    "message0": "get block id %1 %2 %3",
+    "message0": "获取方块id%1 %2 %3",
     "category": "Sensing",
     "output": { "type": "field_number" },
     "examples": [
@@ -2654,7 +2654,7 @@
         "text": "62"
       }
     ],
-    "message0": "set block %1 %2 %3 to %4",
+    "message0": "放置方块%1 %2 %3 %4",
     "canRun": false,
     "colour": "#69b090",
     "previousStatement": true,
@@ -2673,7 +2673,7 @@
   },
   {
     "func_description": "getTimer()",
-    "message0": "timer",
+    "message0": "计时器",
     "category": "Sensing",
     "output": { "type": "field_number" },
     "examples": [
@@ -2691,7 +2691,7 @@
   },
   {
     "arg0": [],
-    "message0": "reset timer",
+    "message0": "重置计时器",
     "canRun": true,
     "colour": "#69b090",
     "previousStatement": true,
@@ -2710,7 +2710,7 @@
   },
   {
     "func_description": "cmd(\"/mode game\")",
-    "message0": "set to game mode",
+    "message0": "设置为游戏模式",
     "canRun": true,
     "previousStatement": true,
     "colour": "#69b090",
@@ -2722,7 +2722,7 @@
   },
   {
     "func_description": "cmd(\"/mode edit\")",
-    "message0": "set to edit mode",
+    "message0": "设置为编辑模式",
     "canRun": true,
     "previousStatement": true,
     "colour": "#69b090",
@@ -2753,7 +2753,7 @@
         "text": 0.25
       }
     ],
-    "message0": "play note %1 for %2 beats",
+    "message0": "播放音符%1持续%2节拍",
     "canRun": true,
     "colour": "#8f6d40",
     "previousStatement": true,
@@ -2781,19 +2781,19 @@
           [ "3", "3" ],
           [ "4", "4" ],
           [ "5", "5" ],
-          [ "ogg file", "filename.ogg" ],
-          [ "wav file", "filename.wav" ],
-          [ "mp3 file", "filename.mp3" ]
+          [ "ogg文件", "filename.ogg" ],
+          [ "wav文件", "filename.wav" ],
+          [ "mp3文件", "filename.mp3" ]
         ]
       }
     ],
-    "message0": "play background music %1",
+    "message0": "播放背景音乐%1",
     "canRun": true,
     "colour": "#8f6d40",
     "previousStatement": true,
     "examples": [
       {
-        "desc": "Stop after playing music",
+        "desc": "播放音乐后停止",
         "code": "playMusic(\"2\")\nwait(5)\nplayMusic()\n",
         "canRun": true
       }
@@ -2810,36 +2810,36 @@
         "type": "field_dropdown",
         "name": "filename",
         "options": [
-          [ "break", "break" ],
-          [ "ogg file", "filename.ogg" ],
-          [ "wav file", "filename.wav" ],
-          [ "mp3 file", "filename.mp3" ],
-          [ "open chest", "chestclosed" ],
-          [ "close chest", "chestopen" ],
-          [ "door open", "door_open" ],
-          [ "door closed", "door_close" ],
-          [ "click", "click" ],
-          [ "trigger", "trigger" ],
-          [ "splash", "splash" ],
-          [ "Water", "water" ],
-          [ "eat", "eat1" ],
-          [ "explode", "explode1" ],
-          [ "leveup", "levelup" ],
-          [ "pop", "pop" ],
-          [ "falldown", "fallbig1" ],
-          [ "fire", "fire" ],
-          [ "bow", "bow" ],
-          [ "breath", "breath" ]
+          [ "击碎", "break" ],
+          [ "ogg文件", "filename.ogg" ],
+          [ "wav文件", "filename.wav" ],
+          [ "mp3文件", "filename.mp3" ],
+          [ "开箱", "chestclosed" ],
+          [ "关箱", "chestopen" ],
+          [ "开门", "door_open" ],
+          [ "关门", "door_close" ],
+          [ "点击", "click" ],
+          [ "激活", "trigger" ],
+          [ "溅射", "splash" ],
+          [ "水", "water" ],
+          [ "吃", "eat1" ],
+          [ "爆炸", "explode1" ],
+          [ "升级", "levelup" ],
+          [ "弹出", "pop" ],
+          [ "掉下", "fallbig1" ],
+          [ "火", "fire" ],
+          [ "弓箭", "bow" ],
+          [ "呼吸", "breath" ]
         ]
       }
     ],
-    "message0": "play MP3 music file%1",
+    "message0": "播放MP3音乐%1",
     "canRun": true,
     "colour": "#8f6d40",
     "previousStatement": true,
     "examples": [
       {
-        "desc": "Stop after playing music",
+        "desc": "播放音乐后停止",
         "code": "playSound(\"break\")\nwait(1)\nplaySound(\"click\")\n",
         "canRun": true
       }

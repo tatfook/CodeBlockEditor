@@ -8,25 +8,53 @@ define([
     "js/Mod/CodeBlockEditor/BlocklyLoader",
     "js/Mod/CodeBlockEditor/MonacoLanguage",
     "text!js/Mod/CodeBlockEditor/BlocklySourceTemplate/BlocklyMenu.xml",
+    "text!js/Mod/CodeBlockEditor/BlocklySourceTemplate/BlocklyMenu-zh-cn.xml",
     "text!js/Mod/CodeBlockEditor/BlocklySourceTemplate/BlocklyConfigSource.json",
+    "text!js/Mod/CodeBlockEditor/BlocklySourceTemplate/BlocklyConfigSource-zh-cn.json",
     "text!js/Mod/CodeBlockEditor/BlocklySourceTemplate/BlocklyExecution.js",
     "text!js/Mod/CodeBlockEditor/BlocklySourceTemplate/LanguageKeywords.json",
-], function (app, BlocklyLoader, MonacoLanguage, template_menu_xml, template_config_json, template_execution_str, template_keywords_json) {
+], function (app, BlocklyLoader, MonacoLanguage, template_menu_xml, template_menu_xml_zh_cn, template_config_json, template_config_json_zh_cn, template_execution_str, template_keywords_json) {
     app.registerController('CodeBlockEditorController', ['$scope',
         function ($scope) {
             var debug = getUrlParameter("debug");
+            var lang = getUrlParameter("lang") || "zhCN"; // "en" or "zhCN"
+            
             var menu_parent_id = "blocklyDiv";
             var gWorkSpace;
 
             
-            $scope.onLoad = function (menu_xml, config_json, execution_str, keywords_json) {
+            $scope.onLoad = function (lang, menu_xml, config_json, execution_str, keywords_json) {
+
+                lang = lang || "zhCN";
+
+                var locale;
+                if (lang == "zhCN") {
+                    locale = "zh-cn";
+                } else
+                {
+                    locale = "en"
+                }
+                Blockly.ScratchMsgs.setLocale(locale);
+
                 BlocklyLoader.loadConfig(config_json);
                 BlocklyLoader.loadMenu(menu_parent_id, menu_xml);
                 BlocklyLoader.loadExecution(execution_str);
 
                 gWorkSpace = Blockly.inject(menu_parent_id, {
                     toolbox: document.getElementById('toolbox'),
-                    media: "wp-includes/js/blockly.mini/media/",
+                    media: "wp-includes/js/scratch-blocks/media/",
+                    zoom: {
+                        controls: true,
+                        wheel: true,
+                        startScale: 0.75,
+                        maxScale: 4,
+                        minScale: 0.25,
+                        scaleSpeed: 1.1
+                    },
+                    colours: {
+                        fieldShadow: 'rgba(255, 255, 255, 0.3)',
+                        dragShadowOpacity: 0.6
+                    }
                 });
                 $scope.init_editor(keywords_json);
                 if ($scope.code_editor) {
@@ -93,15 +121,21 @@ define([
             $scope.onMakeEditor = function () {
                 var url = "/ajax/blockeditor?action=makeblocklyeditor";
                 $.get(url, function (data) {
+                    var lang = data.lang;
                     var menu_xml = data.menu_xml;
                     var config_json = data.config_json;
                     var execution_str = data.execution_str;
                     var keywords_json = data.keywords_json;
-                    $scope.onLoad(menu_xml, config_json, execution_str, keywords_json);
+                    
+                    $scope.onLoad(lang, menu_xml, config_json, execution_str, keywords_json);
                 });
             }
-            if(debug == "true"){
-                $scope.onLoad(template_menu_xml, template_config_json, template_execution_str, template_keywords_json);
+            if (debug == "true") {
+                if (lang == "zhCN") {
+                    $scope.onLoad(lang, template_menu_xml_zh_cn, template_config_json_zh_cn, template_execution_str, template_keywords_json);
+                } else {
+                    $scope.onLoad(lang, template_menu_xml, template_config_json, template_execution_str, template_keywords_json);
+                }
             }else{
                 $scope.onMakeEditor();
             }

@@ -6,10 +6,17 @@
   <title>Code Block</title>
   <?npl
 	PAGE_NO_SIDE_BAR = true;
-	wp_enqueue_script("blockly_compressed",		"/wp-includes/js/blockly.mini/blockly_compressed.js");
-	wp_enqueue_script("blocks_compressed",		"/wp-includes/js/blockly.mini/blocks_compressed.js");
-	wp_enqueue_script("lua_compressed",			"/wp-includes/js/blockly.mini/lua_compressed.js");
-	wp_enqueue_script("blockly_en",				"/wp-includes/js/blockly.mini/msg/js/en.js");
+--	wp_enqueue_script("blockly_compressed",		"/wp-includes/js/blockly.mini/blockly_compressed.js");
+--	wp_enqueue_script("blocks_compressed",		"/wp-includes/js/blockly.mini/blocks_compressed.js");
+--	wp_enqueue_script("lua_compressed",			"/wp-includes/js/blockly.mini/lua_compressed.js");
+--	wp_enqueue_script("blockly_en",				"/wp-includes/js/blockly.mini/msg/js/en.js");
+
+
+	wp_enqueue_script("blockly_compressed_vertical",		"/wp-includes/js/scratch-blocks/blockly_compressed_vertical.js");
+	wp_enqueue_script("lua_compressed",			"/wp-includes/js/scratch-blocks/lua_compressed.js");
+	wp_enqueue_script("messages",			"/wp-includes/js/scratch-blocks/msg/messages.js");
+	wp_enqueue_script("scratch_msgs",			"/wp-includes/js/scratch-blocks/msg/scratch_msgs.js");
+
 
 	local state = request:get("state");
 	local code = request:get("code");
@@ -27,14 +34,19 @@
 			wp_send_json({code},true);
 		end)
 		add_action('wp_ajax_makeblocklyeditor', function()
+            NPL.load("(gl)script/apps/Aries/Creator/Game/Common/Translation.lua");
 			NPL.load("(gl)script/apps/Aries/Creator/Game/Code/CodeBlocklySerializer.lua");
+            local Translation = commonlib.gettable("MyCompany.Aries.Game.Common.Translation")
+
+            local lang = Translation.GetCurrentLanguage();
+
 			local CodeBlocklySerializer = commonlib.gettable("MyCompany.Aries.Game.Code.CodeBlocklySerializer");
 			local menu_xml = CodeBlocklySerializer.GetBlocklyMenuXml();
 			local config_json = CodeBlocklySerializer.GetBlocklyConfig();
 			local execution_str = CodeBlocklySerializer.GetBlocklyCode();
 			local keywords_json = CodeBlocklySerializer.GetKeywords();
-
 			wp_send_json({
+                lang = lang,
 				menu_xml = menu_xml,
 				config_json = config_json,
 				execution_str = execution_str,

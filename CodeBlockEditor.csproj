@@ -45,6 +45,7 @@
     <None Include="script\apps\WebServer\admin\wp-includes\js\blockly.mini\media\delete.ogg" />
     <None Include="script\apps\WebServer\admin\wp-includes\js\blockly.mini\media\disconnect.ogg" />
     <None Include="script\apps\WebServer\admin\wp-includes\js\blockly.mini\msg\json\en.json" />
+    <None Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\BlocklySourceTemplate\BlocklyConfigSource-zh-cn.json" />
     <None Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\BlocklySourceTemplate\BlocklyConfigSource.json" />
     <None Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\BlocklySourceTemplate\LanguageKeywords.json" />
     <None Include="script\apps\WebServer\admin\wp-includes\js\monaco-editor-0.10.1\package\CHANGELOG.md" />
@@ -112,6 +113,7 @@
     <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\BlocklyLoader.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\BlocklySourceTemplate\BlocklyExecution.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\angular.config.js" />
+    <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\BlocklySourceTemplate\BlocklyMenu-zh-cn.xml" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\BlocklySourceTemplate\BlocklyMenu.xml" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\CodeBlockEditorController.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\main.js" />

@@ -1,5 +1,5 @@
-<xml id="toolbox" style="display: none">
-  <category name='Motion' id='Motion' colour='#0078d7' secondaryColour='#0078d7' >
+﻿<xml id="toolbox" style="display: none">
+  <category name='运动' id='运动' colour='#0078d7' secondaryColour='#0078d7' >
     <block type='moveForward'></block>
     <block type='turn'></block>
     <block type='turnTo'></block>
@@ -18,7 +18,7 @@
     <block type='setPos'></block>
     <block type='getFacing'></block>
   </category>
-  <category name='Looks' id='Looks' colour='#7abb55' secondaryColour='#7abb55' >
+  <category name='外观' id='外观' colour='#7abb55' secondaryColour='#7abb55' >
     <block type='sayAndWait'></block>
     <block type='say'></block>
     <block type='tip'></block>
@@ -36,7 +36,7 @@
     <block type='getScale'></block>
     <block type='getPlayTime'></block>
   </category>
-  <category name='Events' id='Events' colour='#764bcc' secondaryColour='#764bcc' >
+  <category name='事件' id='事件' colour='#764bcc' secondaryColour='#764bcc' >
     <block type='registerClickEvent'></block>
     <block type='registerKeyPressedEvent'></block>
     <block type='registerAnimationEvent'></block>
@@ -45,7 +45,7 @@
     <block type='broadcastAndWait'></block>
     <block type='cmd'></block>
   </category>
-  <category name='Control' id='Control' colour='#d83b01' secondaryColour='#d83b01' >
+  <category name='控制' id='控制' colour='#d83b01' secondaryColour='#d83b01' >
     <block type='wait'></block>
     <block type='repeat'></block>
     <block type='repeat_until'></block>
@@ -59,12 +59,12 @@
     <block type='restart'></block>
     <block type='becomeAgent'></block>
   </category>
-  <category name='Sound' id='Sound' colour='#8f6d40' secondaryColour='#8f6d40' >
+  <category name='声音' id='声音' colour='#8f6d40' secondaryColour='#8f6d40' >
     <block type='playNote'></block>
     <block type='playMusic'></block>
     <block type='playSound'></block>
   </category>
-  <category name='Sensing' id='Sensing' colour='#69b090' secondaryColour='#69b090' >
+  <category name='感知' id='感知' colour='#69b090' secondaryColour='#69b090' >
     <block type='isTouching'></block>
     <block type='setName'></block>
     <block type='setPhysicsRaidus'></block>
@@ -84,7 +84,7 @@
     <block type='mode'></block>
     <block type='modeEdit'></block>
   </category>
-  <category name='Math' id='Math' colour='#569138' secondaryColour='#569138' >
+  <category name='运算' id='运算' colour='#569138' secondaryColour='#569138' >
     <block type='getString'></block>
     <block type='getBoolean'></block>
     <block type='getNumber'></block>
@@ -100,7 +100,7 @@
     <block type='round'></block>
     <block type='math.sqrt'></block>
   </category>
-  <category name='Data' id='Data' colour='#459197' secondaryColour='#459197' >
+  <category name='数据' id='数据' colour='#459197' secondaryColour='#459197' >
     <block type='setLocalVariable'></block>
     <block type='getLocalVariable'></block>
     <block type='set'></block>

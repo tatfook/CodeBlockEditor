@@ -18,40 +18,53 @@ define([
     var BlocklyLoader = {};
     BlocklyLoader.paracraft_config_map = {};
 
+    // assumed one block has 10 args in maximal
+    BlocklyLoader.fix_format_args = function (item) {
+        if (!item) {
+            return;
+        }
+        var len = 10;
+        for (var i = 0; i < len; i++) {
+            var input_arg = item["arg" + i];
+            if (input_arg) {
+                for (var k = 0; k < input_arg.length; k++) {
+                    var arg_item = input_arg[k];
+                    if (arg_item.type == "field_number") {
+                        arg_item.value = arg_item.text;
+                        arg_item.text = null;
+                    }
+                }
+
+                // changed arg0 -- > args0
+                item["args" + i] = input_arg;
+            }
+        }
+        return item;
+    }
     BlocklyLoader.fix_format = function(item) {
         if (!item) {
             return
         }
-        var arg0 = item.arg0;
-        if (arg0) {
-            var len = arg0.length;
-            for (var i = 0; i < len; i++) {
-                var arg_item = arg0[i];
-                if (arg_item.type == "field_number") {
-                    arg_item.value = arg_item.text;
-                    arg_item.text = null;
-                }
-            }
 
-            item.args0 = arg0;
+        item = BlocklyLoader.fix_format_args(item);
 
-            if (item.previousStatement == true) {
-                item.previousStatement = null;
-            }
-            if (item.nextStatement == true) {
-                item.nextStatement = null;
-            }
-            
-            if (item.output) {
-                var old_output = item.output;
-                if (old_output.type == "null") {
-                    item.output = null;
-                } else {
-                    item.output = old_output.type;
-                }
-
-            }
+        if (item.previousStatement == true) {
+            item.previousStatement = null;
         }
+        if (item.nextStatement == true) {
+            item.nextStatement = null;
+        }
+
+        if (item.output) {
+            var old_output = item.output;
+            if (old_output.type == "null") {
+                item.output = null;
+            } else {
+                item.output = old_output.type;
+            }
+
+        }
+
         return item;
     }
 
