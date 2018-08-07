@@ -37,11 +37,10 @@ define([
                 Blockly.ScratchMsgs.setLocale(locale);
 
                 BlocklyLoader.loadConfig(config_json);
-                BlocklyLoader.loadMenu(menu_parent_id, menu_xml);
                 BlocklyLoader.loadExecution(execution_str);
 
                 gWorkSpace = Blockly.inject(menu_parent_id, {
-                    toolbox: document.getElementById('toolbox'),
+                    toolbox: menu_xml,
                     media: "wp-includes/js/scratch-blocks/media/",
                     zoom: {
                         controls: true,
@@ -60,6 +59,7 @@ define([
                 if ($scope.code_editor) {
                     $scope.code_editor.layout();
                 }
+
             }
             $scope.init_editor = function (keywords_json) {
                 if ($scope.code_editor) {
@@ -130,15 +130,19 @@ define([
                     $scope.onLoad(lang, menu_xml, config_json, execution_str, keywords_json);
                 });
             }
-            if (debug == "true") {
-                if (lang == "zhCN") {
-                    $scope.onLoad(lang, template_menu_xml_zh_cn, template_config_json_zh_cn, template_execution_str, template_keywords_json);
+
+            $scope.$watch('$viewContentLoaded', function () {
+                if (debug == "true") {
+                    if (lang == "zhCN") {
+                        $scope.onLoad(lang, template_menu_xml_zh_cn, template_config_json_zh_cn, template_execution_str, template_keywords_json);
+                    } else {
+                        $scope.onLoad(lang, template_menu_xml, template_config_json, template_execution_str, template_keywords_json);
+                    }
                 } else {
-                    $scope.onLoad(lang, template_menu_xml, template_config_json, template_execution_str, template_keywords_json);
+                    $scope.onMakeEditor();
                 }
-            }else{
-                $scope.onMakeEditor();
-            }
+            })
+            
 
         }]);
 

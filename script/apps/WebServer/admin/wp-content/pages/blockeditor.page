@@ -67,7 +67,7 @@
 			<button ng-click="onRun('replace')" style="margin-left:5px;">替换</button>
 			<button ng-click="onRun('showcode')" style="margin-left:5px;">编译</button>
 		</div>  
-		<div id="blocklyDiv" style="margin-top:5px;height: 480px; width: 1024px;"></div>
+		<div id="blocklyDiv" style="margin-top:5px;height: 600px; width: 1024px;"></div>
 		<div id="editor" style="height:200px; width:1024px;"></div>
 	</div>
 </body>

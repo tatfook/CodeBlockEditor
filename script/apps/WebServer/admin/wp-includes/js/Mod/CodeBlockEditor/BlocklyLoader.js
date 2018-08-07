@@ -95,15 +95,6 @@ define([
             eval(execution_str);
         }
     }
-    BlocklyLoader.loadMenu = function (menu_parent_id, menu_xml) {
-        if (!menu_parent_id) {
-            return;
-        }
-        var dom = document.getElementById(menu_parent_id);
-        if (dom) {
-            dom.innerHTML = menu_xml;
-        }
-    }
     return BlocklyLoader;
 })
 
