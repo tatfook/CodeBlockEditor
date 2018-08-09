@@ -50,6 +50,13 @@ define([
                         minScale: 0.25,
                         scaleSpeed: 1.1
                     },
+                    trashcan: true,
+                    grid:{
+                            spacing: 20,
+                            length: 3,
+                            colour: '#ccc',
+                            snap: true
+                    },
                     colours: {
                         fieldShadow: 'rgba(255, 255, 255, 0.3)',
                         dragShadowOpacity: 0.6
