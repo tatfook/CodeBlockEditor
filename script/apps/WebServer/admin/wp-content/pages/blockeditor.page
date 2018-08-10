@@ -5,16 +5,15 @@
   <title>Code Block</title>
   <?npl
 	PAGE_NO_SIDE_BAR = true;
---	wp_enqueue_script("blockly_compressed",		"/wp-includes/js/blockly.mini/blockly_compressed.js");
---	wp_enqueue_script("blocks_compressed",		"/wp-includes/js/blockly.mini/blocks_compressed.js");
---	wp_enqueue_script("lua_compressed",			"/wp-includes/js/blockly.mini/lua_compressed.js");
---	wp_enqueue_script("blockly_en",				"/wp-includes/js/blockly.mini/msg/js/en.js");
-
 
 	wp_enqueue_script("blockly_compressed_vertical",		"/wp-includes/js/scratch-blocks/blockly_compressed_vertical.js");
 	wp_enqueue_script("lua_compressed",			"/wp-includes/js/scratch-blocks/lua_compressed.js");
 	wp_enqueue_script("messages",			"/wp-includes/js/scratch-blocks/msg/messages.js");
 	wp_enqueue_script("scratch_msgs",			"/wp-includes/js/scratch-blocks/msg/scratch_msgs.js");
+	wp_enqueue_script("blocks_common_colour",			"/wp-includes/js/scratch-blocks/blocks_common/colour.js");
+	wp_enqueue_script("blocks_common_math",			"/wp-includes/js/scratch-blocks/blocks_common/math.js");
+	wp_enqueue_script("blocks_common_matrix",			"/wp-includes/js/scratch-blocks/blocks_common/matrix.js");
+	wp_enqueue_script("blocks_common_text",			"/wp-includes/js/scratch-blocks/blocks_common/text.js");
 
 
 	local state = request:get("state");

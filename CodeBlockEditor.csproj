@@ -208,6 +208,10 @@
     <Content Include="script\apps\WebServer\admin\wp-includes\js\monaco-editor-0.10.1\package\min\vs\loader.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\monaco-editor-0.10.1\package\ThirdPartyNotices.txt" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\blockly_compressed_vertical.js" />
+    <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\blocks_common\colour.js" />
+    <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\blocks_common\math.js" />
+    <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\blocks_common\matrix.js" />
+    <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\blocks_common\text.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\lua_compressed.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\media\1x1.gif" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\media\click.mp3" />

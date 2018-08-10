@@ -1,53 +1,276 @@
 ﻿<xml id="toolbox" style="display: none">
   <category name='运动' id='运动' colour='#0078d7' secondaryColour='#0078d7' >
-    <block type='moveForward'></block>
-    <block type='turn'></block>
-    <block type='turnTo'></block>
+    <block type='moveForward'>
+      <value name='dist'>
+        <shadow type='math_number'>
+          <field name='NUM'>1</field>
+        </shadow>
+      </value>
+      <value name='duration'>
+        <shadow type='math_number'>
+          <field name='NUM'>0.5</field>
+        </shadow>
+      </value>
+    </block>
+    <block type='turn'>
+      <value name='degree'>
+        <shadow type='math_number'>
+          <field name='NUM'>15</field>
+        </shadow>
+      </value>
+    </block>
+    <block type='turnTo'>
+      <value name='degree'>
+        <shadow type='math_number'>
+          <field name='NUM'>90</field>
+        </shadow>
+      </value>
+    </block>
     <block type='turnToTarget'></block>
-    <block type='move'></block>
-    <block type='moveTo'></block>
+    <block type='move'>
+      <value name='x'>
+        <shadow type='math_number'>
+          <field name='NUM'>1</field>
+        </shadow>
+      </value>
+      <value name='y'>
+        <shadow type='math_number'>
+          <field name='NUM'>0</field>
+        </shadow>
+      </value>
+      <value name='z'>
+        <shadow type='math_number'>
+          <field name='NUM'>0</field>
+        </shadow>
+      </value>
+      <value name='duration'>
+        <shadow type='math_number'>
+          <field name='NUM'>0.5</field>
+        </shadow>
+      </value>
+    </block>
+    <block type='moveTo'>
+      <value name='x'>
+        <shadow type='math_number'>
+          <field name='NUM'>0</field>
+        </shadow>
+      </value>
+      <value name='y'>
+        <shadow type='math_number'>
+          <field name='NUM'>0</field>
+        </shadow>
+      </value>
+      <value name='z'>
+        <shadow type='math_number'>
+          <field name='NUM'>0</field>
+        </shadow>
+      </value>
+    </block>
     <block type='moveToTarget'></block>
-    <block type='walk'></block>
-    <block type='walkForward'></block>
-    <block type='velocity'></block>
+    <block type='walk'>
+      <value name='x'>
+        <shadow type='math_number'>
+          <field name='NUM'>1</field>
+        </shadow>
+      </value>
+      <value name='y'>
+        <shadow type='math_number'>
+          <field name='NUM'>0</field>
+        </shadow>
+      </value>
+      <value name='z'>
+        <shadow type='math_number'>
+          <field name='NUM'>0</field>
+        </shadow>
+      </value>
+      <value name='duration'>
+        <shadow type='math_number'>
+          <field name='NUM'>0.5</field>
+        </shadow>
+      </value>
+    </block>
+    <block type='walkForward'>
+      <value name='dist'>
+        <shadow type='math_number'>
+          <field name='NUM'>1</field>
+        </shadow>
+      </value>
+      <value name='duration'>
+        <shadow type='math_number'>
+          <field name='NUM'>0.5</field>
+        </shadow>
+      </value>
+    </block>
+    <block type='velocity'>
+      <value name='cmd_text'>
+        <shadow type='text'>
+          <field name='TEXT'>~ 5 ~</field>
+        </shadow>
+      </value>
+    </block>
     <block type='bounce'></block>
     <block type='getX'></block>
     <block type='getY'></block>
     <block type='getZ'></block>
     <block type='getPos'></block>
-    <block type='setPos'></block>
+    <block type='setPos'>
+      <value name='x'>
+        <shadow type='math_number'>
+          <field name='NUM'>0</field>
+        </shadow>
+      </value>
+      <value name='y'>
+        <shadow type='math_number'>
+          <field name='NUM'>0</field>
+        </shadow>
+      </value>
+      <value name='z'>
+        <shadow type='math_number'>
+          <field name='NUM'>0</field>
+        </shadow>
+      </value>
+    </block>
     <block type='getFacing'></block>
   </category>
   <category name='外观' id='外观' colour='#7abb55' secondaryColour='#7abb55' >
-    <block type='sayAndWait'></block>
-    <block type='say'></block>
-    <block type='tip'></block>
+    <block type='sayAndWait'>
+      <value name='text'>
+        <shadow type='text'>
+          <field name='TEXT'>hello!</field>
+        </shadow>
+      </value>
+      <value name='duration'>
+        <shadow type='math_number'>
+          <field name='NUM'>2</field>
+        </shadow>
+      </value>
+    </block>
+    <block type='say'>
+      <value name='text'>
+        <shadow type='text'>
+          <field name='TEXT'>hello!</field>
+        </shadow>
+      </value>
+    </block>
+    <block type='tip'>
+      <value name='text'>
+        <shadow type='text'>
+          <field name='TEXT'>Start Game!</field>
+        </shadow>
+      </value>
+    </block>
     <block type='show'></block>
     <block type='hide'></block>
-    <block type='anim'></block>
-    <block type='play'></block>
-    <block type='playLoop'></block>
-    <block type='playSpeed'></block>
+    <block type='anim'>
+      <value name='animId'>
+        <shadow type='math_number'>
+          <field name='NUM'>4</field>
+        </shadow>
+      </value>
+    </block>
+    <block type='play'>
+      <value name='timeFrom'>
+        <shadow type='math_number'>
+          <field name='NUM'>10</field>
+        </shadow>
+      </value>
+      <value name='timeTo'>
+        <shadow type='math_number'>
+          <field name='NUM'>1000</field>
+        </shadow>
+      </value>
+    </block>
+    <block type='playLoop'>
+      <value name='timeFrom'>
+        <shadow type='math_number'>
+          <field name='NUM'>10</field>
+        </shadow>
+      </value>
+      <value name='timeTo'>
+        <shadow type='math_number'>
+          <field name='NUM'>1000</field>
+        </shadow>
+      </value>
+    </block>
+    <block type='playSpeed'>
+      <value name='speed'>
+        <shadow type='math_number'>
+          <field name='NUM'>1</field>
+        </shadow>
+      </value>
+    </block>
     <block type='stop'></block>
-    <block type='scale'></block>
-    <block type='scaleTo'></block>
+    <block type='scale'>
+      <value name='scaleDelta'>
+        <shadow type='math_number'>
+          <field name='NUM'>10</field>
+        </shadow>
+      </value>
+    </block>
+    <block type='scaleTo'>
+      <value name='scale'>
+        <shadow type='math_number'>
+          <field name='NUM'>100</field>
+        </shadow>
+      </value>
+    </block>
     <block type='focus'></block>
-    <block type='camera'></block>
+    <block type='camera'>
+      <value name='dist'>
+        <shadow type='math_number'>
+          <field name='NUM'>12</field>
+        </shadow>
+      </value>
+      <value name='pitch'>
+        <shadow type='math_number'>
+          <field name='NUM'>45</field>
+        </shadow>
+      </value>
+      <value name='facing'>
+        <shadow type='math_number'>
+          <field name='NUM'>90</field>
+        </shadow>
+      </value>
+    </block>
     <block type='getScale'></block>
     <block type='getPlayTime'></block>
   </category>
   <category name='事件' id='事件' colour='#764bcc' secondaryColour='#764bcc' >
     <block type='registerClickEvent'></block>
     <block type='registerKeyPressedEvent'></block>
-    <block type='registerAnimationEvent'></block>
+    <block type='registerAnimationEvent'>
+      <value name='time'>
+        <shadow type='math_number'>
+          <field name='NUM'>1000</field>
+        </shadow>
+      </value>
+    </block>
     <block type='registerBroadcastEvent'></block>
     <block type='broadcast'></block>
     <block type='broadcastAndWait'></block>
-    <block type='cmd'></block>
+    <block type='cmd'>
+      <value name='msg'>
+        <shadow type='text'>
+          <field name='TEXT'>/tip hello</field>
+        </shadow>
+      </value>
+    </block>
   </category>
   <category name='控制' id='控制' colour='#d83b01' secondaryColour='#d83b01' >
-    <block type='wait'></block>
-    <block type='repeat'></block>
+    <block type='wait'>
+      <value name='time'>
+        <shadow type='math_number'>
+          <field name='NUM'>1</field>
+        </shadow>
+      </value>
+    </block>
+    <block type='repeat'>
+      <value name='times'>
+        <shadow type='math_number'>
+          <field name='NUM'>10</field>
+        </shadow>
+      </value>
+    </block>
     <block type='repeat_until'></block>
     <block type='forever'></block>
     <block type='control_if'></block>
@@ -60,25 +283,92 @@
     <block type='becomeAgent'></block>
   </category>
   <category name='声音' id='声音' colour='#8f6d40' secondaryColour='#8f6d40' >
-    <block type='playNote'></block>
+    <block type='playNote'>
+      <value name='beat'>
+        <shadow type='math_number'>
+          <field name='NUM'>0.25</field>
+        </shadow>
+      </value>
+    </block>
     <block type='playMusic'></block>
     <block type='playSound'></block>
   </category>
   <category name='感知' id='感知' colour='#69b090' secondaryColour='#69b090' >
     <block type='isTouching'></block>
-    <block type='setName'></block>
-    <block type='setPhysicsRaidus'></block>
-    <block type='setPhysicsHeight'></block>
+    <block type='setName'>
+      <value name='name'>
+        <shadow type='text'>
+          <field name='TEXT'>frog</field>
+        </shadow>
+      </value>
+    </block>
+    <block type='setPhysicsRaidus'>
+      <value name='radius'>
+        <shadow type='math_number'>
+          <field name='NUM'>0.25</field>
+        </shadow>
+      </value>
+    </block>
+    <block type='setPhysicsHeight'>
+      <value name='height'>
+        <shadow type='math_number'>
+          <field name='NUM'>1</field>
+        </shadow>
+      </value>
+    </block>
     <block type='registerCollisionEvent'></block>
     <block type='broadcastCollision'></block>
     <block type='distanceTo'></block>
-    <block type='askAndWait'></block>
+    <block type='askAndWait'>
+      <value name='input'>
+        <shadow type='text'>
+          <field name='TEXT'>你叫什么名字?</field>
+        </shadow>
+      </value>
+    </block>
     <block type='answer'></block>
     <block type='isKeyPressed'></block>
     <block type='isMouseDown'></block>
     <block type='mousePickBlock'></block>
-    <block type='getBlock'></block>
-    <block type='setBlock'></block>
+    <block type='getBlock'>
+      <value name='x'>
+        <shadow type='math_number'>
+          <field name='NUM'>0</field>
+        </shadow>
+      </value>
+      <value name='y'>
+        <shadow type='math_number'>
+          <field name='NUM'>0</field>
+        </shadow>
+      </value>
+      <value name='z'>
+        <shadow type='math_number'>
+          <field name='NUM'>0</field>
+        </shadow>
+      </value>
+    </block>
+    <block type='setBlock'>
+      <value name='x'>
+        <shadow type='math_number'>
+          <field name='NUM'>0</field>
+        </shadow>
+      </value>
+      <value name='y'>
+        <shadow type='math_number'>
+          <field name='NUM'>0</field>
+        </shadow>
+      </value>
+      <value name='z'>
+        <shadow type='math_number'>
+          <field name='NUM'>0</field>
+        </shadow>
+      </value>
+      <value name='blockId'>
+        <shadow type='math_number'>
+          <field name='NUM'>62</field>
+        </shadow>
+      </value>
+    </block>
     <block type='timer'></block>
     <block type='resetTimer'></block>
     <block type='mode'></block>
@@ -88,17 +378,79 @@
     <block type='getString'></block>
     <block type='getBoolean'></block>
     <block type='getNumber'></block>
-    <block type='addition'></block>
-    <block type='random'></block>
+    <block type='addition'>
+      <value name='left'>
+        <shadow type='math_number'>
+          <field name='NUM'></field>
+        </shadow>
+      </value>
+      <value name='right'>
+        <shadow type='math_number'>
+          <field name='NUM'></field>
+        </shadow>
+      </value>
+    </block>
+    <block type='random'>
+      <value name='from'>
+        <shadow type='math_number'>
+          <field name='NUM'>1</field>
+        </shadow>
+      </value>
+      <value name='to'>
+        <shadow type='math_number'>
+          <field name='NUM'>10</field>
+        </shadow>
+      </value>
+    </block>
     <block type='equal'></block>
     <block type='and'></block>
     <block type='or'></block>
     <block type='not'></block>
-    <block type='join'></block>
-    <block type='lengthOf'></block>
-    <block type='mod'></block>
-    <block type='round'></block>
-    <block type='math.sqrt'></block>
+    <block type='join'>
+      <value name='left'>
+        <shadow type='text'>
+          <field name='TEXT'>hello</field>
+        </shadow>
+      </value>
+      <value name='right'>
+        <shadow type='text'>
+          <field name='TEXT'>world</field>
+        </shadow>
+      </value>
+    </block>
+    <block type='lengthOf'>
+      <value name='left'>
+        <shadow type='text'>
+          <field name='TEXT'>hello</field>
+        </shadow>
+      </value>
+    </block>
+    <block type='mod'>
+      <value name='left'>
+        <shadow type='math_number'>
+          <field name='NUM'>66</field>
+        </shadow>
+      </value>
+      <value name='right'>
+        <shadow type='math_number'>
+          <field name='NUM'>10</field>
+        </shadow>
+      </value>
+    </block>
+    <block type='round'>
+      <value name='left'>
+        <shadow type='math_number'>
+          <field name='NUM'>5.5</field>
+        </shadow>
+      </value>
+    </block>
+    <block type='math.sqrt'>
+      <value name='left'>
+        <shadow type='math_number'>
+          <field name='NUM'>9</field>
+        </shadow>
+      </value>
+    </block>
   </category>
   <category name='数据' id='数据' colour='#459197' secondaryColour='#459197' >
     <block type='setLocalVariable'></block>
@@ -109,9 +461,27 @@
     <block type='registerCloneEvent'></block>
     <block type='clone'></block>
     <block type='delete'></block>
-    <block type='setActorValue'></block>
+    <block type='setActorValue'>
+      <value name='value'>
+        <shadow type='text'>
+          <field name='TEXT'>actor1</field>
+        </shadow>
+      </value>
+    </block>
     <block type='getActorValue'></block>
-    <block type='log'></block>
-    <block type='echo'></block>
+    <block type='log'>
+      <value name='obj'>
+        <shadow type='text'>
+          <field name='TEXT'>hello</field>
+        </shadow>
+      </value>
+    </block>
+    <block type='echo'>
+      <value name='obj'>
+        <shadow type='text'>
+          <field name='TEXT'>hello</field>
+        </shadow>
+      </value>
+    </block>
   </category>
 </xml>

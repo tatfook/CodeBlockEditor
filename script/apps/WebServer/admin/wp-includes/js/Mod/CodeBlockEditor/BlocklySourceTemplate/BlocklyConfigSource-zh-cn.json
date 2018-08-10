@@ -2,7 +2,11 @@
   {
     "arg0": [
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 1
+        },
         "name": "time",
         "text": 1
       }
@@ -51,7 +55,11 @@
     ],
     "arg0": [
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 10
+        },
         "name": "times",
         "text": 10
       }
@@ -62,35 +70,36 @@
     "helpUrl": ""
   },
   {
-    "func_description": "while(true)do\\n    if(%s)then\\n        return\\n    end\\n%send",
-    "message0": "重复一直到%1",
-    "canRun": false,
+    "arg2": [
+      {
+        "name": "expression",
+        "type": "input_value"
+      }
+    ],
+    "func_description": "repeat\\n%suntil(%s)",
+    "message0": "重复执行",
+    "helpUrl": "",
     "colour": "#d83b01",
+    "category": "Control",
+    "message2": "一直到%1",
+    "previousStatement": true,
+    "examples": [
+      {
+        "desc": "",
+        "code": "repeat\n    moveForward(0.01)\nuntil(false)\n",
+        "canRun": true
+      }
+    ],
     "arg1": [
       {
         "name": "input",
         "type": "input_statement"
       }
     ],
-    "category": "Control",
-    "previousStatement": true,
-    "examples": [
-      {
-        "desc": "",
-        "code": "while(true)do\n    if(condition)then\n        return;\n    end\n    moveForward(0.01)\nend\n",
-        "canRun": true
-      }
-    ],
-    "arg0": [
-      {
-        "name": "expression",
-        "type": "input_value"
-      }
-    ],
     "nextStatement": true,
     "type": "repeat_until",
     "message1": "%1",
-    "helpUrl": ""
+    "canRun": false
   },
   {
     "func_description": "while(true) do\\n%send",
@@ -350,7 +359,9 @@
   {
     "arg0": [
       {
-        "type": "field_input",
+        "variableTypes": [ "actorNames" ],
+        "variable": "@p",
+        "type": "field_variable",
         "name": "name",
         "text": "@p"
       }
@@ -541,7 +552,9 @@
   {
     "arg0": [
       {
-        "type": "field_dropdown",
+        "variableTypes": [ "actorNames" ],
+        "variable": "myself",
+        "type": "field_variable",
         "name": "input",
         "options": [
           [ "此角色", "myself" ],
@@ -602,7 +615,11 @@
         ]
       },
       {
-        "type": "field_input",
+        "type": "input_value",
+        "shadow": {
+          "type": "text",
+          "value": "actor1"
+        },
         "name": "value",
         "text": "actor1"
       }
@@ -610,7 +627,7 @@
     "message0": "设置角色的%1为%2",
     "canRun": false,
     "colour": "#459197",
-    "func_description": "setActorValue(\"%s\", \"%s\")",
+    "func_description": "setActorValue(\"%s\", %s)",
     "previousStatement": true,
     "examples": [
       {
@@ -659,7 +676,11 @@
   {
     "arg0": [
       {
-        "type": "field_input",
+        "type": "input_value",
+        "shadow": {
+          "type": "text",
+          "value": "hello"
+        },
         "name": "obj",
         "text": "hello"
       }
@@ -679,12 +700,16 @@
     "nextStatement": true,
     "type": "log",
     "category": "Data",
-    "func_description": "log(\"%s\")"
+    "func_description": "log(%s)"
   },
   {
     "arg0": [
       {
-        "type": "field_input",
+        "type": "input_value",
+        "shadow": {
+          "type": "text",
+          "value": "hello"
+        },
         "name": "obj",
         "text": "hello"
       }
@@ -704,7 +729,7 @@
     "nextStatement": true,
     "type": "echo",
     "category": "Data",
-    "func_description": "echo(\"%s\")"
+    "func_description": "echo(%s)"
   },
   {
     "func_description": "registerClickEvent(function()\\n%send)",
@@ -861,7 +886,11 @@
     ],
     "arg0": [
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 1000
+        },
         "name": "time",
         "text": 1000
       }
@@ -963,7 +992,11 @@
   {
     "arg0": [
       {
-        "type": "field_input",
+        "type": "input_value",
+        "shadow": {
+          "type": "text",
+          "value": "/tip hello"
+        },
         "name": "msg",
         "text": "/tip hello"
       }
@@ -971,7 +1004,7 @@
     "message0": "执行命令%1",
     "canRun": false,
     "colour": "#764bcc",
-    "func_description": "cmd(\"%s\")",
+    "func_description": "cmd(%s)",
     "previousStatement": true,
     "examples": [
       {
@@ -989,12 +1022,20 @@
   {
     "arg0": [
       {
-        "type": "field_input",
+        "type": "input_value",
+        "shadow": {
+          "type": "text",
+          "value": "hello!"
+        },
         "name": "text",
         "text": "hello!"
       },
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 2
+        },
         "name": "duration",
         "text": 2
       }
@@ -1014,12 +1055,16 @@
     "nextStatement": true,
     "type": "sayAndWait",
     "category": "Looks",
-    "func_description": "say(\"%s\", %s)"
+    "func_description": "say(%s, %s)"
   },
   {
     "arg0": [
       {
-        "type": "field_input",
+        "type": "input_value",
+        "shadow": {
+          "type": "text",
+          "value": "hello!"
+        },
         "name": "text",
         "text": "hello!"
       }
@@ -1039,12 +1084,16 @@
     "nextStatement": true,
     "type": "say",
     "category": "Looks",
-    "func_description": "say(\"%s\")"
+    "func_description": "say(%s)"
   },
   {
     "arg0": [
       {
-        "type": "field_input",
+        "type": "input_value",
+        "shadow": {
+          "type": "text",
+          "value": "Start Game!"
+        },
         "name": "text",
         "text": "Start Game!"
       }
@@ -1064,7 +1113,7 @@
     "nextStatement": true,
     "type": "tip",
     "category": "Looks",
-    "func_description": "tip(\"%s\")"
+    "func_description": "tip(%s)"
   },
   {
     "func_description": "show()",
@@ -1093,7 +1142,11 @@
   {
     "arg0": [
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 4
+        },
         "name": "animId",
         "text": 4
       }
@@ -1123,12 +1176,20 @@
   {
     "arg0": [
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 10
+        },
         "name": "timeFrom",
         "text": 10
       },
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 1000
+        },
         "name": "timeTo",
         "text": 1000
       }
@@ -1153,12 +1214,20 @@
   {
     "arg0": [
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 10
+        },
         "name": "timeFrom",
         "text": 10
       },
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 1000
+        },
         "name": "timeTo",
         "text": 1000
       }
@@ -1183,7 +1252,11 @@
   {
     "arg0": [
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 1
+        },
         "name": "speed",
         "text": 1
       }
@@ -1227,7 +1300,11 @@
   {
     "arg0": [
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 10
+        },
         "name": "scaleDelta",
         "text": 10
       }
@@ -1252,7 +1329,11 @@
   {
     "arg0": [
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 100
+        },
         "name": "scale",
         "text": 100
       }
@@ -1307,17 +1388,29 @@
   {
     "arg0": [
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 12
+        },
         "name": "dist",
         "text": 12
       },
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 45
+        },
         "name": "pitch",
         "text": 45
       },
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 90
+        },
         "name": "facing",
         "text": 90
       }
@@ -1379,12 +1472,20 @@
   {
     "arg0": [
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 1
+        },
         "name": "dist",
         "text": 1
       },
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 0.5
+        },
         "name": "duration",
         "text": 0.5
       }
@@ -1409,7 +1510,11 @@
   {
     "arg0": [
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 15
+        },
         "name": "degree",
         "text": 15
       }
@@ -1434,7 +1539,11 @@
   {
     "arg0": [
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 90
+        },
         "name": "degree",
         "text": 90
       }
@@ -1488,22 +1597,38 @@
   {
     "arg0": [
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 1
+        },
         "name": "x",
         "text": 1
       },
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 0
+        },
         "name": "y",
         "text": 0
       },
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 0
+        },
         "name": "z",
         "text": 0
       },
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 0.5
+        },
         "name": "duration",
         "text": 0.5
       }
@@ -1528,15 +1653,27 @@
   {
     "arg0": [
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 0
+        },
         "name": "x"
       },
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 0
+        },
         "name": "y"
       },
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 0
+        },
         "name": "z"
       }
     ],
@@ -1590,22 +1727,38 @@
   {
     "arg0": [
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 1
+        },
         "name": "x",
         "text": 1
       },
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 0
+        },
         "name": "y",
         "text": 0
       },
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 0
+        },
         "name": "z",
         "text": 0
       },
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 0.5
+        },
         "name": "duration",
         "text": 0.5
       }
@@ -1630,12 +1783,20 @@
   {
     "arg0": [
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 1
+        },
         "name": "dist",
         "text": 1
       },
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 0.5
+        },
         "name": "duration",
         "text": 0.5
       }
@@ -1660,7 +1821,11 @@
   {
     "arg0": [
       {
-        "type": "field_input",
+        "type": "input_value",
+        "shadow": {
+          "type": "text",
+          "value": "~ 5 ~"
+        },
         "name": "cmd_text",
         "text": "~ 5 ~"
       }
@@ -1680,7 +1845,7 @@
     "nextStatement": true,
     "type": "velocity",
     "category": "Motion",
-    "func_description": "velocity(\"%s\")"
+    "func_description": "velocity(%s)"
   },
   {
     "arg0": [],
@@ -1776,15 +1941,27 @@
   {
     "arg0": [
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 0
+        },
         "name": "x"
       },
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 0
+        },
         "name": "y"
       },
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 0
+        },
         "name": "z"
       }
     ],
@@ -1916,16 +2093,18 @@
     "helpUrl": "",
     "arg0": [
       {
+        "type": "input_value",
         "name": "left",
-        "type": "input_value"
+        "shadow": { "type": "math_number" }
       },
       {
         "name": "dummy",
         "type": "input_dummy"
       },
       {
+        "type": "input_value",
         "name": "right",
-        "type": "input_value"
+        "shadow": { "type": "math_number" }
       }
     ]
   },
@@ -1947,12 +2126,20 @@
     "helpUrl": "",
     "arg0": [
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 1
+        },
         "name": "from",
         "text": "1"
       },
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 10
+        },
         "name": "to",
         "text": "10"
       }
@@ -2079,7 +2266,7 @@
     ]
   },
   {
-    "func_description": "(\"%s\"..\"%s\")",
+    "func_description": "(%s..%s)",
     "message0": "连接字符串%1和%2",
     "category": "Operators",
     "output": { "type": "field_number" },
@@ -2096,19 +2283,27 @@
     "helpUrl": "",
     "arg0": [
       {
-        "type": "field_input",
+        "type": "input_value",
+        "shadow": {
+          "type": "text",
+          "value": "hello"
+        },
         "name": "left",
         "text": "hello"
       },
       {
-        "type": "field_input",
+        "type": "input_value",
+        "shadow": {
+          "type": "text",
+          "value": "world"
+        },
         "name": "right",
         "text": "world"
       }
     ]
   },
   {
-    "func_description": "(#\"%s\")",
+    "func_description": "(#%s)",
     "message0": "字符串%1的长度",
     "category": "Operators",
     "output": { "type": "field_number" },
@@ -2125,7 +2320,11 @@
     "helpUrl": "",
     "arg0": [
       {
-        "type": "field_input",
+        "type": "input_value",
+        "shadow": {
+          "type": "text",
+          "value": "hello"
+        },
         "name": "left",
         "text": "hello"
       }
@@ -2149,12 +2348,20 @@
     "helpUrl": "",
     "arg0": [
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 66
+        },
         "name": "left",
         "text": "66"
       },
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 10
+        },
         "name": "right",
         "text": "10"
       }
@@ -2178,7 +2385,11 @@
     "helpUrl": "",
     "arg0": [
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 5.5
+        },
         "name": "left",
         "text": 5.5
       }
@@ -2221,7 +2432,11 @@
         ]
       },
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 9
+        },
         "name": "left",
         "text": 9
       }
@@ -2259,7 +2474,11 @@
   {
     "arg0": [
       {
-        "type": "field_input",
+        "type": "input_value",
+        "shadow": {
+          "type": "text",
+          "value": "frog"
+        },
         "name": "name",
         "text": "frog"
       }
@@ -2279,12 +2498,16 @@
     "nextStatement": true,
     "type": "setName",
     "category": "Sensing",
-    "func_description": "setActorValue(\"name\", \"%s\")"
+    "func_description": "setActorValue(\"name\", %s)"
   },
   {
     "arg0": [
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 0.25
+        },
         "name": "radius",
         "text": 0.25
       }
@@ -2309,7 +2532,11 @@
   {
     "arg0": [
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 1
+        },
         "name": "height",
         "text": 1
       }
@@ -2414,7 +2641,11 @@
   {
     "arg0": [
       {
-        "type": "field_input",
+        "type": "input_value",
+        "shadow": {
+          "type": "text",
+          "value": "你叫什么名字?"
+        },
         "name": "input",
         "text": "你叫什么名字?"
       }
@@ -2621,15 +2852,27 @@
     "helpUrl": "",
     "arg0": [
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 0
+        },
         "name": "x"
       },
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 0
+        },
         "name": "y"
       },
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 0
+        },
         "name": "z"
       }
     ]
@@ -2637,19 +2880,35 @@
   {
     "arg0": [
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 0
+        },
         "name": "x"
       },
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 0
+        },
         "name": "y"
       },
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 0
+        },
         "name": "z"
       },
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 62
+        },
         "name": "blockId",
         "text": "62"
       }
@@ -2748,7 +3007,11 @@
         ]
       },
       {
-        "type": "field_number",
+        "type": "input_value",
+        "shadow": {
+          "type": "math_number",
+          "value": 0.25
+        },
         "name": "beat",
         "text": 0.25
       }
