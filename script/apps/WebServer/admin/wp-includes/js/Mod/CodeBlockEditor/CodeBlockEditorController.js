@@ -4,6 +4,7 @@ Date: 2017/10/23
 */
 
 define([
+    "LuaAstParser",
     "js/Mod/CodeBlockEditor/angular.config",
     "js/Mod/CodeBlockEditor/BlocklyLoader",
     "js/Mod/CodeBlockEditor/MonacoLanguage",
@@ -13,7 +14,7 @@ define([
     "text!js/Mod/CodeBlockEditor/BlocklySourceTemplate/BlocklyConfigSource-zh-cn.json",
     "text!js/Mod/CodeBlockEditor/BlocklySourceTemplate/BlocklyExecution.js",
     "text!js/Mod/CodeBlockEditor/BlocklySourceTemplate/LanguageKeywords.json",
-], function (app, BlocklyLoader, MonacoLanguage, template_menu_xml, template_menu_xml_zh_cn, template_config_json, template_config_json_zh_cn, template_execution_str, template_keywords_json) {
+], function (LuaAstParser, app, BlocklyLoader, MonacoLanguage, template_menu_xml, template_menu_xml_zh_cn, template_config_json, template_config_json_zh_cn, template_execution_str, template_keywords_json) {
     app.registerController('CodeBlockEditorController', ['$scope',
         function ($scope) {
             var debug = getUrlParameter("debug");
@@ -62,6 +63,11 @@ define([
                         dragShadowOpacity: 0.6
                     }
                 });
+                gWorkSpace.registerButtonCallback('CREATE_VARIABLE', function (button) {
+                    console.log(Blockly.Variables);
+                    Blockly.Variables.createVariable(button.getTargetWorkspace());
+                });
+                gWorkSpace.toolbox_.refreshSelection();
                 $scope.init_editor(keywords_json);
                 if ($scope.code_editor) {
                     $scope.code_editor.layout();
@@ -107,7 +113,7 @@ define([
                             }
                         ]
                     );
-                    code_editor.updateOptions({ readOnly: true, });
+                    code_editor.updateOptions({ readOnly: false, });
                 }
             }
             $scope.onRun = function(state) {
@@ -137,7 +143,17 @@ define([
                     $scope.onLoad(lang, menu_xml, config_json, execution_str, keywords_json);
                 });
             }
-
+            $scope.onParse = function () {
+                var content = $scope.getEditorValue();
+                var p = new LuaAstParser(content);
+                p.createBlocks();
+            }
+            $scope.onExportXml = function () {
+                var xmlDom = Blockly.Xml.workspaceToDom(gWorkSpace);
+                var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
+                $scope.setEditorValue(xmlText);
+            }
+            
             $scope.$watch('$viewContentLoaded', function () {
                 if (debug == "true") {
                     if (lang == "zhCN") {

@@ -28,6 +28,17 @@ end
 
 function CodeBlockEditor:init()
     LOG.std(nil, "info", "CodeBlockEditor", "plugin initialized");
+    -- add a menu item to NPL code wiki's "Tools:blockeditor"
+	NPL.load("(gl)script/apps/WebServer/WebServer.lua");
+	WebServer:GetFilters():add_filter( 'wp_nav_menu_objects', function(sorted_menu_items)
+		sorted_menu_items[sorted_menu_items:size()+1] = {
+			url="blockeditor",
+			menu_item_parent="Tools",
+			title="Code Block Editor",
+			id="blockeditor",
+		};
+		return sorted_menu_items;
+	end);
 end
 
 function CodeBlockEditor:OnLogin()

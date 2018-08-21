@@ -35,6 +35,8 @@
             "domReady": "wp-includes/js/requirejs/domReady",
             "text": "wp-includes/js/requirejs/text",
             "vs": "wp-includes/js/monaco-editor-0.10.1/package/min/vs",
+            "luaparse": "wp-includes/js/luaparse/luaparse",
+            "LuaAstParser": "wp-includes/js/Mod/CodeBlockEditor/LuaAstParser",
         },
         shim: {
             "angular": {

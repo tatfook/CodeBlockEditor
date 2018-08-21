@@ -37,6 +37,7 @@ define([
 
                 // changed arg0 -- > args0
                 item["args" + i] = input_arg;
+                delete item["arg" + i];
             }
         }
         return item;
@@ -89,6 +90,9 @@ define([
                 Blockly.Blocks[type] = block;
             }
         }
+    }
+    BlocklyLoader.getConfigMap = function () {
+        return BlocklyLoader.paracraft_config_map;
     }
     BlocklyLoader.loadExecution = function (execution_str) {
         if (execution_str) {
