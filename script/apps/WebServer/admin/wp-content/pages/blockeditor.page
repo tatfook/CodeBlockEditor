@@ -61,11 +61,17 @@
 <body >
 	<div ng-controller="CodeBlockEditorController" >
 		<div class="row">
-			<button ng-click="onRun('insert')" style="margin-left:15px;">插入</button>
-			<button ng-click="onRun('replace')" style="margin-left:5px;">替换</button>
-			<button ng-click="onRun('showcode')" style="margin-left:5px;">编译</button>
-			<!--<button ng-click="onParse()" style="margin-left:5px;">生成Block</button>-->
-			<!--<button ng-click="onExportXml()" style="margin-left:5px;">生成xml</button>-->
+            <div ng-if="locale == 'en'">
+                <button ng-click="onRun('insert')" style="margin-left:15px;">Insert</button>
+			    <button ng-click="onRun('replace')" style="margin-left:5px;">Replace</button>
+            </div>
+            <div ng-if="locale != 'en'">
+			    <button ng-click="onRun('insert')" style="margin-left:15px;">插入</button>
+			    <button ng-click="onRun('replace')" style="margin-left:5px;">替换</button>
+			    <!--<button ng-click="onRun('showcode')" style="margin-left:5px;">编译</button>-->
+			    <!--<button ng-click="onParse()" style="margin-left:5px;">生成Block</button>-->
+			    <!--<button ng-click="onExportXml()" style="margin-left:5px;">生成xml</button>-->
+		    </div>  
 		</div>  
 		<div id="blocklyDiv" style="margin-top:5px;height: 600px; width: 1024px;"></div>
 		<div id="editor" style="height:200px; width:1024px;"></div>

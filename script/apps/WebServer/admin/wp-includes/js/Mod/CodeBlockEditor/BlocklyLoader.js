@@ -1,10 +1,12 @@
-/**
+﻿/**
  * @author leio
  * @date 2018/6/21
  */
 define([
 ], function () {
 
+    // assumed one block has 10 args in maximal
+    var arg_len = 10;
     String.prototype.format = function () {
         var a = this;
         if (arguments && arguments.length > 0) {
@@ -17,14 +19,24 @@ define([
     };
     var BlocklyLoader = {};
     BlocklyLoader.paracraft_config_map = {};
-
-    // assumed one block has 10 args in maximal
+    BlocklyLoader.forEachArg = function (cmd,arg_name,callback) {
+        if (cmd && arg_name) {
+            for (var i = 0; i < arg_len; i++) {
+                var input_arg = cmd[arg_name + i];
+                if (input_arg) {
+                    for (var k = 0; k < input_arg.length; k++) {
+                        var arg_item = input_arg[k];
+                        callback && callback(arg_item);
+                    }
+                }
+            }
+        }
+    }
     BlocklyLoader.fix_format_args = function (item) {
         if (!item) {
             return;
         }
-        var len = 10;
-        for (var i = 0; i < len; i++) {
+        for (var i = 0; i < arg_len; i++) {
             var input_arg = item["arg" + i];
             if (input_arg) {
                 for (var k = 0; k < input_arg.length; k++) {
@@ -42,6 +54,7 @@ define([
         }
         return item;
     }
+    
     BlocklyLoader.fix_format = function(item) {
         if (!item) {
             return
@@ -98,6 +111,34 @@ define([
         if (execution_str) {
             eval(execution_str);
         }
+    }
+    BlocklyLoader.getAllVariableTypes = function () {
+        var cmd_maps = BlocklyLoader.getConfigMap();
+        var variable_types_map = {
+            "": "" // default types
+        };
+
+        for (var type in cmd_maps) {
+            var cmd = cmd_maps[type];
+            BlocklyLoader.forEachArg(cmd, "args", function (arg) {
+                if (arg) {
+                    if (arg.type == "field_variable") {
+                        var variableTypes = arg.variableTypes;
+                        if (variableTypes) {
+                            for (var i = 0; i < variableTypes.length; i++) {
+                                var type = variableTypes[i];
+                                variable_types_map[type] = type;
+                            }
+                        }
+                    }
+                }
+            })
+        }
+        var result = [];
+        for (var type in variable_types_map) {
+            result.push(type);
+        }
+        return result;
     }
     return BlocklyLoader;
 })

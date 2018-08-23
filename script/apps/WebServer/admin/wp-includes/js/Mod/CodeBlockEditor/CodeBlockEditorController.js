@@ -23,7 +23,7 @@ define([
             var menu_parent_id = "blocklyDiv";
             var gWorkSpace;
 
-            
+            $scope.locale = "";
             $scope.onLoad = function (lang, menu_xml, config_json, execution_str, keywords_json) {
 
                 lang = lang || "zhCN";
@@ -35,10 +35,12 @@ define([
                 {
                     locale = "en"
                 }
+                $scope.locale = locale;
                 Blockly.ScratchMsgs.setLocale(locale);
 
                 BlocklyLoader.loadConfig(config_json);
                 BlocklyLoader.loadExecution(execution_str);
+
 
                 gWorkSpace = Blockly.inject(menu_parent_id, {
                     toolbox: menu_xml,
@@ -63,11 +65,38 @@ define([
                         dragShadowOpacity: 0.6
                     }
                 });
-                gWorkSpace.registerButtonCallback('CREATE_VARIABLE', function (button) {
-                    console.log(Blockly.Variables);
-                    Blockly.Variables.createVariable(button.getTargetWorkspace());
-                });
+
+                var variable_types = BlocklyLoader.getAllVariableTypes();
+                for (var i = 0; i < variable_types.length; i++) {
+                    var type = variable_types[i];
+                    var callbackKey;
+                    if (type == "") {
+                        callbackKey = "create_variable";
+                    } else {
+                        callbackKey = "create_variable_" + type;
+                    }
+                    var callback = function (button) {
+                        var var_type = button.callback_.__var_type;
+                        Blockly.Variables.createVariable(button.getTargetWorkspace(), function (variableBlockId) {
+                            //console.log("====Blockly.allUsedVariables", Blockly.Variables.allUsedVariables(gWorkSpace));
+                            //console.log("====Blockly.allVariables", Blockly.Variables.allVariables(gWorkSpace));
+                        }, var_type);
+                    }
+                    // hold variable type
+                    callback.__var_type = type;
+                    gWorkSpace.registerButtonCallback(callbackKey, callback);
+                }
+                
+
+                
                 gWorkSpace.toolbox_.refreshSelection();
+
+                gWorkSpace.addChangeListener(function (event) {
+                    setTimeout(function () {
+                        $scope.onRun("showcode");
+                    }, 500);
+                });
+
                 $scope.init_editor(keywords_json);
                 if ($scope.code_editor) {
                     $scope.code_editor.layout();
@@ -116,10 +145,15 @@ define([
                     code_editor.updateOptions({ readOnly: false, });
                 }
             }
-            $scope.onRun = function(state) {
-                var code = Blockly.Lua.workspaceToCode(gWorkSpace);
-                var content = code.valueOf();
-                console.log(content);
+            $scope.onRun = function (state) {
+                var code;
+                var content;
+                try{
+                    code = Blockly.Lua.workspaceToCode(gWorkSpace);
+                    content = code.valueOf();
+                } catch (err) {
+                }
+                
                 $scope.setEditorValue(content);
                 state = state || "showcode"
 
