@@ -14,7 +14,7 @@ text -> value in "field_number"
 ```
 ### Links
  - [define-blocks](https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks)
-
+ -[createVariable](https://developers.google.com/blockly/reference/js/Blockly.Workspace#createVariable)
 ```lua
 -- Loading the config source dynamically after running paracraft every time
 http://localhost:8099/blockeditor

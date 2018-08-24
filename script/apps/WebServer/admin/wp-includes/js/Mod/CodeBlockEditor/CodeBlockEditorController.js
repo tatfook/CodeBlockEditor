@@ -38,7 +38,11 @@ define([
                 $scope.locale = locale;
                 Blockly.ScratchMsgs.setLocale(locale);
 
-                BlocklyLoader.loadConfig(config_json);
+                var variable_result = BlocklyLoader.getAllVariableTypes(config_json);
+                var variable_types_map = variable_result[0];
+                var extra_variable_names = variable_result[1];
+
+                BlocklyLoader.loadConfig(config_json, variable_types_map);
                 BlocklyLoader.loadExecution(execution_str);
 
 
@@ -66,9 +70,8 @@ define([
                     }
                 });
 
-                var variable_types = BlocklyLoader.getAllVariableTypes();
-                for (var i = 0; i < variable_types.length; i++) {
-                    var type = variable_types[i];
+                
+                for (var type in variable_types_map) {
                     var callbackKey;
                     if (type == "") {
                         callbackKey = "create_variable";
@@ -86,9 +89,16 @@ define([
                     callback.__var_type = type;
                     gWorkSpace.registerButtonCallback(callbackKey, callback);
                 }
-                
-
-                
+                var var_id_index = 0;
+                for (var type in extra_variable_names)
+                {
+                    var names = extra_variable_names[type];
+                    for (var name in names) {
+                        var id = "_extra_var_id_" + var_id_index;
+                        gWorkSpace.createVariable(name, type, id);
+                        var_id_index += 1;
+                    }
+                }
                 gWorkSpace.toolbox_.refreshSelection();
 
                 gWorkSpace.addChangeListener(function (event) {

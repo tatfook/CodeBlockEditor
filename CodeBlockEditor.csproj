@@ -54,7 +54,9 @@
     <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\BlocklySourceTemplate\BlocklyExecution.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\angular.config.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\BlocklySourceTemplate\BlocklyMenu-zh-cn.xml" />
-    <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\BlocklySourceTemplate\BlocklyMenu.xml" />
+    <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\BlocklySourceTemplate\BlocklyMenu.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\CodeBlockEditorController.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\LuaAstParser.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\main.js" />
