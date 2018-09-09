@@ -18,18 +18,28 @@
 
 	local state = request:get("state");
 	local code = request:get("code");
+	local blockpos = request:get("blockpos");
 	if(is_ajax()) then
 		add_action('wp_ajax_runblockly', function()
 
 			NPL.load("(gl)script/apps/Aries/Creator/Game/Code/CodeBlockWindow.lua");
 			local CodeBlockWindow = commonlib.gettable("MyCompany.Aries.Game.Code.CodeBlockWindow");
 			CodeBlockWindow.Show(true);
-			if(state == "insert")then
-				CodeBlockWindow.InsertCodeAtCurrentLine(code);
-			else
-				CodeBlockWindow.ReplaceCode(code);
+			local bx, by, bz;
+			if(blockpos) then
+				local pos = {};
+				for v in blockpos:gmatch("%d+") do
+					pos[#pos+1] = tonumber(v);
+				end
+				bx, by, bz = pos[1], pos[2], pos[3]
 			end
-			wp_send_json({code},true);
+			local result;
+			if(state == "insert")then
+				result = CodeBlockWindow.InsertCodeAtCurrentLine(code, true, bx, by, bz);
+			else
+				result = CodeBlockWindow.ReplaceCode(code, bx, by, bz);
+			end
+			wp_send_json({succeed = result~=false, code=code},true);
 		end)
 		add_action('wp_ajax_makeblocklyeditor', function()
             NPL.load("(gl)script/apps/Aries/Creator/Game/Common/Translation.lua");

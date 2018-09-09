@@ -170,8 +170,16 @@ define([
                 if (state == "showcode") {
                     return;
                 }
+                var blockpos = getUrlParameter("blockpos");
                 var url = "/ajax/blockeditor?action=runblockly&state=" + state;
+                if(blockpos){
+                    url = url + "&blockpos=" + blockpos;
+                }
                 $.post(url, { code: content }, function (data) {
+                    if(!data.succeed){
+                        // TODO: display error message to the user.     
+                        console.log("failed to update code because blockpos does not match");
+                    }
                     console.log(data);
                 }, "json");
             }
