@@ -81,7 +81,13 @@
 			    <!--<button ng-click="onRun('showcode')" style="margin-left:5px;">编译</button>-->
 			    <!--<button ng-click="onParse()" style="margin-left:5px;">生成Block</button>-->
 			    <!--<button ng-click="onExportXml()" style="margin-left:5px;">生成xml</button>-->
-		    </div>  
+			</div>
+			<div ng-repeat="notification in notifications" style="position:fixed;z-index:9999;width:90%;top:10px">
+                <div class="alert alert-{{notification.type}} fade in" style="margin-bottom:0px;">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    {{notification.text}}
+                </div>
+            </div>  
 		</div>  
 		<div id="blocklyDiv" style="margin-top:5px;height: 600px; width: 1024px;"></div>
 		<div id="editor" style="height:200px; width:1024px;"></div>

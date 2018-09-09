@@ -24,6 +24,16 @@ define([
             var gWorkSpace;
 
             $scope.locale = "";
+            $scope.notifications = [];
+            // @param type: "success", "info", "warning", "danger"
+            $scope.addNotice = function (notification, type, duration) {
+                $scope.notifications.push({ text: notification, type: type || "success" });
+                $scope.$apply();
+                window.setTimeout(function () {
+                    $scope.notifications.splice(0, 1);
+                    $scope.$apply();
+                }, duration || 3000);
+            };
             $scope.onLoad = function (lang, menu_xml, config_json, execution_str, keywords_json) {
 
                 lang = lang || "zhCN";
@@ -176,9 +186,27 @@ define([
                     url = url + "&blockpos=" + blockpos;
                 }
                 $.post(url, { code: content }, function (data) {
-                    if(!data.succeed){
+                    if(data.succeed){
+                        var msg;
+                        if ($scope.locale == "zh-cn") {
+                            msg = "成功!";
+                        } else
+                        {
+                            msg = "succeed!";
+                        }
+                        $scope.addNotice(msg, "success");
+                    }
+                    else{
                         // TODO: display error message to the user.     
                         console.log("failed to update code because blockpos does not match");
+                        var msg;
+                        if ($scope.locale == "zh-cn") {
+                            msg = "无法替换代码";
+                        } else
+                        {
+                            msg = "failed to insert code";
+                        }
+                        $scope.addNotice(msg, "danger");
                     }
                     console.log(data);
                 }, "json");
