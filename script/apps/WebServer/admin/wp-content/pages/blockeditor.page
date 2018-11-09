@@ -19,7 +19,36 @@
 	local state = request:get("state");
 	local code = request:get("code");
 	local blockpos = request:get("blockpos");
+
+	local filename = request:get("filename");
+	local block_xml_txt = request:get("block_xml_txt");
 	if(is_ajax()) then
+		add_action('wp_ajax_loadfile', function()
+            if(filename)then
+                if(ParaIO.DoesFileExist(filename))then
+                    local file = ParaIO.open(filename, "r");
+	                if(file:IsValid()) then
+                        local txt = file:GetText();
+                        if(txt)then
+			                wp_send_json({ filename = filename , block_xml_txt = txt},true);
+                        end
+                        file:close();
+	                end
+                end
+            end
+        end)
+        add_action('wp_ajax_savefile', function()
+            if(filename and block_xml_txt)then
+                ParaIO.CreateDirectory(filename);
+                local file = ParaIO.open(filename, "w");
+	            if(file:IsValid()) then
+                    file:WriteString(block_xml_txt);
+                    file:close();
+			        wp_send_json({ filename = filename , successful = true},true);
+	            end
+            end
+        end)
+        
 		add_action('wp_ajax_runblockly', function()
 
 			NPL.load("(gl)script/apps/Aries/Creator/Game/Code/CodeBlockWindow.lua");
@@ -74,13 +103,15 @@
             <div ng-if="locale == 'en'">
                 <button ng-click="onRun('insert')" style="margin-left:15px;">Insert</button>
 			    <button ng-click="onRun('replace')" style="margin-left:5px;">Replace</button>
+			    <button ng-click="onSaveFile()" style="margin-left:5px;">Save</button>
             </div>
             <div ng-if="locale != 'en'">
 			    <button ng-click="onRun('insert')" style="margin-left:15px;">插入</button>
 			    <button ng-click="onRun('replace')" style="margin-left:5px;">替换</button>
+			    <button ng-click="onSaveFile()" style="margin-left:5px;">保存</button>
+
 			    <!--<button ng-click="onRun('showcode')" style="margin-left:5px;">编译</button>-->
 			    <!--<button ng-click="onParse()" style="margin-left:5px;">生成Block</button>-->
-			    <!--<button ng-click="onExportXml()" style="margin-left:5px;">生成xml</button>-->
 			</div>
 			<div ng-repeat="notification in notifications" style="position:fixed;z-index:9999;width:90%;top:10px">
                 <div class="alert alert-{{notification.type}} fade in" style="margin-bottom:0px;">

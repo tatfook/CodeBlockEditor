@@ -24,6 +24,11 @@ http://localhost:8099/blockeditor
 http://localhost:8099/blockeditor?debug=true
 -- english version
 http://localhost:8099/blockeditor?debug=true&lang=en
+
+
+-- save file
+http://localhost:8099/blockeditor?filename=test/test_block.xml
+
 ```
 ### Preview
 ![image](https://user-images.githubusercontent.com/5885941/43708153-611999c6-999c-11e8-8232-bdee49664dc7.png)

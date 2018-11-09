@@ -19,10 +19,11 @@ define([
         function ($scope) {
             var debug = getUrlParameter("debug");
             var lang = getUrlParameter("lang") || "zhCN"; // "en" or "zhCN"
-            
+            var filename = getUrlParameter("filename");
+            $scope.loaded_file = false;
+
             var menu_parent_id = "blocklyDiv";
             var gWorkSpace;
-
             $scope.locale = "";
             $scope.notifications = [];
             // @param type: "success", "info", "warning", "danger"
@@ -122,6 +123,7 @@ define([
                     $scope.code_editor.layout();
                 }
 
+                $scope.onLoadFile();
             }
             $scope.init_editor = function (keywords_json) {
                 if ($scope.code_editor) {
@@ -164,6 +166,36 @@ define([
                     );
                     code_editor.updateOptions({ readOnly: false, });
                 }
+            }
+            $scope.onLoadFile = function () {
+                if (filename && !$scope.loaded_file) {
+                    var url = "/ajax/blockeditor?action=loadfile&filename=" + filename;
+                    $.get(url, function (data) {
+                        var block_xml_txt = data.block_xml_txt;
+                        $scope.readBlocklyFromXml(block_xml_txt);
+                        $scope.loaded_file = true;
+                    });
+                }
+                
+            }
+            $scope.onSaveFile = function () {
+                if (filename) {
+                    var xmlText = $scope.writeBlocklyToXml();
+                    var url = "/ajax/blockeditor?action=savefile&filename=" + filename;
+                    $.post(url, { block_xml_txt: xmlText }, function (data) {
+                        if (data.successful) {
+                            var msg;
+                            if ($scope.locale == "zh-cn") {
+                                msg = "保存成功!";
+                            } else {
+                                msg = "saved successful!";
+                            }
+                            $scope.addNotice(msg, "success");
+                        }
+                        
+                    });
+                }
+
             }
             $scope.onRun = function (state) {
                 var code;
@@ -228,12 +260,17 @@ define([
                 var p = new LuaAstParser(content);
                 p.createBlocks();
             }
-            $scope.onExportXml = function () {
+            $scope.writeBlocklyToXml = function () {
                 var xmlDom = Blockly.Xml.workspaceToDom(gWorkSpace);
                 var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
-                $scope.setEditorValue(xmlText);
+                return xmlText;
             }
-            
+            $scope.readBlocklyFromXml = function (s) {
+                var dom = Blockly.Xml.textToDom(s);
+                gWorkSpace.clear();
+                Blockly.Xml.domToWorkspace(dom, gWorkSpace);
+                gWorkSpace.clearUndo();
+            },
             $scope.$watch('$viewContentLoaded', function () {
                 if (debug == "true") {
                     if (lang == "zhCN") {
@@ -245,8 +282,6 @@ define([
                     $scope.onMakeEditor();
                 }
             })
-            
-
         }]);
 
 
