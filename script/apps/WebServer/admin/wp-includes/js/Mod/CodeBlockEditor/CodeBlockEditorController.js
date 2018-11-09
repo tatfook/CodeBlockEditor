@@ -19,7 +19,7 @@ define([
         function ($scope) {
             var debug = getUrlParameter("debug");
             var lang = getUrlParameter("lang") || "zhCN"; // "en" or "zhCN"
-            var filename = getUrlParameter("filename");
+            var blockpos = getUrlParameter("blockpos");
             $scope.loaded_file = false;
 
             var menu_parent_id = "blocklyDiv";
@@ -112,9 +112,13 @@ define([
                 }
                 gWorkSpace.toolbox_.refreshSelection();
 
+                var lastTimerId = null;
                 gWorkSpace.addChangeListener(function (event) {
-                    setTimeout(function () {
+                    if(lastTimerId != null)
+                        clearTimeout(lastTimerId);
+                    lastTimerId = setTimeout(function () {
                         $scope.onRun("showcode");
+                        $scope.onSaveFile(); // auto save
                     }, 500);
                 });
 
@@ -168,8 +172,8 @@ define([
                 }
             }
             $scope.onLoadFile = function () {
-                if (filename && !$scope.loaded_file) {
-                    var url = "/ajax/blockeditor?action=loadfile&filename=" + filename;
+                if (blockpos && !$scope.loaded_file) {
+                    var url = "/ajax/blockeditor?action=loadfile&blockpos=" + blockpos;
                     $.get(url, function (data) {
                         var block_xml_txt = data.block_xml_txt;
                         $scope.readBlocklyFromXml(block_xml_txt);
@@ -179,23 +183,39 @@ define([
                 
             }
             $scope.onSaveFile = function () {
-                if (filename) {
+                if (blockpos) {
                     var xmlText = $scope.writeBlocklyToXml();
-                    var url = "/ajax/blockeditor?action=savefile&filename=" + filename;
-                    $.post(url, { block_xml_txt: xmlText }, function (data) {
-                        if (data.successful) {
+                    var url = "/ajax/blockeditor?action=savefile&blockpos=" + blockpos;
+
+                    var content;
+                    try{
+                        code = Blockly.Lua.workspaceToCode(gWorkSpace);
+                        content = code.valueOf();
+                    } catch (err) {
+                    }
+
+                    $.post(url, { block_xml_txt: xmlText, code: content }, function (data) {
+                        if (data && data.successful) {
+                            // var msg;
+                            // if ($scope.locale == "zh-cn") {
+                            //     msg = "保存成功!";
+                            // } else {
+                            //     msg = "saved successful!";
+                            // }
+                            // $scope.addNotice(msg, "success");
+                        }
+                        else
+                        {
                             var msg;
                             if ($scope.locale == "zh-cn") {
-                                msg = "保存成功!";
+                                 msg = "保存失败了!";
                             } else {
-                                msg = "saved successful!";
+                                 msg = "save failed!";
                             }
-                            $scope.addNotice(msg, "success");
+                            $scope.addNotice(msg, "error");
                         }
-                        
                     });
                 }
-
             }
             $scope.onRun = function (state) {
                 var code;

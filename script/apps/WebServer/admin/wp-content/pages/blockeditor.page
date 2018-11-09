@@ -4,6 +4,9 @@
   <meta charset="utf-8">
   <title>Code Block</title>
   <?npl
+	NPL.load("(gl)script/apps/Aries/Creator/Game/Code/CodeBlockWindow.lua");
+	local CodeBlockWindow = commonlib.gettable("MyCompany.Aries.Game.Code.CodeBlockWindow");
+  
 	PAGE_NO_SIDE_BAR = true;
 
 	wp_enqueue_script("blockly_compressed_vertical",		"/wp-includes/js/scratch-blocks/blockly_compressed_vertical.js");
@@ -19,26 +22,55 @@
 	local state = request:get("state");
 	local code = request:get("code");
 	local blockpos = request:get("blockpos");
+	local filename = request:get("filename"); -- NOT used 
+	
+	local function GetBlockPosition()
+		local bx, by, bz;
+		if(blockpos) then
+			local pos = {};
+			for v in blockpos:gmatch("%d+") do
+				pos[#pos+1] = tonumber(v);
+			end
+			bx, by, bz = pos[1], pos[2], pos[3]
+		end
+		return bx, by, bz;
+	end
 
-	local filename = request:get("filename");
-	local block_xml_txt = request:get("block_xml_txt");
 	if(is_ajax()) then
 		add_action('wp_ajax_loadfile', function()
-            if(filename)then
-                if(ParaIO.DoesFileExist(filename))then
-                    local file = ParaIO.open(filename, "r");
-	                if(file:IsValid()) then
-                        local txt = file:GetText();
-                        if(txt)then
-			                wp_send_json({ filename = filename , block_xml_txt = txt},true);
-                        end
-                        file:close();
-	                end
-                end
-            end
+			local bx, by, bz = GetBlockPosition();
+			if(bx)then
+				local codeEntity = CodeBlockWindow.GetCodeEntity(bx, by, bz)
+				if(codeEntity) then
+					wp_send_json({ blockpos = blockpos, block_xml_txt = codeEntity:GetBlocklyXMLCode()},true);
+					return
+				end
+			end
+			-- NOT USED
+			if(filename and ParaIO.DoesFileExist(filename))then
+				local file = ParaIO.open(filename, "r");
+				if(file:IsValid()) then
+					local txt = file:GetText();
+					if(txt)then
+						wp_send_json({ filename = filename , block_xml_txt = txt},true);
+					end
+					file:close();
+				end
+			end
         end)
-        add_action('wp_ajax_savefile', function()
-            if(filename and block_xml_txt)then
+		add_action('wp_ajax_savefile', function()
+			local block_xml_txt = request:get("block_xml_txt");
+			local bx, by, bz = GetBlockPosition();
+			if(bx)then
+				local codeEntity = CodeBlockWindow.GetCodeEntity(bx, by, bz)
+				if(codeEntity) then
+					CodeBlockWindow.UpdateBlocklyCode(block_xml_txt, code, bx, by, bz);
+					wp_send_json({ blockpos = blockpos , successful = true},true);
+					return
+				end
+			end
+			-- NOT USED
+            if(filename)then
                 ParaIO.CreateDirectory(filename);
                 local file = ParaIO.open(filename, "w");
 	            if(file:IsValid()) then
@@ -50,18 +82,8 @@
         end)
         
 		add_action('wp_ajax_runblockly', function()
-
-			NPL.load("(gl)script/apps/Aries/Creator/Game/Code/CodeBlockWindow.lua");
-			local CodeBlockWindow = commonlib.gettable("MyCompany.Aries.Game.Code.CodeBlockWindow");
 			CodeBlockWindow.Show(true);
-			local bx, by, bz;
-			if(blockpos) then
-				local pos = {};
-				for v in blockpos:gmatch("%d+") do
-					pos[#pos+1] = tonumber(v);
-				end
-				bx, by, bz = pos[1], pos[2], pos[3]
-			end
+			local bx, by, bz = GetBlockPosition();
 			local result;
 			if(state == "insert")then
 				result = CodeBlockWindow.InsertCodeAtCurrentLine(code, true, bx, by, bz);
@@ -100,6 +122,7 @@
 <body >
 	<div ng-controller="CodeBlockEditorController" >
 		<div class="row">
+			<!--
             <div ng-if="locale == 'en'">
                 <button ng-click="onRun('insert')" style="margin-left:15px;">Insert</button>
 			    <button ng-click="onRun('replace')" style="margin-left:5px;">Replace</button>
@@ -109,10 +132,8 @@
 			    <button ng-click="onRun('insert')" style="margin-left:15px;">插入</button>
 			    <button ng-click="onRun('replace')" style="margin-left:5px;">替换</button>
 			    <button ng-click="onSaveFile()" style="margin-left:5px;">保存</button>
-
-			    <!--<button ng-click="onRun('showcode')" style="margin-left:5px;">编译</button>-->
-			    <!--<button ng-click="onParse()" style="margin-left:5px;">生成Block</button>-->
 			</div>
+			-->
 			<div ng-repeat="notification in notifications" style="position:fixed;z-index:9999;width:90%;top:10px">
                 <div class="alert alert-{{notification.type}} fade in" style="margin-bottom:0px;">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
