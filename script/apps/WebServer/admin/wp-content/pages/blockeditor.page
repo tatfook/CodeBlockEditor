@@ -119,9 +119,20 @@
   <script type="text/javascript"  data-main="wp-includes/js/Mod/CodeBlockEditor/main.js" src="wp-includes/js/requirejs/require.js"></script>  
 </head>
 
-<body >
-	<div ng-controller="CodeBlockEditorController" >
-		<div class="row">
+<body>
+	<style>
+	.fullscreen {
+		position: fixed;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		overflow: auto;
+		z-index: 10;
+	  }
+	</style>
+	<div class="fullscreen" ng-controller="CodeBlockEditorController" >
+		<div>
 			<!--
             <div ng-if="locale == 'en'">
                 <button ng-click="onRun('insert')" style="margin-left:15px;">Insert</button>
@@ -141,8 +152,8 @@
                 </div>
             </div>  
 		</div>  
-		<div id="blocklyDiv" style="margin-top:5px;height: 600px; width: 1024px;"></div>
-		<div id="editor" style="height:200px; width:1024px;"></div>
+		<div id="blocklyDiv" style="height: 100%; width: 100%;"></div>
+		<!--<div id="editor" style="height:200px; width:1024px;"></div>-->
 	</div>
 </body>
 </html>

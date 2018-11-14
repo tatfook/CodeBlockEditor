@@ -17,6 +17,7 @@ define([
 ], function (LuaAstParser, app, BlocklyLoader, MonacoLanguage, template_menu_xml, template_menu_xml_zh_cn, template_config_json, template_config_json_zh_cn, template_execution_str, template_keywords_json) {
     app.registerController('CodeBlockEditorController', ['$scope',
         function ($scope) {
+            var showCodeEditor = false;
             var debug = getUrlParameter("debug");
             var lang = getUrlParameter("lang") || "zhCN"; // "en" or "zhCN"
             var blockpos = getUrlParameter("blockpos");
@@ -117,19 +118,23 @@ define([
                     if(lastTimerId != null)
                         clearTimeout(lastTimerId);
                     lastTimerId = setTimeout(function () {
-                        $scope.onRun("showcode");
+                        if(showCodeEditor){
+                            $scope.onRun("showcode");
+                        }
                         $scope.onSaveFile(); // auto save
                     }, 500);
                 });
 
-                $scope.init_editor(keywords_json);
-                if ($scope.code_editor) {
-                    $scope.code_editor.layout();
+                if(showCodeEditor){
+                    $scope.init_code_editor(keywords_json);
+                    if ($scope.code_editor) {
+                        $scope.code_editor.layout();
+                    }
                 }
 
                 $scope.onLoadFile();
             }
-            $scope.init_editor = function (keywords_json) {
+            $scope.init_code_editor = function (keywords_json) {
                 if ($scope.code_editor) {
                     return
                 }
@@ -146,7 +151,6 @@ define([
 
                 var editor_container = document.getElementById("editor");
                 $scope.code_editor = monaco.editor.create(editor_container, config)
-
             }
             $scope.getEditorValue = function () {
                 var code_editor = $scope.code_editor;
