@@ -41,25 +41,24 @@
     <None Include="README.md" />
     <None Include="Run.bat" />
     <None Include="script\apps\WebServer\admin\wp-content\pages\blockeditor.page" />
-    <None Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\BlocklySourceTemplate\BlocklyConfigSource-zh-cn.json" />
-    <None Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\BlocklySourceTemplate\BlocklyConfigSource.json" />
-    <None Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\BlocklySourceTemplate\LanguageKeywords.json" />
+    <None Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\blockly\codeblock\BlocklySourceTemplate\BlocklyConfigSource-zh-cn.json" />
+    <None Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\blockly\codeblock\BlocklySourceTemplate\BlocklyConfigSource.json" />
+    <None Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\blockly\codeblock\BlocklySourceTemplate\LanguageKeywords.json" />
     <None Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\media\click.ogg" />
     <None Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\media\delete.ogg" />
     <None Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\msg\json\en.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="script\apps\WebServer\admin\wp-includes\js\luaparse\luaparse.js" />
-    <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\BlocklyLoader.js" />
-    <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\BlocklySourceTemplate\BlocklyExecution.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\angular.config.js" />
-    <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\BlocklySourceTemplate\BlocklyMenu-zh-cn.xml" />
-    <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\BlocklySourceTemplate\BlocklyMenu.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\blockly\BlocklySourceLoader.js" />
+    <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\blockly\BlocklySourceLoaderFactory.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\CodeBlockEditorController.js" />
-    <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\LuaAstParser.js" />
-    <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\main.js" />
+    <None Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\blockly\codeblock\codeblock.config.json" />
+    <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\blockly\codeblock\BlocklySourceTemplate\BlocklyExecution.js" />
+    <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\blockly\codeblock\BlocklySourceTemplate\BlocklyMenu-zh-cn.xml" />
+    <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\blockly\codeblock\BlocklySourceTemplate\BlocklyMenu.xml" />
+    <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\main2.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\MonacoLanguage.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\monaco-editor-0.10.1\package\min\vs\base\worker\workerMain.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\monaco-editor-0.10.1\package\min\vs\basic-languages\src\bat.js" />

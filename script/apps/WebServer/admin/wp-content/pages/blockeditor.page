@@ -22,6 +22,7 @@
 	local state = request:get("state");
 	local code = request:get("code");
 	local blockpos = request:get("blockpos");
+	local blocktype = request:get("blocktype");
 	local filename = request:get("filename"); -- NOT used 
 	
 	local function GetBlockPosition()
@@ -100,6 +101,15 @@
             local lang = Translation.GetCurrentLanguage();
 
 			local CodeBlocklySerializer = commonlib.gettable("MyCompany.Aries.Game.Code.CodeBlocklySerializer");
+
+            if(blocktype == "blockcad")then
+                NPL.load("(gl)script/apps/Aries/Creator/Game/Code/BlockCad/BlockCad.lua");
+                local BlockCad = commonlib.gettable("MyCompany.Aries.Game.Code.BlockCad.BlockCad");
+                local categories = BlockCad.GetCategoryButtons();
+                local all_cmds = BlockCad.GetAllCmds()
+                CodeBlocklySerializer.OnInit(categories,all_cmds);
+            end
+
 			local menu_xml = CodeBlocklySerializer.GetBlocklyMenuXml();
 			local config_json = CodeBlocklySerializer.GetBlocklyConfig();
 			local execution_str = CodeBlocklySerializer.GetBlocklyCode();
@@ -116,7 +126,7 @@
 		return;
 	end
   ?>
-  <script type="text/javascript"  data-main="wp-includes/js/Mod/CodeBlockEditor/main.js" src="wp-includes/js/requirejs/require.js"></script>  
+  <script type="text/javascript"  data-main="wp-includes/js/Mod/CodeBlockEditor/main2.js" src="wp-includes/js/requirejs/require.js"></script>  
 </head>
 
 <body>

@@ -5,6 +5,17 @@
 "use strict";
 (function (win) {
 
+    String.prototype.format = function () {
+        var a = this;
+        if (arguments && arguments.length > 0) {
+            var b;
+            for (b in arguments) {
+                a = a.replace(/%[a-z]/, arguments[b]);
+            }
+        }
+        return String(a);
+    };
+
     define("load-string", [], function () {
         var strings = [],
             re_package_name = /^string_module_(\d+)$/;
@@ -36,7 +47,6 @@
             "text": "wp-includes/js/requirejs/text",
             "vs": "wp-includes/js/monaco-editor-0.10.1/package/min/vs",
             "luaparse": "wp-includes/js/luaparse/luaparse",
-            "LuaAstParser": "wp-includes/js/Mod/CodeBlockEditor/LuaAstParser",
         },
         shim: {
             "angular": {
