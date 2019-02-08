@@ -13,7 +13,7 @@ define([
         function ($scope) {
             var showCodeEditor = false;
             var debug = getUrlParameter("debug");
-            var blocktype = getUrlParameter("blocktype") || "codeblock"; // "codeblock" or "blockcad"
+            var blocktype = getUrlParameter("blocktype") || "codeblock"; // "codeblock" or "nplcad"
             var lang = getUrlParameter("lang") || "zhCN"; // "en" or "zhCN"
             var blockpos = getUrlParameter("blockpos");
             $scope.loaded_file = false;

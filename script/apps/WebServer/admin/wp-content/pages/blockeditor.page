@@ -102,11 +102,11 @@
 
 			local CodeBlocklySerializer = commonlib.gettable("MyCompany.Aries.Game.Code.CodeBlocklySerializer");
 
-            if(blocktype == "blockcad")then
-                NPL.load("(gl)script/apps/Aries/Creator/Game/Code/BlockCad/BlockCad.lua");
-                local BlockCad = commonlib.gettable("MyCompany.Aries.Game.Code.BlockCad.BlockCad");
-                local categories = BlockCad.GetCategoryButtons();
-                local all_cmds = BlockCad.GetAllCmds()
+            if(blocktype == "nplcad")then
+                NPL.load("(gl)script/apps/Aries/Creator/Game/Code/NplCad/NplCad.lua");
+                local NplCad = commonlib.gettable("MyCompany.Aries.Game.Code.NplCad.NplCad");
+                local categories = NplCad.GetCategoryButtons();
+                local all_cmds = NplCad.GetAllCmds()
                 CodeBlocklySerializer.OnInit(categories,all_cmds);
             end
 
