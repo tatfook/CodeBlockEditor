@@ -17,6 +17,7 @@
 	wp_enqueue_script("blocks_common_math",			"/wp-includes/js/scratch-blocks/blocks_common/math.js");
 	wp_enqueue_script("blocks_common_matrix",			"/wp-includes/js/scratch-blocks/blocks_common/matrix.js");
 	wp_enqueue_script("blocks_common_text",			"/wp-includes/js/scratch-blocks/blocks_common/text.js");
+	wp_enqueue_script("blocks_data_category",			"/wp-includes/js/scratch-blocks/data_category.js");
 
 
 	local state = request:get("state");

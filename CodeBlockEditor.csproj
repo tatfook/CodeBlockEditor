@@ -53,6 +53,7 @@
     <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\angular.config.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\blockly\BlocklySourceLoader.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\blockly\BlocklySourceLoaderFactory.js" />
+    <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\blockly\BlocklyUtil.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\CodeBlockEditorController.js" />
     <None Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\blockly\codeblock\codeblock.config.json" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\blockly\codeblock\BlocklySourceTemplate\BlocklyExecution.js" />
@@ -126,6 +127,7 @@
     <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\blocks_common\math.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\blocks_common\matrix.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\blocks_common\text.js" />
+    <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\data_category.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\lua_compressed.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\media\1x1.gif" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\media\click.mp3" />

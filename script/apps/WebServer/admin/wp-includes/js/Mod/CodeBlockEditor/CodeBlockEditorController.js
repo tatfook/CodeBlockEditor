@@ -8,7 +8,8 @@ define([
     "js/Mod/CodeBlockEditor/MonacoLanguage",
     "js/Mod/CodeBlockEditor/blockly/BlocklySourceLoader",
     "js/Mod/CodeBlockEditor/blockly/BlocklySourceLoaderFactory",
-], function (app, MonacoLanguage, BlocklySourceLoader, BlocklySourceLoaderFactory) {
+    "js/Mod/CodeBlockEditor/blockly/BlocklyUtil",
+], function (app, MonacoLanguage, BlocklySourceLoader, BlocklySourceLoaderFactory, BlocklyUtil) {
     app.registerController('CodeBlockEditorController', ['$scope',
         function ($scope) {
             var showCodeEditor = false;
@@ -107,7 +108,7 @@ define([
                         dragShadowOpacity: 0.6
                     }
                 });
-
+                $scope.blockly_workspace = gWorkSpace;
 
                 for (var type in variable_types_map) {
                     var callbackKey;
@@ -140,6 +141,7 @@ define([
 
                 var lastTimerId = null;
                 gWorkSpace.addChangeListener(function (event) {
+                    var self = $scope;
                     if (lastTimerId != null)
                         clearTimeout(lastTimerId);
                     lastTimerId = setTimeout(function () {
@@ -148,9 +150,41 @@ define([
                         }
                         $scope.onSaveFile(); // auto save
                     }, 500);
+
+                    if (event.type == "create") {
+                        if (event.xml) {
+                            var type = event.xml.getAttribute("type");
+                            if (type == "createNode") {
+                                self.selected_blockId = event.blockId;
+                            }
+                        }
+                    } else if (event.type == "endDrag") {
+                        if (self.selected_blockId && self.selected_blockId == event.blockId) {
+                            self.createNextVariable();
+                        }
+
+                        self.selected_blockId = null;
+                    }
                 });
 
             }
+
+            $scope.createNextVariable = function () {
+                var self = $scope;
+                var blockly_workspace = self.blockly_workspace;
+                var blockId = self.selected_blockId;
+                if (blockId) {
+                    var next_name = BlocklyUtil.getNextVariableName(blockly_workspace);
+                    var block = blockly_workspace.getBlockById(blockId);
+                    if (block) {
+                        var next_variable = blockly_workspace.createVariable(next_name);
+                        var field = block.getField("var_name");
+                        field.setValue(next_variable.getId());
+                        blockly_workspace.toolbox_.refreshSelection();
+                    }
+
+                }
+            },
             $scope.init_code_editor = function (keywords_json) {
                 if ($scope.code_editor) {
                     return
