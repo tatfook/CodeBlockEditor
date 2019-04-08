@@ -14,11 +14,15 @@ define([
         function ($scope) {
             var showCodeEditor = false;
             var debug = getUrlParameter("debug");
+            var showmenu = getUrlParameter("showmenu");
             var blocktype = getUrlParameter("blocktype") || "codeblock"; // "codeblock" or "nplcad"
             var lang = getUrlParameter("lang") || "zhCN"; // "en" or "zhCN"
             var blockpos = getUrlParameter("blockpos");
             $scope.loaded_file = false;
-
+            if (showmenu == "True" || showmenu == "true") {
+                // show a help menu to debug
+                $scope.showmenu = true;
+            }
             var gWorkSpace;
             $scope.locale = "";
             $scope.notifications = [];
@@ -271,6 +275,32 @@ define([
                             $scope.addNotice(msg, "error");
                         }
                     });
+                }
+            }
+
+            $scope.handleFiles = function (e) {
+                var files = e.files;
+                var file = files[0];
+                if (file) {
+                    var name = file.name;
+                    self.filename = name;
+
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var txt = e.target.result;
+                        $scope.readBlocklyFromXml(txt)
+                    }
+                    reader.readAsText(file);
+                }
+            },
+            $scope.onHelp = function (state) {
+                if(state == "open"){
+                    $("#file_upload_id").click();
+                } else if (state == "save") {
+                    var filename = "test_" + blockpos;
+                    var content = $scope.writeBlocklyToXml();
+                    var blob = new Blob([content], { type: 'text/plain' });
+                    saveAs(blob, filename + '.xml');
                 }
             }
             $scope.onRun = function (state) {

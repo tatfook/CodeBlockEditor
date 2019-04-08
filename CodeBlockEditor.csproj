@@ -49,6 +49,8 @@
     <None Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\msg\json\en.json" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="script\apps\WebServer\admin\wp-includes\js\filesaver\FileSaver.css" />
+    <Content Include="script\apps\WebServer\admin\wp-includes\js\filesaver\FileSaver.min.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\luaparse\luaparse.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\angular.config.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\blockly\BlocklySourceLoader.js" />

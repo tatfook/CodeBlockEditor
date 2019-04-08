@@ -19,6 +19,8 @@
 	wp_enqueue_script("blocks_common_text",			"/wp-includes/js/scratch-blocks/blocks_common/text.js");
 	wp_enqueue_script("blocks_data_category",			"/wp-includes/js/scratch-blocks/data_category.js");
 
+	wp_enqueue_script("blocks_filesaver",			"/wp-includes/js/filesaver/FileSaver.min.js");
+
 
 	local state = request:get("state");
 	local code = request:get("code");
@@ -163,6 +165,11 @@
                 </div>
             </div>  
 		</div>  
+        <div ng-if="showmenu" style="background-color:#ffffff">
+            <input type="file" id="file_upload_id"  accept=".xml" onchange="angular.element(this).scope().handleFiles(this)" style="display:none;"/>
+            <button ng-click="onHelp('open')" style="margin-left:15px;">Open</button>
+            <button ng-click="onHelp('save')" style="margin-left:5px;">Save</button>
+        </div>
 		<div id="blocklyDiv" style="height: 100%; width: 100%;"></div>
 		<!--<div id="editor" style="height:200px; width:1024px;"></div>-->
 	</div>
