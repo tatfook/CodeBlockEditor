@@ -350,7 +350,7 @@ define([
                 }, "json");
             }
             $scope.onMakeEditor = function () {
-                var url = "/ajax/blockeditor?action=makeblocklyeditor&blocktype=" + blocktype;
+                var url = "/ajax/blockeditor?action=makeblocklyeditor";
                 $.get(url, function (data) {
                     var lang = data.lang;
                     var menu_xml = data.menu_xml;
