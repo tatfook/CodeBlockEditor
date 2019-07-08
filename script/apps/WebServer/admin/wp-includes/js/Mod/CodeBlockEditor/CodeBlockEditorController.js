@@ -24,6 +24,8 @@ define([
                 $scope.showmenu = true;
             }
             var gWorkSpace;
+            var menu_parent_id = "blocklyDiv";
+
             $scope.locale = "";
             $scope.notifications = [];
             // @param type: "success", "info", "warning", "danger"
@@ -86,8 +88,20 @@ define([
                     $scope.onLoadFile();
                 }
             }
+            $scope.domIsValid = function () {
+                var dom = document.getElementById(menu_parent_id);
+                if (dom) {
+                    return true;
+                }
+                return false;
+            }
+            $scope.hasChanged = function () {
+                if (gWorkSpace) {
+                    return ( gWorkSpace.hasUndoStack() || gWorkSpace.hasRedoStack() )
+                }
+                return false;
+            }
             $scope.createBlocklyWorkspace = function (menu_xml, variable_types_map, extra_variable_names) {
-                var menu_parent_id = "blocklyDiv";
 
                 gWorkSpace = Blockly.inject(menu_parent_id, {
                     toolbox: menu_xml,
@@ -242,6 +256,14 @@ define([
                 
             }
             $scope.onSaveFile = function () {
+                if (!$scope.domIsValid()) {
+                    console.log("dom isn't valid");
+                    return
+                }
+                if (!$scope.hasChanged()) {
+                    console.log("nothing changed");
+                    return
+                }
                 if (blockpos) {
                     var xmlText = $scope.writeBlocklyToXml();
                     var url = "/ajax/blockeditor?action=savefile&blockpos=" + blockpos;
