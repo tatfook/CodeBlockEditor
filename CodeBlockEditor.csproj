@@ -125,11 +125,13 @@
     <Content Include="script\apps\WebServer\admin\wp-includes\js\monaco-editor-0.10.1\package\min\vs\language\typescript\src\mode.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\monaco-editor-0.10.1\package\min\vs\language\typescript\src\worker.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\blockly_compressed_vertical.js" />
+    <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\blockly_missed.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\blocks_common\colour.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\blocks_common\math.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\blocks_common\matrix.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\blocks_common\text.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\data_category.js" />
+    <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\javascript_compressed.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\lua_compressed.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\media\1x1.gif" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\media\click.mp3" />

@@ -10,7 +10,10 @@
 	PAGE_NO_SIDE_BAR = true;
 
 	wp_enqueue_script("blockly_compressed_vertical",		"/wp-includes/js/scratch-blocks/blockly_compressed_vertical.js");
+	wp_enqueue_script("blockly_missed",			"/wp-includes/js/scratch-blocks/blockly_missed.js");
 	wp_enqueue_script("lua_compressed",			"/wp-includes/js/scratch-blocks/lua_compressed.js");
+	wp_enqueue_script("javascript_compressed",			"/wp-includes/js/scratch-blocks/javascript_compressed.js");
+
 	wp_enqueue_script("messages",			"/wp-includes/js/scratch-blocks/msg/messages.js");
 	wp_enqueue_script("scratch_msgs",			"/wp-includes/js/scratch-blocks/msg/scratch_msgs.js");
 	wp_enqueue_script("blocks_common_colour",			"/wp-includes/js/scratch-blocks/blocks_common/colour.js");
@@ -97,21 +100,26 @@
 		end)
 		add_action('wp_ajax_makeblocklyeditor', function()
             NPL.load("(gl)script/apps/Aries/Creator/Game/Common/Translation.lua");
-			NPL.load("(gl)script/apps/Aries/Creator/Game/Code/CodeBlocklySerializer.lua");
+			NPL.load("(gl)script/apps/Aries/Creator/Game/Code/CodeBlocklyGenerator.lua");
+            NPL.load("(gl)script/apps/Aries/Creator/Game/Code/CodeHelpWindow.lua");
             local Translation = commonlib.gettable("MyCompany.Aries.Game.Common.Translation")
-
             local lang = Translation.GetCurrentLanguage();
-
-			local CodeBlocklySerializer = commonlib.gettable("MyCompany.Aries.Game.Code.CodeBlocklySerializer");
+			local CodeBlocklyGenerator = commonlib.gettable("MyCompany.Aries.Game.Code.CodeBlocklyGenerator");
+            local CodeHelpWindow = commonlib.gettable("MyCompany.Aries.Game.Code.CodeHelpWindow");
 
             
             -- switch difference config by CodeHelpWindow.SetLanguageConfigFile(filename)
             -- filename="" loading codeblock
             -- filename="npl_cad" loading nplcad
-			local menu_xml = CodeBlocklySerializer.GetBlocklyMenuXml();
-			local config_json = CodeBlocklySerializer.GetBlocklyConfig();
-			local execution_str = CodeBlocklySerializer.GetBlocklyCode();
-			local keywords_json = CodeBlocklySerializer.GetKeywords();
+
+            local categories = CodeHelpWindow.GetCategoryButtons();
+            local all_cmds = CodeHelpWindow.GetAllCmds();
+            local code_generator = CodeBlocklyGenerator:new():OnInit(categories,all_cmds);
+
+            local menu_xml = code_generator:GetBlocklyMenuXml();
+		    local config_json = code_generator:GetBlocklyConfig();
+		    local execution_str = code_generator:GetBlocklyCode();
+		    local keywords_json = code_generator:GetKeywords();
 			wp_send_json({
                 lang = lang,
 				menu_xml = menu_xml,
