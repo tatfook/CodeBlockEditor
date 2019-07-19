@@ -13,6 +13,7 @@
 	wp_enqueue_script("blockly_missed",			"/wp-includes/js/scratch-blocks/blockly_missed.js");
 	wp_enqueue_script("lua_compressed",			"/wp-includes/js/scratch-blocks/lua_compressed.js");
 	wp_enqueue_script("javascript_compressed",			"/wp-includes/js/scratch-blocks/javascript_compressed.js");
+	wp_enqueue_script("python_compressed",			"/wp-includes/js/scratch-blocks/python_compressed.js");
 
 	wp_enqueue_script("messages",			"/wp-includes/js/scratch-blocks/msg/messages.js");
 	wp_enqueue_script("scratch_msgs",			"/wp-includes/js/scratch-blocks/msg/scratch_msgs.js");
