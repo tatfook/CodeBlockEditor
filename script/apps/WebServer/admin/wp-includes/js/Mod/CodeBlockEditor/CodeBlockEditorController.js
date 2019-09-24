@@ -251,19 +251,24 @@ define([
                         var block_xml_txt = data.block_xml_txt;
                         $scope.readBlocklyFromXml(block_xml_txt);
                         $scope.loaded_file = true;
+
+                        $scope.onSaveFile(true); // saving file to generate codes
                     });
                 }
                 
             }
-            $scope.onSaveFile = function () {
+            $scope.onSaveFile = function (bForce) {
                 if (!$scope.domIsValid()) {
                     console.log("dom isn't valid");
                     return
                 }
-                if (!$scope.hasChanged()) {
-                    console.log("nothing changed");
-                    return
+                if (!bForce) {
+                    if (!$scope.hasChanged()) {
+                        console.log("nothing changed");
+                        return
+                    }
                 }
+                
                 if (blockpos) {
                     var xmlText = $scope.writeBlocklyToXml();
                     var url = "/ajax/blockeditor?action=savefile&blockpos=" + blockpos;
