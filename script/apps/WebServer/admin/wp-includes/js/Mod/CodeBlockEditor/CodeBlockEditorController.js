@@ -252,7 +252,7 @@ define([
                         $scope.readBlocklyFromXml(block_xml_txt);
                         $scope.loaded_file = true;
 
-                        $scope.onSaveFile(true); // saving file to generate codes
+                        //$scope.onSaveFile(true); // saving file to generate codes
                     });
                 }
                 
