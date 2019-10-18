@@ -58,7 +58,6 @@
     <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\blockly\BlocklyUtil.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\CodeBlockEditorController.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\python_compressed.js" />
-    <Content Include="script\apps\WebServer\admin\wp-includes\js\scratch-blocks\vertical_extensions.js" />
     <None Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\blockly\codeblock\codeblock.config.json" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\blockly\codeblock\BlocklySourceTemplate\BlocklyExecution.js" />
     <Content Include="script\apps\WebServer\admin\wp-includes\js\Mod\CodeBlockEditor\blockly\codeblock\BlocklySourceTemplate\BlocklyMenu-zh-cn.xml" />
