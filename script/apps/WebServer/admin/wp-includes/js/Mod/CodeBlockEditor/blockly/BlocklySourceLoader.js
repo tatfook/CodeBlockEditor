@@ -159,12 +159,59 @@ define([
             eval(execution_str);
         }
     }
+    /**
+     * register blockly extensioins to vertical_extensions.js
+     * @param {type} toolbox_menu
+     */
+    BlocklySourceLoader.prototype.registerBlocklyExtensions = function (toolbox_menu) {
+        this.setBlocklyColours(toolbox_menu);
+        Blockly.ScratchBlocks.VerticalExtensions.registerAll();
+    }
+        /**
+     * read the colors of category from toolbox menu and write to Blockly.Colours for blockly extension config
+     * @param {xml string} toolbox_menu
+     */
+    BlocklySourceLoader.prototype.setBlocklyColours = function (toolbox_menu) {
+        if (!toolbox_menu) {
+            return
+        }
+        if(!Blockly || !Blockly.Colours){
+            console.warn("Blockly or Blockly.Colours is null");
+            return
+        }
+        var domParser = new DOMParser();
+        var xmldoc = domParser.parseFromString(toolbox_menu, "application/xml");
+        var iterator = document.evaluate('//category', xmldoc);
+
+        try {
+            var thisNode = iterator.iterateNext();
+
+            while (thisNode) {
+                var id = thisNode.getAttribute("id");
+                var primary = thisNode.getAttribute("colour");
+                var secondary = thisNode.getAttribute("secondaryColour") || primary;
+                var tertiary = thisNode.getAttribute("tertiaryColour") || primary;
+                console.log("colour", id, primary, secondary, tertiary);
+                if (id) {
+                    Blockly.Colours[id] = {
+                        primary: primary,
+                        secondary: secondary,
+                        tertiary: tertiary,
+                    };
+                }
+                thisNode = iterator.iterateNext();
+            }
+        }
+        catch (e) {
+        }
+    }
     BlocklySourceLoader.prototype.loadResource = function (toolbox_menu, config_json, excution) {
         var self = this;
         self.toolbox_menu = toolbox_menu;
         self.config_json = config_json;
         self.excution = excution;
 
+        self.registerBlocklyExtensions(toolbox_menu);
 
         var variable_result = BlocklySourceLoader.getAllVariableTypes(config_json);
         var variable_types_map = variable_result[0];

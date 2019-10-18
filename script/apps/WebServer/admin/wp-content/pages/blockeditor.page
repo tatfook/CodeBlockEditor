@@ -22,7 +22,8 @@
 	wp_enqueue_script("blocks_common_matrix",			"/wp-includes/js/scratch-blocks/blocks_common/matrix.js");
 	wp_enqueue_script("blocks_common_text",			"/wp-includes/js/scratch-blocks/blocks_common/text.js");
 	wp_enqueue_script("blocks_data_category",			"/wp-includes/js/scratch-blocks/data_category.js");
-
+	wp_enqueue_script("blocks_vertical_extensions",			"/wp-includes/js/scratch-blocks/vertical_extensions.js");
+    
 	wp_enqueue_script("blocks_filesaver",			"/wp-includes/js/filesaver/FileSaver.min.js");
 
 
