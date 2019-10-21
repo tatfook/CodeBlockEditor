@@ -9,19 +9,20 @@
   
 	PAGE_NO_SIDE_BAR = true;
 
-	wp_enqueue_script("blockly_compressed_vertical",		"/wp-includes/js/scratch-blocks/blockly_compressed_vertical.js");
-	wp_enqueue_script("blockly_missed",			"/wp-includes/js/scratch-blocks/blockly_missed.js");
-	wp_enqueue_script("lua_compressed",			"/wp-includes/js/scratch-blocks/lua_compressed.js");
-	wp_enqueue_script("javascript_compressed",			"/wp-includes/js/scratch-blocks/javascript_compressed.js");
-	wp_enqueue_script("python_compressed",			"/wp-includes/js/scratch-blocks/python_compressed.js");
+	wp_enqueue_script("blockly_compressed_vertical",		"/wp-includes/js/scratch_blocks/blockly_compressed_vertical.js");
+	wp_enqueue_script("blockly_missed",			"/wp-includes/js/scratch_blocks/blockly_missed.js");
+	wp_enqueue_script("lua_compressed",			"/wp-includes/js/scratch_blocks/lua_compressed.js");
+	wp_enqueue_script("javascript_compressed",			"/wp-includes/js/scratch_blocks/javascript_compressed.js");
+	wp_enqueue_script("python_compressed",			"/wp-includes/js/scratch_blocks/python_compressed.js");
 
-	wp_enqueue_script("messages",			"/wp-includes/js/scratch-blocks/msg/messages.js");
-	wp_enqueue_script("scratch_msgs",			"/wp-includes/js/scratch-blocks/msg/scratch_msgs.js");
-	wp_enqueue_script("blocks_common_colour",			"/wp-includes/js/scratch-blocks/blocks_common/colour.js");
-	wp_enqueue_script("blocks_common_math",			"/wp-includes/js/scratch-blocks/blocks_common/math.js");
-	wp_enqueue_script("blocks_common_matrix",			"/wp-includes/js/scratch-blocks/blocks_common/matrix.js");
-	wp_enqueue_script("blocks_common_text",			"/wp-includes/js/scratch-blocks/blocks_common/text.js");
-	wp_enqueue_script("blocks_data_category",			"/wp-includes/js/scratch-blocks/data_category.js");
+	wp_enqueue_script("messages",			"/wp-includes/js/scratch_blocks/msg/messages.js");
+	wp_enqueue_script("scratch_msgs",			"/wp-includes/js/scratch_blocks/msg/scratch_msgs.js");
+	wp_enqueue_script("blocks_common_colour",			"/wp-includes/js/scratch_blocks/blocks_common/colour.js");
+	wp_enqueue_script("blocks_common_math",			"/wp-includes/js/scratch_blocks/blocks_common/math.js");
+	wp_enqueue_script("blocks_common_matrix",			"/wp-includes/js/scratch_blocks/blocks_common/matrix.js");
+	wp_enqueue_script("blocks_common_text",			"/wp-includes/js/scratch_blocks/blocks_common/text.js");
+	wp_enqueue_script("blocks_data_category",			"/wp-includes/js/scratch_blocks/data_category.js");
+	wp_enqueue_script("block_vertical",			"/wp-includes/js/scratch_blocks/block_vertical/vertical_extensions.js");
     
 	wp_enqueue_script("blocks_filesaver",			"/wp-includes/js/filesaver/FileSaver.min.js");
 

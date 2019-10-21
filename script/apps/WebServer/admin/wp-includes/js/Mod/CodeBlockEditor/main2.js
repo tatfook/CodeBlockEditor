@@ -47,6 +47,7 @@
             "text": "wp-includes/js/requirejs/text",
             "vs": "wp-includes/js/monaco-editor-0.10.1/package/min/vs",
             "luaparse": "wp-includes/js/luaparse/luaparse",
+            "BlocklyLoader": "wp-includes/js/BlocklyLoader",
         },
         shim: {
             "angular": {
