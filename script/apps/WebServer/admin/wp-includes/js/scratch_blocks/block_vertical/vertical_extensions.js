@@ -216,6 +216,9 @@ Blockly.ScratchBlocks.VerticalExtensions.PROCEDURE_CALL_CONTEXTMENU = {
 Blockly.ScratchBlocks.VerticalExtensions.SCRATCH_EXTENSION = function() {
   this.isScratchExtension = true;
 };
+
+
+
 /**
  * Register all extensions for scratch-blocks.
  * @package
@@ -260,6 +263,7 @@ Blockly.ScratchBlocks.VerticalExtensions.registerAll = function() {
   // Extension blocks have slightly different block rendering.
   Blockly.Extensions.register('scratch_extension',
       Blockly.ScratchBlocks.VerticalExtensions.SCRATCH_EXTENSION);
+
 };
 
 Blockly.ScratchBlocks.VerticalExtensions.registerAll();

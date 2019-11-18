@@ -55,10 +55,12 @@ define([
                 $scope.locale = locale;
                 Blockly.ScratchMsgs.setLocale(locale);
 
-
                 
                 var blockly_loader = new BlocklySourceLoader();
                 blockly_loader.loadResource(menu_xml, config_json, execution_str);
+
+                // register mcml extensions before creating block workspace
+                Blockly.Extensions.registerMcmlExtensions();
 
                 var menu_xml = blockly_loader.toolbox_menu;
                 var variable_types_map = blockly_loader.variable_types_map;
@@ -89,7 +91,8 @@ define([
                 return false;
             }
             $scope.createBlocklyWorkspace = function (menu_xml, variable_types_map, extra_variable_names) {
-
+                
+              
                 gWorkSpace = Blockly.inject(menu_parent_id, {
                     toolbox: menu_xml,
                     media: "wp-includes/js/scratch_blocks/media/",
@@ -236,6 +239,7 @@ define([
                     var url = "/ajax/blockeditor?action=loadfile&blockpos=" + blockpos;
                     $.get(url, function (data) {
                         var block_xml_txt = data.block_xml_txt;
+                        //console.log(block_xml_txt);
                         $scope.readBlocklyFromXml(block_xml_txt);
                         $scope.loaded_file = true;
 

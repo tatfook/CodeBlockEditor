@@ -22,7 +22,9 @@
 	wp_enqueue_script("blocks_common_matrix",			"/wp-includes/js/scratch_blocks/blocks_common/matrix.js");
 	wp_enqueue_script("blocks_common_text",			"/wp-includes/js/scratch_blocks/blocks_common/text.js");
 	wp_enqueue_script("blocks_data_category",			"/wp-includes/js/scratch_blocks/data_category.js");
+	wp_enqueue_script("block_procedures",			"/wp-includes/js/scratch_blocks/block_vertical/procedures.js");
 	wp_enqueue_script("block_vertical",			"/wp-includes/js/scratch_blocks/block_vertical/vertical_extensions.js");
+	wp_enqueue_script("block_mutator",			"/wp-includes/js/scratch_blocks/mutator_extensions.js");
     
 	wp_enqueue_script("blocks_filesaver",			"/wp-includes/js/filesaver/FileSaver.min.js");
 
