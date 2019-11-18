@@ -180,6 +180,9 @@ Blockly.Extensions.readTextFromMcmlAttrs = function (block,languageType) {
 }
 
 Blockly.Extensions.register_mcml_block = function (block) {
+    if (!block) {
+        return
+    }
     block.removeFieldCallback = function (field) {
         Blockly.Extensions.removeField(this, field);
     }
