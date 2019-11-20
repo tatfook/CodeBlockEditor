@@ -20,6 +20,7 @@ define([
             var blocktype = getUrlParameter("blocktype") || "codeblock"; // "codeblock" or "nplcad"
             var lang = getUrlParameter("lang") || "zhCN"; // "en" or "zhCN"
             var blockpos = getUrlParameter("blockpos");
+            var codeLanguageType = getUrlParameter("codeLanguageType") || "npl";
             $scope.loaded_file = false;
             if (showmenu == "True" || showmenu == "true") {
                 // show a help menu to debug
@@ -77,6 +78,12 @@ define([
 
                 $scope.onLoadFile();
             }
+            $scope.isDebug = function () {
+                if (debug == "True" || debug == "true") {
+                    return true;
+                }
+                return false;
+            }
             $scope.domIsValid = function () {
                 var dom = document.getElementById(menu_parent_id);
                 if (dom) {
@@ -91,8 +98,15 @@ define([
                 return false;
             }
             $scope.createBlocklyWorkspace = function (menu_xml, variable_types_map, extra_variable_names) {
-                
-              
+                var grid = {
+                    spacing: 20,
+                    length: 3,
+                    colour: '#ccc',
+                    snap: true
+                };
+                if ($scope.isDebug()) {
+                    grid = null;
+                }
                 gWorkSpace = Blockly.inject(menu_parent_id, {
                     toolbox: menu_xml,
                     media: "wp-includes/js/scratch_blocks/media/",
@@ -105,12 +119,7 @@ define([
                         scaleSpeed: 1.1
                     },
                     trashcan: true,
-                    grid: {
-                        spacing: 20,
-                        length: 3,
-                        colour: '#ccc',
-                        snap: true
-                    },
+                    grid: grid,
                     colours: {
                         fieldShadow: 'rgba(255, 255, 255, 0.3)',
                         dragShadowOpacity: 0.6
@@ -248,6 +257,17 @@ define([
                 }
                 
             }
+            $scope.getBlocklyLanguageNameSpace = function () {
+                var namespace;
+                if (codeLanguageType == "npl") {
+                    namespace = Blockly.Lua;
+                } else if (codeLanguageType == "javascript") {
+                    namespace = Blockly.JavaScript;
+                } else if (codeLanguageType == "python") {
+                    namespace = Blockly.Python;
+                }
+                return namespace;
+            }
             $scope.onSaveFile = function (bForce) {
                 if (!$scope.domIsValid()) {
                     console.log("dom isn't valid");
@@ -265,8 +285,9 @@ define([
                     var url = "/ajax/blockeditor?action=savefile&blockpos=" + blockpos;
 
                     var content;
-                    try{
-                        code = Blockly.Lua.workspaceToCode(gWorkSpace);
+                    try {
+                        var namespace = $scope.getBlocklyLanguageNameSpace();
+                        code = namespace.workspaceToCode(gWorkSpace);
                         content = code.valueOf();
                     } catch (err) {
                         console.log("get code error:",err);
@@ -324,8 +345,9 @@ define([
             $scope.onRun = function (state) {
                 var code;
                 var content;
-                try{
-                    code = Blockly.Lua.workspaceToCode(gWorkSpace);
+                try {
+                    var namespace = $scope.getBlocklyLanguageNameSpace();
+                    code = namespace.workspaceToCode(gWorkSpace);
                     content = code.valueOf();
                 } catch (err) {
                 }
