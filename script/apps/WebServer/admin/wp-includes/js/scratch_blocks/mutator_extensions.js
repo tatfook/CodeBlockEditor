@@ -20,7 +20,7 @@ Blockly.Extensions["FIELD_BUTTON_CALLBACK_append_mcml_attr"] = function (source_
         if (!isInFlyout) {
 
             var index = Blockly.Extensions.getInputIndexByName(source_block, "end_dummy");
-            if (index > -1) {
+            if(index > -1){
                 var child_input = Blockly.Extensions.insertValueInput(source_block, index);
 
                 var newBlock = Blockly.Extensions.newMcmlAttrBlock(workspace);
@@ -31,7 +31,7 @@ Blockly.Extensions["FIELD_BUTTON_CALLBACK_append_mcml_attr"] = function (source_
                     Blockly.Extensions.removeField(source_block, field);
                 }
             }
-
+            
 
         }
     }
@@ -70,7 +70,7 @@ Blockly.Extensions.getInputByName = function (block, name) {
     }
 }
 Blockly.Extensions.getInputIndexByName = function (block, name) {
-    if (block && block.inputList) {
+    if(block && block.inputList){
         var inputList = block.inputList;
         for (var i = 0; i < inputList.length; i++) {
             var input = inputList[i];
@@ -151,7 +151,7 @@ Blockly.Extensions.mutationToDom = function (block) {
  * @param {string} languageType - "Lua" or "JavaScript" or "Python"
  * @returns {string} 
  */
-Blockly.Extensions.readTextFromMcmlAttrs = function (block, languageType) {
+Blockly.Extensions.readTextFromMcmlAttrs = function (block,languageType) {
     if (!block) {
         return
     }
@@ -174,7 +174,7 @@ Blockly.Extensions.readTextFromMcmlAttrs = function (block, languageType) {
                 }
             }
         }
-
+        
     }
     return result;
 }
@@ -203,22 +203,22 @@ Blockly.Extensions.getMcmlControlText = function (block, tag_name, languageType)
 Blockly.Extensions.registerMcmlExtensions = function () {
 
     var tags = [
-        "mcml_div",
-        "mcml_button",
-        "mcml_label",
-        "mcml_text",
-        "mcml_checkbox",
-        "mcml_progressbar",
-        "mcml_sliderbar",
+        "mcml_div", 
+        "mcml_button", 
+        "mcml_label", 
+        "mcml_text", 
+        "mcml_checkbox", 
+        "mcml_progressbar", 
+        "mcml_sliderbar", 
         "mcml_attrs_style_key_value",
     ]
     for (var i = 0; i < tags.length; i++) {
         var name = tags[i];
         var block = Blockly.Blocks[name];
         Blockly.Extensions.register_mcml_block(block);
-
+      
     }
-
+   
     Blockly.Lua['argument_editor_string_number'] = function (block) {
         var text = block.getFieldValue("TEXT");
         return [text]
@@ -231,8 +231,8 @@ Blockly.Extensions.registerExtensions_temp_mcml = function () {
         var attrs = Blockly.Extensions.readTextFromMcmlAttrs(block, "Lua");
         var code = Blockly.Lua.statementToCode(block, 'code') || '';
         if (attrs) {
-            return "<div %s>\n%s</div>\n".format(attrs, code)
-        } else {
+            return "<div %s>\n%s</div>\n".format(attrs,code)
+        }else{
             return "<div>\n%s</div>\n".format(code)
         }
     };
@@ -372,7 +372,7 @@ Blockly.Extensions.registerExtensions_temp_paracraft = function () {
         var item_name = Blockly.Python.variableDB_.getName(block.getFieldValue('item'), Blockly.Variables.NAME_TYPE) || 'value';
         var data = Blockly.Python.valueToCode(block, 'data') || '';
         var input_statement_input = Blockly.Python.statementToCode(block, 'input') || '  pass\n';
-        return 'for %s, %s in enumerate(%s):\n%s'.format(i_name, item_name, data, input_statement_input);
+        return 'for %s, %s in enumerate(%s):\n%s'.format(i_name, item_name,data,input_statement_input);
     };
     Blockly.Python["run"] = function (block) {
         var input_statement_input = Blockly.Python.statementToCode(block, 'input') || '  pass\n';
@@ -381,7 +381,7 @@ Blockly.Extensions.registerExtensions_temp_paracraft = function () {
     Blockly.Python["runForActor"] = function (block) {
         var actor = Blockly.Python.valueToCode(block, 'actor') || '""';
         var input_statement_input = Blockly.Python.statementToCode(block, 'input') || '  pass\n';
-        return 'def runForActor_func():\n%srunForActor(%s,runForActor_func)\n'.format(input_statement_input, actor);
+        return 'def runForActor_func():\n%srunForActor(%s,runForActor_func)\n'.format(input_statement_input,actor);
     };
 
     //******************************Sensing******************************
@@ -391,10 +391,82 @@ Blockly.Extensions.registerExtensions_temp_paracraft = function () {
         return 'def registerCollisionEvent_func(actor):\n%sregisterCollisionEvent(%s,registerCollisionEvent_func)\n'.format(input_statement_input, name);
     };
     //******************************Operators******************************
+    Blockly.Python["math_op_compare_number"] = function (block) {
+        var left = Blockly.Python.valueToCode(block, 'left');
+        var op = block.getFieldValue('op');
+        var right = Blockly.Python.valueToCode(block,'right');
+        if (op == "~=") {
+            op = "!=";
+        }
+        return ['((%s) %s (%s))'.format(left, op, right)];
+    }
+    Blockly.Python["math_op_compare"] = function (block) {
+        var left = Blockly.Python.valueToCode(block, 'left');
+        var op = block.getFieldValue('op');
+        var right = Blockly.Python.valueToCode(block, 'right');
+        if (op == "~=") {
+            op = "!=";
+        }
+        return ['((%s) %s (%s))'.format(left, op, right)];
+    }
+    Blockly.Python["random"] = function (block) {
+        var from = Blockly.Python.valueToCode(block, 'from');
+        var to = Blockly.Python.valueToCode(block, 'to');
+        return ['random.randrange(%s,%s)'.format(from,to)];
+    }
+    Blockly.Python["math_compared"] = function (block) {
+        var left = Blockly.Python.valueToCode(block, 'left');
+        var op = block.getFieldValue('op');
+        var right = Blockly.Python.valueToCode(block, 'right');
+        if (op == "and") {
+            op = "&&";
+        } else if (op == "or") {
+            op = "||";
+        }
+        return ['((%s) %s (%s))'.format(left, op, right)];
+    }
+    Blockly.Python["not"] = function (block) {
+        var left = Blockly.Python.valueToCode(block, 'left');
+        return ['(!%s)'.format(left)];
+    }
+    Blockly.Python["join"] = function (block) {
+        var left = Blockly.Python.valueToCode(block, 'left');
+        var right = Blockly.Python.valueToCode(block, 'right');
+        return ['(%s+%s)'.format(left,right)];
+    }
+    Blockly.Python["lengthOf"] = function (block) {
+        var left = Blockly.Python.valueToCode(block, 'left');
+        return ['(len(%s))'.format(left)];
+    }
+    Blockly.Python["math_oneop"] = function (block) {
+        var name = block.getFieldValue('name');
+        var left = Blockly.Python.valueToCode(block, 'left');
+
+        if (name == "tonumber") {
+            return ['float(%s)'.format(left)];
+        } else if (name == "tostring") {
+            return ['str(%s)'.format(left)];
+        } else {
+            return ['math.%s(%s)'.format(name,left)];
+        }
+    }
     //******************************Data******************************
     Blockly.Python["registerCloneEvent"] = function (block) {
         var param = Blockly.Python.variableDB_.getName(block.getFieldValue('param'), Blockly.Variables.NAME_TYPE) || 'name';
         var input_statement_input = Blockly.Python.statementToCode(block, 'input') || '  pass\n';
         return 'def registerCloneEvent_func(%s):\n%sregisterCloneEvent(registerCloneEvent_func)\n'.format(param, input_statement_input);
     };
+    Blockly.Python["newFunction"] = function (block) {
+        var param = block.getFieldValue('param');
+        var input_statement_input = Blockly.Python.statementToCode(block, 'input') || '  pass\n';
+        return 'def temp_func(%s):\n%s'.format(param, input_statement_input);
+    }
+    Blockly.Python["code_comment"] = function (block) {
+        var value = block.getFieldValue('value');
+        return '# %s\n'.format(value);
+    }
+    Blockly.Python["code_comment_full"] = function (block) {
+        var input_statement_input = Blockly.Python.statementToCode(block, 'input') || '';
+        return '"""\n%s\n"""'.format(input_statement_input);
+    }
 }
