@@ -409,11 +409,11 @@ Blockly.Extensions.registerExtensions_temp_paracraft = function () {
         }
         return ['((%s) %s (%s))'.format(left, op, right)];
     }
-    Blockly.Python["random"] = function (block) {
-        var from = Blockly.Python.valueToCode(block, 'from');
-        var to = Blockly.Python.valueToCode(block, 'to');
-        return ['random.randrange(%s,%s)'.format(from,to)];
-    }
+    //Blockly.Python["random"] = function (block) {
+    //    var from = Blockly.Python.valueToCode(block, 'from');
+    //    var to = Blockly.Python.valueToCode(block, 'to');
+    //    return ['random.randrange(%s,%s)'.format(from,to)];
+    //}
     Blockly.Python["math_compared"] = function (block) {
         var left = Blockly.Python.valueToCode(block, 'left');
         var op = block.getFieldValue('op');
@@ -424,10 +424,6 @@ Blockly.Extensions.registerExtensions_temp_paracraft = function () {
             op = "||";
         }
         return ['((%s) %s (%s))'.format(left, op, right)];
-    }
-    Blockly.Python["not"] = function (block) {
-        var left = Blockly.Python.valueToCode(block, 'left');
-        return ['(!%s)'.format(left)];
     }
     Blockly.Python["join"] = function (block) {
         var left = Blockly.Python.valueToCode(block, 'left');
