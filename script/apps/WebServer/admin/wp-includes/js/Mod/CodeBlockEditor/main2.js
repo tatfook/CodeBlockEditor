@@ -10,7 +10,10 @@
         if (arguments && arguments.length > 0) {
             var b;
             for (b in arguments) {
-                a = a.replace(/%[a-z]/, arguments[b]);
+                a = a.replace(/%[a-z]/, "{" + b + "}");
+            }
+            for (b in arguments) {
+                a = a.replace("{" + b + "}", arguments[b])
             }
         }
         return String(a);
