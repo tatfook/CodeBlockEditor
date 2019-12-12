@@ -149,12 +149,14 @@ Blockly.Extensions.mutationToDom = function (block) {
  * read the input value in block.inputList between start_dummy and end_dummy
  * @param {Block} block
  * @param {string} languageType - "Lua" or "JavaScript" or "Python"
+ * @param {string} split - the split char
  * @returns {string} 
  */
-Blockly.Extensions.readTextFromMcmlAttrs = function (block,languageType) {
+Blockly.Extensions.readTextFromMcmlAttrs = function (block,languageType,split) {
     if (!block) {
         return
     }
+    split = split || " "
     languageType = languageType || "Lua"
     var inputList = block.inputList;
     var start_index = Blockly.Extensions.getInputIndexByName(block, "start_dummy");
@@ -170,7 +172,7 @@ Blockly.Extensions.readTextFromMcmlAttrs = function (block,languageType) {
                 if (result == null) {
                     result = text;
                 } else {
-                    result = result + " " + text;
+                    result = result + split + text;
                 }
             }
         }
@@ -211,6 +213,8 @@ Blockly.Extensions.registerMcmlExtensions = function () {
         "mcml_progressbar", 
         "mcml_sliderbar", 
         "mcml_attrs_style_key_value",
+
+        "newEmptyTable",
     ]
     for (var i = 0; i < tags.length; i++) {
         var name = tags[i];
@@ -227,6 +231,11 @@ Blockly.Extensions.registerMcmlExtensions = function () {
     Blockly.Extensions.registerExtensions_temp_paracraft();
 }
 Blockly.Extensions.registerExtensions_temp_mcml = function () {
+    Blockly.Lua["newEmptyTable"] = function (block) {
+        var attrs = Blockly.Extensions.readTextFromMcmlAttrs(block, "Lua", ",");
+        return [attrs];
+    };
+
     Blockly.Lua["mcml_div"] = function (block) {
         var attrs = Blockly.Extensions.readTextFromMcmlAttrs(block, "Lua");
         var code = Blockly.Lua.statementToCode(block, 'code') || '';
