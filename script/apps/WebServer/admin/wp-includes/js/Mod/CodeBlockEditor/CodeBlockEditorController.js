@@ -165,7 +165,6 @@ define([
                         if (showCodeEditor) {
                             $scope.onRun("showcode");
                         }
-                        $scope.onSaveFile(); // auto save
                     }, 500);
 
                     if (event.type == "create") {
@@ -248,7 +247,7 @@ define([
                     var url = "/ajax/blockeditor?action=loadfile&blockpos=" + blockpos;
                     $.get(url, function (data) {
                         var block_xml_txt = data.block_xml_txt;
-                        //console.log(block_xml_txt);
+                        console.log(block_xml_txt);
                         $scope.readBlocklyFromXml(block_xml_txt);
                         $scope.loaded_file = true;
 

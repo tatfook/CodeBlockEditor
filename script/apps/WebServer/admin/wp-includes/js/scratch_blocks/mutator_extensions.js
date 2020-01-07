@@ -331,7 +331,7 @@ Blockly.Extensions.registerExtensions_temp_paracraft = function () {
     };
     Blockly.Python["forever"] = function (block) {
         var input_statement_input = Blockly.Python.statementToCode(block, 'input') || '  pass\n';
-        return 'while true:\n%s\n'.format(input_statement_input);
+        return 'while True:\n%s\n'.format(input_statement_input);
     };
     Blockly.Python["repeat_count"] = function (block) {
         var name = Blockly.Python.variableDB_.getName(block.getFieldValue('var'), Blockly.Variables.NAME_TYPE) || 'i';
