@@ -52,7 +52,11 @@
 			if(bx)then
 				local codeEntity = CodeBlockWindow.GetCodeEntity(bx, by, bz)
 				if(codeEntity) then
-					wp_send_json({ blockpos = blockpos, block_xml_txt = codeEntity:GetBlocklyXMLCode()},true);
+                    local xml = codeEntity:GetBlocklyXMLCode();
+--                    commonlib.echo("========load xml");
+--                    commonlib.echo({bx, by, bz});
+--                    commonlib.echo(xml);
+					wp_send_json({ blockpos = blockpos, block_xml_txt = xml},true);
 					return
 				end
 			end
@@ -70,6 +74,7 @@
         end)
 		add_action('wp_ajax_savefile', function()
 			local block_xml_txt = request:get("block_xml_txt");
+            
 			local bx, by, bz = GetBlockPosition();
 			if(bx)then
 				local codeEntity = CodeBlockWindow.GetCodeEntity(bx, by, bz)

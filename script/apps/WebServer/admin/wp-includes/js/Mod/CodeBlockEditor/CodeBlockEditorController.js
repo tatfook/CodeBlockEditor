@@ -165,6 +165,7 @@ define([
                         if (showCodeEditor) {
                             $scope.onRun("showcode");
                         }
+                       $scope.onSaveFile(); // auto save
                     }, 500);
 
                     if (event.type == "create") {
