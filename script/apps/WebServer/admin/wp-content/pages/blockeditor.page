@@ -116,26 +116,24 @@
 			local CodeBlocklyGenerator = commonlib.gettable("MyCompany.Aries.Game.Code.CodeBlocklyGenerator");
             local CodeHelpWindow = commonlib.gettable("MyCompany.Aries.Game.Code.CodeHelpWindow");
 
-            
-            -- switch difference config by CodeHelpWindow.SetLanguageConfigFile(filename)
-            -- filename="" loading codeblock
-            -- filename="npl_cad" loading nplcad
+			local bx, by, bz = GetBlockPosition();
 
-            local categories = CodeHelpWindow.GetCategoryButtons();
-            local all_cmds = CodeHelpWindow.GetAllCmds();
-            local code_generator = CodeBlocklyGenerator:new():OnInit(categories,all_cmds);
+			local langConfig = CodeHelpWindow.GetLanguageConfigByBlockPos(bx,by,bz)
+			if(langConfig) then
+				local code_generator = CodeBlocklyGenerator:new():OnInit(langConfig.GetCategoryButtons(), langConfig.GetAllCmds());
 
-            local menu_xml = code_generator:GetBlocklyMenuXml();
-		    local config_json = code_generator:GetBlocklyConfig();
-		    local execution_str = code_generator:GetBlocklyCode();
-		    local keywords_json = code_generator:GetKeywords();
-			wp_send_json({
-                lang = lang,
-				menu_xml = menu_xml,
-				config_json = config_json,
-				execution_str = execution_str,
-				keywords_json = keywords_json,
-			},true);
+				local menu_xml = code_generator:GetBlocklyMenuXml();
+				local config_json = code_generator:GetBlocklyConfig();
+				local execution_str = code_generator:GetBlocklyCode();
+				local keywords_json = code_generator:GetKeywords();
+				wp_send_json({
+					lang = lang,
+					menu_xml = menu_xml,
+					config_json = config_json,
+					execution_str = execution_str,
+					keywords_json = keywords_json,
+				},true);
+			end
 		end)
 
 		return;

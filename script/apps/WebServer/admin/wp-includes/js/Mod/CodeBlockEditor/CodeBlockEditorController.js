@@ -391,6 +391,10 @@ define([
             }
             $scope.onMakeEditor = function () {
                 var url = "/ajax/blockeditor?action=makeblocklyeditor";
+                var blockpos = getUrlParameter("blockpos");
+                if(blockpos){
+                    url = url + "&blockpos=" + blockpos;
+                }
                 $.get(url, function (data) {
                     var lang = data.lang;
                     var menu_xml = data.menu_xml;
