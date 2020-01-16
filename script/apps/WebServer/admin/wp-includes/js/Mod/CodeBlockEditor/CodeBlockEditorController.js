@@ -21,7 +21,9 @@ define([
             var lang = getUrlParameter("lang") || "zhCN"; // "en" or "zhCN"
             var blockpos = getUrlParameter("blockpos");
             var codeLanguageType = getUrlParameter("codeLanguageType") || "npl";
+            var codeConfigType = getUrlParameter("codeConfigType") || "";
             $scope.loaded_file = false;
+            $scope.codeConfigType = codeConfigType;
             if (showmenu == "True" || showmenu == "true") {
                 // show a help menu to debug
                 $scope.showmenu = true;
@@ -52,11 +54,12 @@ define([
                     locale = "en"
                     locale2 = "en";
                 }
-
+                
                 $scope.locale = locale;
                 Blockly.ScratchMsgs.setLocale(locale);
 
                 
+
                 var blockly_loader = new BlocklySourceLoader();
                 blockly_loader.loadResource(menu_xml, config_json, execution_str);
 
@@ -243,6 +246,21 @@ define([
                     code_editor.updateOptions({ readOnly: false, });
                 }
             }
+            $scope.onRunMicrobit = function (type) {
+                if (blockpos) {
+                    var url = "/ajax/blockeditor?action=runmicrobit&blockpos=" + blockpos + "&type=" + type;
+                    var content;
+                    try {
+                        content = Blockly.JavaScript.workspaceToCode(gWorkSpace);
+                        content = content.valueOf();
+                    } catch (err) {
+                        console.log("get code error:", err);
+                    }
+                    console.log(content);
+                    $.post(url, { code: content }, function (data) {
+                    });
+                }
+            }
             $scope.onLoadFile = function () {
                 if (blockpos && !$scope.loaded_file) {
                     var url = "/ajax/blockeditor?action=loadfile&blockpos=" + blockpos;
@@ -401,8 +419,9 @@ define([
                     var config_json = data.config_json;
                     var execution_str = data.execution_str;
                     var keywords_json = data.keywords_json;
+                    var langConfig_type = data.langConfig_type;
                     
-                    $scope.onLoad(false, lang, menu_xml, config_json, execution_str, keywords_json);
+                    $scope.onLoad(false, lang, menu_xml, config_json, execution_str, keywords_json, langConfig_type);
                 });
             }
             $scope.onParse = function () {

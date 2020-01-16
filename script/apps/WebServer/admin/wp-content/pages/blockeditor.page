@@ -33,6 +33,7 @@
 	local code = request:get("code");
 	local blockpos = request:get("blockpos");
 	local filename = request:get("filename"); -- NOT used 
+	local type = request:get("type");
 	
 	local function GetBlockPosition()
 		local bx, by, bz;
@@ -135,7 +136,11 @@
 				},true);
 			end
 		end)
-
+		add_action('wp_ajax_runmicrobit', function()
+            local NplMicroRobot = NPL.load("(gl)script/apps/Aries/Creator/Game/Code/NplMicroRobot/NplMicroRobot.lua");
+			local bx, by, bz = GetBlockPosition();
+            NplMicroRobot.OnClickExport(type,code,bx, by, bz);
+        end)
 		return;
 	end
   ?>
@@ -180,6 +185,12 @@
             <button ng-click="onHelp('open')" style="margin-left:15px;">Open</button>
             <button ng-click="onHelp('save')" style="margin-left:5px;">Save</button>
         </div>
+        <div ng-if="codeConfigType == 'NplMicroRobot'" style="background-color:#ffffff">
+            <button ng-click="onRunMicrobit('build')" style="margin-left:15px;width:100px;">编译</button>
+            <button ng-click="onRunMicrobit('deploy')" style="margin-left:5px;width:100px;">部署</button>
+            <button ng-click="onRunMicrobit('view')" style="margin-left:5px;width:100px;">查看</button>
+        </div>
+        
 		<div id="blocklyDiv" style="height: 100%; width: 100%;"></div>
 		<!--<div id="editor" style="height:200px; width:1024px;"></div>-->
 	</div>
