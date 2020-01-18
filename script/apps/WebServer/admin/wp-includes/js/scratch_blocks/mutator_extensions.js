@@ -409,6 +409,16 @@ Blockly.Extensions.registerExtensions_temp_paracraft = function () {
         }
         return ['((%s) %s (%s))'.format(left, op, right)];
     }
+    Blockly.JavaScript["math_op_compare_number"] = function (block) {
+        var left = Blockly.JavaScript.valueToCode(block, 'left');
+        var op = block.getFieldValue('op');
+        var right = Blockly.JavaScript.valueToCode(block, 'right');
+        if (op == "~=") {
+            op = "!=";
+        }
+        return ['((%s) %s (%s))'.format(left, op, right)];
+    }
+
     Blockly.Python["math_op_compare"] = function (block) {
         var left = Blockly.Python.valueToCode(block, 'left');
         var op = block.getFieldValue('op');
@@ -418,11 +428,28 @@ Blockly.Extensions.registerExtensions_temp_paracraft = function () {
         }
         return ['((%s) %s (%s))'.format(left, op, right)];
     }
+
+    Blockly.JavaScript["math_op_compare"] = function (block) {
+        var left = Blockly.JavaScript.valueToCode(block, 'left');
+        var op = block.getFieldValue('op');
+        var right = Blockly.JavaScript.valueToCode(block, 'right');
+        if (op == "~=") {
+            op = "!=";
+        }
+        return ['((%s) %s (%s))'.format(left, op, right)];
+    }
     //Blockly.Python["random"] = function (block) {
     //    var from = Blockly.Python.valueToCode(block, 'from');
     //    var to = Blockly.Python.valueToCode(block, 'to');
+
     //    return ['random.randrange(%s,%s)'.format(from,to)];
     //}
+    Blockly.JavaScript["random"] = function (block) {
+        var from = Blockly.JavaScript.valueToCode(block, 'from');
+        var to = Blockly.JavaScript.valueToCode(block, 'to');
+        return ['(Math.random() * (%s - %s) + %s)'.format(to, from, from)];
+    }
+    
     Blockly.Python["math_compared"] = function (block) {
         var left = Blockly.Python.valueToCode(block, 'left');
         var op = block.getFieldValue('op');
@@ -434,15 +461,37 @@ Blockly.Extensions.registerExtensions_temp_paracraft = function () {
         }
         return ['((%s) %s (%s))'.format(left, op, right)];
     }
+
+    Blockly.JavaScript["math_compared"] = function (block) {
+        var left = Blockly.JavaScript.valueToCode(block, 'left');
+        var op = block.getFieldValue('op');
+        var right = Blockly.JavaScript.valueToCode(block, 'right');
+        if (op == "and") {
+            op = "&&";
+        } else if (op == "or") {
+            op = "||";
+        }
+        return ['((%s) %s (%s))'.format(left, op, right)];
+    }
+
+
     Blockly.Python["join"] = function (block) {
         var left = Blockly.Python.valueToCode(block, 'left');
         var right = Blockly.Python.valueToCode(block, 'right');
         return ['(%s+%s)'.format(left,right)];
     }
+
     Blockly.Python["lengthOf"] = function (block) {
         var left = Blockly.Python.valueToCode(block, 'left');
         return ['(len(%s))'.format(left)];
     }
+
+    Blockly.JavaScript["lengthOf"] = function (block) {
+        var left = Blockly.JavaScript.valueToCode(block, 'left');
+        return ['(%s.length))'.format(left)];
+    }
+
+
     Blockly.Python["math_oneop"] = function (block) {
         var name = block.getFieldValue('name');
         var left = Blockly.Python.valueToCode(block, 'left');
@@ -455,6 +504,20 @@ Blockly.Extensions.registerExtensions_temp_paracraft = function () {
             return ['math.%s(%s)'.format(name,left)];
         }
     }
+
+    Blockly.JavaScript["math_oneop"] = function (block) {
+        var name = block.getFieldValue('name');
+        var left = Blockly.JavaScript.valueToCode(block, 'left');
+
+        if (name == "tonumber") {
+            return ['(%s)'.format(left)];
+        } else if (name == "tostring") {
+            return ['(%s)'.format(left)];
+        } else {
+            return ['Math.%s(%s)'.format(name, left)];
+        }
+    }
+
     //******************************Data******************************
     Blockly.Python["registerCloneEvent"] = function (block) {
         var param = Blockly.Python.variableDB_.getName(block.getFieldValue('param'), Blockly.Variables.NAME_TYPE) || 'name';
