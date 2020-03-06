@@ -174,7 +174,7 @@ define([
                     if (event.type == "create") {
                         if (event.xml) {
                             var type = event.xml.getAttribute("type");
-                            if (type == "createNode") {
+                            if (type == "createNode" || type == "pushNode") {
                                 self.selected_blockId = event.blockId;
                             }
                         }
